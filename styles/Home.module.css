@@ -122,6 +122,8 @@
   margin-right: 16px;
   padding: 16px;
   border-radius: 12px;
+  display: block;
+  height: 100;
 }
 
 .linkBox:hover {

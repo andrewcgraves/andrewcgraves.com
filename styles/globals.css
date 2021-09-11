@@ -19,3 +19,11 @@ a {
 button {
   border: none;
 }
+
+a {
+  background-color: #19191D;
+}
+
+a:hover {
+  background-color: #222227;
+}
