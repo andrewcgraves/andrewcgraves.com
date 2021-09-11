@@ -22,12 +22,12 @@ export default function Home() {
           <div>
             <p className={styles.caption}>What i'm currently working on...</p>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'left'}}>
-              <div className={styles.card} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <a href="https://jotitdown.app" target="_blank" className={styles.card} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Image src="/jot.png" width={87} height={70}/>
-              </div>
-              <div className={styles.card}>
+              </a>
+              <a href="https://jotitdown.app" target="_blank" className={styles.card}>
                 <p className={styles.paragraph}><strong>Jot</strong> is a <strong>multi-platform, list-taking</strong><br/>application in beta. I work mainly on the <br/><strong>design</strong> and the <strong>Android application</strong> but I do<br/> work on the iOS app occasionally.</p>
-              </div>
+              </a>
             </div>
           </div>
 
@@ -36,7 +36,6 @@ export default function Home() {
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'left'}}>
               <LinkBox link="https://www.linkedin.com/in/andrewcgraves/" imgSrc="/linkedInLogo.png" width={56} height={56}/>
               <LinkBox link="https://github.com/andrewcgraves" imgSrc="/githubLogo.png" width={56} height={56}/>
-              {/* <LinkBox imgSrc="/linkedInLogo.png" width={56} height={56}/> */}
             </div>
           </div>
         </div>
