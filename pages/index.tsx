@@ -19,19 +19,14 @@ export default function Home() {
           Hi, I'm <br/> <strong>Andrew Graves</strong>
         </h1>
         <div style={{alignItems: 'start'}}>
-          <div>
-            <p className={styles.caption}>What i'm currently working on...</p>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'left'}}>
-              <a href="https://jotitdown.app" target="_blank" className={styles.card} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Image src="/jot.png" width={87} height={70}/>
-              </a>
-              <a href="https://jotitdown.app" target="_blank" className={styles.card}>
-                <p className={styles.paragraph}><strong>Jot</strong> is a <strong>multi-platform, list-taking</strong><br/>application in beta. I work mainly on the <br/><strong>design</strong> and the <strong>Android application</strong> but I do<br/> work on the iOS app occasionally.</p>
-              </a>
+          <p className={styles.caption}>What i'm currently working on...</p>
+          <a style={{display: 'flex', flexDirection: 'row', justifyContent: 'left', position: 'relative'}} href="https://jotitdown.app" target="_blank" className={styles.card}>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '16dp'}}>
+              <Image src="/jot.png" layout='fixed' width={87} height={70}/>
             </div>
-          </div>
-
-          <div style={{marginTop: '32px'}}>
+            <p className={styles.paragraph}><strong>Jot</strong> is a <strong>multi-platform, list-taking</strong><br/>application in beta. I work mainly on the <br/><strong>design</strong> and the <strong>Android application</strong> but I do<br/> work on the iOS app occasionally.</p>
+          </a>
+          <div style={{marginTop: '32dp'}}>
             <p className={styles.caption}>Other links...</p>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'left'}}>
               <LinkBox link="https://www.linkedin.com/in/andrewcgraves/" imgSrc="/linkedInLogo.png" width={56} height={56}/>
