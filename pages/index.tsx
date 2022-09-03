@@ -22,10 +22,10 @@ export default function Home() {
           <div >
             <p>
               I'm a Senior at 🎓 <a target='_blank' href='https://www.csuci.edu/'>California State University Channel Islands</a> studying Computer Science.
-              <br></br>and employed full-time as a 💻 full-stack developer at PennyMac Loan Services.
+              <br></br>I am also employed full-time as a 💻 full-stack developer at PennyMac Loan Services.
               <br></br>I like 🌿 being out in nature, 🔨 building things, 🏦 thoughtful urban planning, 🚉 and trains!
               <br></br><br></br> I'm most interested in how technology can improve the material conditions of the average person
-              <br></br> and how we can leverage that to make real change in people's everday lives! 
+              <br></br> and how we can leverage that to make positive change.
             </p>
           </div>
           <div style={{marginTop: '32px'}}>
