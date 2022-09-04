@@ -21,7 +21,7 @@ export default function Home() {
         <div style={{alignItems: 'start', paddingLeft: '32px', paddingRight: '32px'}}>
           <div >
             <p>
-              I'm a Senior at 🎓 <a target='_blank' href='https://www.csuci.edu/'>California State University Channel Islands</a> studying Computer Science.
+              I'm a senior at 🎓 California State University Channel Islands, studying Computer Science.
               <br></br>I am also employed full-time as a 💻 full-stack developer at PennyMac Loan Services.
               <br></br>I like 🌿 being out in nature, 🔨 building things, 🏦 thoughtful urban planning, 🚉 and trains!
               <br></br><br></br> I'm most interested in how technology can improve the material conditions of the average person
@@ -29,7 +29,7 @@ export default function Home() {
             </p>
           </div>
           <div style={{marginTop: '32px'}}>
-            <p className={styles.caption}>Other links...</p>
+            <p className={styles.caption}>Links...</p>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'left'}}>
               <LinkBox link="https://www.linkedin.com/in/andrewcgraves/" imgSrc="/linkedInLogo.png" width={56} height={56}/>
               <LinkBox link="https://github.com/andrewcgraves" imgSrc="/githubLogo.png" width={56} height={56}/>
