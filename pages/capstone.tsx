@@ -6,16 +6,16 @@ import Head from 'next/head'
 
 export default function Capstone() {
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <title>Capstone 2023</title>
-                <meta name="description" content="Contains information on my CSUCI ungraduate capstone project." />
+                <meta name="description" content="Contains information on my CSUCI undergraduate capstone project." />
                 <link rel="icon" href="/logo.png" />
                 <link rel="preconnect" href="https://fonts.gstatic.com"/>
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/> 
             </Head>
 
-            <main className={styles.main}>
+            <main className={styles.main} style={{backgroundColor: '#2A2A2E', padding: '32px'}}>
                 <h1 className={styles.title}><b>Neural Networks and Laser Experiments</b></h1>
                 <h2>Andrew Graves - Advisor: Dr. Scott Feister - COMP 499, Section 7</h2>
                 <p>🔗 Important Links: <a href='capstone/capstone-poster.pdf' target='_blank'>Capstone Poster</a>, <a href='https://youtu.be/tc9USxLXiAg' target='_blank'>Youtube Video</a></p>
@@ -35,8 +35,8 @@ export default function Capstone() {
                             <br/><br/>I followed this up with getting some experience creating my own neural networks with Python and attempting to think of an architecture that would allow me to work backwards as well as forwards.
                             <br/><br/>Throughout the semester, I worked with Dr. Feister to ensure that I had the correct idea of the physical experiment I was attempting to make predictions on. He helped me understand what the most ideal use case for a neural network like this would be and how people in his field would benefit.
                         </p>
-                        <div style={{display: 'flex', gap: '16px'}}>
-                            <div>
+                        <div className={styles.grid} style={{display: 'flex', gap: '16px'}}>
+                            <div className={styles.card}>
                                 <figure>
                                     <img src='/capstone/01.jpg' alt='Fig. 1: Physicists setting up a laser experiment'/>
                                     <figcaption>Fig. 1: Physicists setting up a laser experiment</figcaption>
@@ -59,8 +59,8 @@ export default function Capstone() {
                             <br/><br/>Normal neural networks only function in a single direction. Their operations are destructive and do not allow for any information to be derived about the inputs that created an output. Invertible Neural Networks turn this idea on its head by allowing information to be gained in both directions, forward and back. This is possible because their structure is arranged in such a way that there is no loss of data through the layers. Figure 2 demonstrates this visually. Thus, in practice an Invertible neural network is a normal neural network but with special restrictions on how the activation functions, weights and biases can be set up.
                             <br/><br/>My proposed structure would be the blending of Invertible, AutoEncoder (Fig. 6) and linear layers as described below. There would be two networks, one for getting the outputs and one for getting the inputs. The first one would consist of linear layers, with only the last layer having an invertible transition between them. Once the first model was trained, the second model would use the weights and biases from those last layers as its input section. The next layer section would consist of an autoencoder that will attempt to find a mapping between the outputs of that second layer and an output layer of 4 nodes mirroring the original input. I have yet to implement this as an actual model, but it was what I was planning to do if I were to continue working on this project.
                         </p>
-                        <div style={{display: 'flex', gap: '16px'}}>
-                            <div>
+                        <div className={styles.grid} style={{display: 'flex', gap: '16px'}}>
+                            <div className={styles.card}>
                                 <figure>
                                     <img src='/capstone/03.png' alt='Fig. 3: Training and Testing error relative to time of the initial model'/>
                                     <figcaption>Fig. 3: Training and Testing error relative to time of the initial model</figcaption>
@@ -80,22 +80,20 @@ export default function Capstone() {
                             <br/><br/>Furthermore, I also got to learn about invertible neural networks, something that I never encountered while studying machine learning in school. They really piqued my interest and motivated me to take a deeper dive into some of the different types of neural networks.
                             <br/><br/>After university, I intend to continue to develop this system, as I am curious to see if it would work as I intended it to.
                         </p>
-                        <div style={{display: 'flex', gap: '16px'}}>
-                            <div>
+                        <div className={styles.grid} style={{display: 'flex', gap: '16px'}}>
+                            <div className={styles.card}>
                                 <figure>
                                     <img src='/capstone/05.png' alt='Fig. 5: The initial model'/>
                                     <figcaption>Fig. 5: The initial model</figcaption>
                                 </figure>
                             </div>
-                            <div>
+                            <div className={styles.card}>
                                 <figure>
                                     <img src='/capstone/06.png' alt='Fig. 6: The architecture of an autoencoder'/>
                                     <figcaption>Fig. 6: The architecture of an autoencoder</figcaption>
                                 </figure>
                             </div>
-                        </div>
-                        <div>
-                            <div>
+                            <div className={styles.card}>
                                 <figure>
                                     <img src='/capstone/07.png' alt='Fig. 7: The dataset graphed with 4 of the 5 parameters. The green point is a data point plugged into the prediction model and the predicted value is about what is expected for a value in that region of the graph.'/>
                                     <figcaption>Fig. 7: The dataset graphed with 4 of the 5 parameters. The green point is a data point plugged into the prediction model and the predicted value is about what is expected for a value in that region of the graph.</figcaption>
