@@ -7,6 +7,10 @@ body {
   color: rgba(255, 255, 255, .87);
 }
 
+.app {
+  background-color: #2A2A2E;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -35,4 +39,16 @@ img {
 
 caption {
   width: 100%;
+}
+
+.warningBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8pt;
+  background-color: #bd2f2f;
+  text-align: center;
+  display: inline-block;  
+  color: white;
 }
