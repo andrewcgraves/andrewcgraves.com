@@ -1,3 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply underline italic
+  }
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 72px;
+  color: rgba(255, 255, 255, .87);
+  margin-bottom: 44px;
+  line-height: 84px;
+  font-weight: 500;
+  margin-top: 0px;
+}
+
+.caption {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
 html,
 body {
   padding: 0;
@@ -7,25 +37,11 @@ body {
   color: rgba(255, 255, 255, .87);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-button {
-  border: none;
-}
-
-a {
-  background-color: #19191D;
-}
-
-a:hover {
-  background-color: #222227;
+h2 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color:white;
+  font-weight: bold;
 }
 
 img {
