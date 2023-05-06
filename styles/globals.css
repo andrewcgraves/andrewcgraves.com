@@ -10,10 +10,10 @@
 
 h1 {
   font-family: 'Roboto', sans-serif;
-  font-size: 72px;
+  font-size: 52px;
   color: rgba(255, 255, 255, .87);
-  margin-bottom: 44px;
-  line-height: 84px;
+  /* margin-bottom: 44px; */
+  line-height: 60px;
   font-weight: 500;
   margin-top: 0px;
 }
@@ -42,13 +42,4 @@ h2 {
   font-size: 1.5rem;
   color:white;
   font-weight: bold;
-}
-
-img {
-  max-height: 12em;
-  object-fit: contain;
-}
-
-caption {
-  width: 100%;
 }

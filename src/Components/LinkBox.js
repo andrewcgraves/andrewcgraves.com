@@ -1,13 +1,10 @@
-// import Head from 'next/head'
 import Image from 'next/image'
-// import styles from '../styles/Home.module.css'
-// import styles from '../../styles/Home.module.css'
 
-export default function LinkBox({ link, imgSrc, width, height }) {
+export default function LinkBox({ link, imgSrc, size}) {
     return(
-        <a href={link} target="_blank">
-            <div className='p-4 bg-slate-950 hover:bg-slate-900 rounded-xl hover:scale-105 hover:-translate-x-1/8 hover:-translate-y-1 hover:drop-shadow-lg ease-in-out duration-200'>
-                <Image src={imgSrc} width={width} height={height}/>
+        <a href={link} target="_blank" className={`object-contain aspect-square flex-none h-${size}`}>
+            <div className='p-4 bg-slate-950 hover:bg-slate-900 rounded-xl hover:scale-105 hover:-translate-x-1/8 hover:-translate-y-1 hover:drop-shadow-lg ease-in-out duration-200 h-full grid place-content-center'>
+                <Image src={imgSrc}/>
             </div>
         </a>
     )

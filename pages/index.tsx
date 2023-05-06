@@ -3,6 +3,10 @@ import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 import LinkBox from '../src/Components/LinkBox.js'
 
+// images
+import linkedInLogo from '../public/linkedInLogo.png'
+import githubLogo from'../public/githubLogo.png'
+
 export default function Home() {
   return (
     <div className='flex bg-slate-800 h-full'>
@@ -15,11 +19,11 @@ export default function Home() {
       </Head>
 
       <main className='m-auto p-8'>
-        <h1>
-          Hey, I'm <br/> <strong>Andrew Graves</strong> 👋
+        <h1 className='mb-8'>
+          Hey, I'm <br/><strong>Andrew Graves</strong> 👋
         </h1>
         <div className='items-start'>
-          <div >
+          <div className='mb-8'>
             <p>
               I'm a senior at 🎓 California State University Channel Islands, studying Computer Science.
               <br></br>I am also employed full-time as a 💻 full-stack developer at PennyMac Loan Services.
@@ -28,11 +32,11 @@ export default function Home() {
               <br></br> and how we can leverage that to make positive change.
             </p>
           </div>
-          <div className='mt-8'>
+          <div>
             <p className='caption'>Links...</p>
-            <div className='flex space-x-4'>
-              <LinkBox link="https://www.linkedin.com/in/andrewcgraves/" imgSrc="/linkedInLogo.png" width={56} height={56}/>
-              <LinkBox link="https://github.com/andrewcgraves" imgSrc="/githubLogo.png" width={56} height={56}/>
+            <div className='flex gap-4 sm:flex-row flex-wrap'>
+              <LinkBox link="https://www.linkedin.com/in/andrewcgraves/" imgSrc={linkedInLogo} size={24}/>
+              <LinkBox link="https://github.com/andrewcgraves" imgSrc={githubLogo} size={24}/>
             </div>
           </div>
         </div>
