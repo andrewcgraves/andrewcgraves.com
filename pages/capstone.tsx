@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import LinkBox from '../src/Components/LinkBox.js'
 import Head from 'next/head'
+import HeaderBar from '../src/Components/HeaderBar.js'
+import Pill from '../src/Components/Pill.js'
 
 export default function Capstone() {
     return (
@@ -14,12 +16,15 @@ export default function Capstone() {
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/> 
             </Head>
 
-            <main className='sm:p-16 md:p-32'>
+            <main className='p-8 sm:p-16 md:p-32'>
                 <div className='text-center mb-8'>
+                    <HeaderBar>
+                        <Pill link="/"><b>Home</b></Pill>
+                    </HeaderBar>
                     <h1 className='mb-8'><b>Neural Networks and Laser Experiments</b></h1>
                     <p>Andrew Graves - Advisor: Dr. Scott Feister</p>
                     <p>COMP 499, Section 7</p>
-                    <p>🔗 Important Links: <a href='capstone/capstone-poster.pdf' target='_blank'>Capstone Poster</a>, <a href='https://youtu.be/tc9USxLXiAg' target='_blank'>Youtube Video</a></p>
+                    <p>🔗 Important Links: <a className='link' href='capstone/capstone-poster.pdf' target='_blank'>Capstone Poster</a>, <a className='link' href='https://youtu.be/tc9USxLXiAg' target='_blank'>Youtube Video</a></p>
                 </div>
                 <div className='items-start'>
                     <div>
@@ -106,15 +111,15 @@ export default function Capstone() {
                         <div className='mb-16 p-16 bg-slate-900 rounded-xl'>
                             <h2>Resources</h2>
                             <p>
-                                LPA Seminars, (2022). Workshop Day 4. [Cognitive Simulation models for inertial confinement fusion]. YouTube. <a href='https://www.youtube.com/watch?v=haCVtpoqr70&t=877s'>https://www.youtube.com/watch?v=haCVtpoqr70&t=877s</a>
-                                <br/><br/>LPA Seminars, (2022). The data-driven future of high-energy-density physics. YouTube. <a href='https://www.youtube.com/watch?v=PSZArvFd1UI'>https://www.youtube.com/watch?v=PSZArvFd1UI</a>
-                                <br/><br/>LPA Seminars, (2022). Optimisation of high-intensity laser-solid interactions using gaussian process regression. YouTube. <a href='https://www.youtube.com/watch?v=SCe1QFLll68'>https://www.youtube.com/watch?v=SCe1QFLll68</a>
+                                LPA Seminars, (2022). Workshop Day 4. [Cognitive Simulation models for inertial confinement fusion]. YouTube. <a className='link' href='https://www.youtube.com/watch?v=haCVtpoqr70&t=877s'>https://www.youtube.com/watch?v=haCVtpoqr70&t=877s</a>
+                                <br/><br/>LPA Seminars, (2022). The data-driven future of high-energy-density physics. YouTube. <a className='link' href='https://www.youtube.com/watch?v=PSZArvFd1UI'>https://www.youtube.com/watch?v=PSZArvFd1UI</a>
+                                <br/><br/>LPA Seminars, (2022). Optimisation of high-intensity laser-solid interactions using gaussian process regression. YouTube. <a className='link' href='https://www.youtube.com/watch?v=SCe1QFLll68'>https://www.youtube.com/watch?v=SCe1QFLll68</a>
                             </p>
 
                             <h2>Further Reading</h2>
                             <p>
-                                Badr, W. (2019). "Auto-Encoder: What Is It? And What Is It Used For?" <a href='https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726'>https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726</a>
-                                <br/><br/>Jacobsen, J. (2018). "i-REVNET: DEEP INVERTIBLE NETWORKS." <a href='https://openreview.net/pdf?id=HJsjkMb0Z'>https://openreview.net/pdf?id=HJsjkMb0Z</a>
+                                Badr, W. (2019). "Auto-Encoder: What Is It? And What Is It Used For?" <a className='link' href='https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726'>https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726</a>
+                                <br/><br/>Jacobsen, J. (2018). "i-REVNET: DEEP INVERTIBLE NETWORKS." <a className='link' href='https://openreview.net/pdf?id=HJsjkMb0Z'>https://openreview.net/pdf?id=HJsjkMb0Z</a>
                             </p>
                         </div>
                     </div>

@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 import LinkBox from '../src/Components/LinkBox.js'
+import HeaderBar from '../src/Components/HeaderBar.js'
+import Pill from '../src/Components/Pill.js'
 
 // images
 import linkedInLogo from '../public/linkedInLogo.png'
@@ -19,6 +21,10 @@ export default function Home() {
       </Head>
 
       <main className='m-auto p-8'>
+        {/* <HeaderBar>
+          <Pill link="/"><b>Home</b></Pill>
+          <Pill link="/capstone"><b>Capstone</b></Pill>
+        </HeaderBar> */}
         <h1 className='mb-8'>
           Hey, I'm <br/><strong>Andrew Graves</strong> 👋
         </h1>
