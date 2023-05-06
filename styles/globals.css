@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  a {
+  .link {
     @apply underline italic
   }
 }
