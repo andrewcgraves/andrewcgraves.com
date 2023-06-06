@@ -24,7 +24,7 @@ export default function Capstone() {
                     <h1 className='mb-8'><b>Neural Networks and Laser Experiments</b></h1>
                     <p>Andrew Graves - Advisor: Dr. Scott Feister</p>
                     <p>COMP 499, Section 7</p>
-                    <p>🔗 Important Links: <a className='link' href='capstone/capstone-poster.pdf' target='_blank'>Capstone Poster</a>, <a className='link' href='https://youtu.be/tc9USxLXiAg' target='_blank'>Youtube Video</a></p>
+                    <p>🔗 Important Links: <a className='link' href='capstone/capstone-poster.pdf' target='_blank'>Capstone Poster</a>, <a className='link' href='https://youtu.be/tc9USxLXiAg' target='_blank'>Youtube Video</a>, <a className='link' href='https://github.com/andrewcgraves/capstone-2023' target='_blank'>Code / Github</a></p>
                 </div>
                 <div className='items-start'>
                     <div>
