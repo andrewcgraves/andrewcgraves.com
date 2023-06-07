@@ -31,7 +31,7 @@ export default function Home() {
         <div className='items-start'>
           <div className='mb-8'>
             <p>
-              I'm a senior at 🎓 California State University Channel Islands, studying Computer Science.
+              I'm a recent graduate from California State University Channel Islands, with a B.S. in Computer Science.
               <br></br>I am also employed full-time as a 💻 full-stack developer at PennyMac Loan Services.
               <br></br>I like 🌿 being out in nature, 🔨 building things, 🏦 thoughtful urban planning, 🚉 and trains!
               <br></br><br></br> I'm most interested in how technology can improve the material conditions of the average person
