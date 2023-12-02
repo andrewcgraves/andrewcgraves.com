@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import type { AppProps } from 'next/app'
 // import styles from '../styles/Home.module.css'
 import LinkBox from '../src/Components/LinkBox.js'
 import HeaderBar from '../src/Components/HeaderBar.js'
