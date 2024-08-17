@@ -44,6 +44,7 @@ export default function Home() {
             <div className='flex gap-4 sm:flex-row flex-wrap'>
               <LinkBox link="https://www.linkedin.com/in/andrewcgraves/" imgSrc={linkedInLogo} size={24}/>
               <LinkBox link="https://github.com/andrewcgraves" imgSrc={githubLogo} size={24}/>
+              <LinkBox link="/portfolio" imgSrc={githubLogo} size={24}/>
             </div>
           </div>
         </div>

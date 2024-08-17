@@ -19,7 +19,7 @@ export default function Capstone() {
             <main className='p-8 sm:p-16 md:p-32'>
                 <div className='text-center mb-8'>
                     <HeaderBar>
-                        <Pill link="/"><b>Home</b></Pill>
+                        <Pill><b><a href='/'>Home</a></b></Pill>
                     </HeaderBar>
                     <h1 className='mb-8'><b>Neural Networks and Laser Experiments</b></h1>
                     <p>Andrew Graves - Advisor: Dr. Scott Feister</p>

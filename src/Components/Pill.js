@@ -1,9 +1,7 @@
-export default function Pill({ link, h = 8, children}) {
+export default function Pill(props) {
     return(
-        <a href={link} className={`object-contain flex-none h-${h} w-fit `}>
-            <div className='px-4 py-2 bg-slate-950 hover:bg-slate-900 rounded-lg hover:px-8 ease-in-out duration-200 h-full grid place-content-center'>
-                {children}
-            </div>
-        </a>
+        <div onClick={props.onClick} className='px-4 py-2 bg-slate-950 hover:bg-slate-900 rounded-lg hover:px-8 ease-in-out duration-200 h-full grid place-content-center cursor-pointer'>
+            {props.children}
+        </div>
     )
 }

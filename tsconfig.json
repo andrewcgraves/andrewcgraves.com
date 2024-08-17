@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/Components/LinkBox.js"
-  ],
+, "src/Components/Pill.js"  ],
   "exclude": [
     "node_modules"
   ]
