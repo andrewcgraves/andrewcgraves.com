@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/Components/LinkBox.js"
-, "src/Components/Pill.js"  ],
+, "src/Components/Pill.js", "next.config.mjs"  ],
   "exclude": [
     "node_modules"
   ]

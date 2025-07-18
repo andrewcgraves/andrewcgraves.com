@@ -8,10 +8,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.3.5",
+    "@types/mdx": "^2.0.13",
     "next": "^13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-particles": "^2.7.1",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "tsparticles": "^2.7.1",
     "tsparticles-engine": "^2.7.1"
   },
@@ -20,6 +26,7 @@
     "@types/react": "17.0.11",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
+    "sass": "^1.89.2",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.2"
   }

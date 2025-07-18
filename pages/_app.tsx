@@ -1,4 +1,6 @@
 import '../styles/globals.css'
+import '../styles/styles.scss'
+
 import type { AppProps } from 'next/app'
 import React, { useCallback, useEffect, useState } from 'react'
 import Particles from 'react-particles'

@@ -1,0 +1,24 @@
+// $body-font-stack: Helvetica, sans-seriff;
+$primary-color: black;
+
+@font-face {
+  font-family: 'Cal Sans';
+  src: url(/styles/fonts/CalSans-Regular.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(/styles/fonts/Roboto.ttf) format("truetype")
+}
+
+
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: $primary-color;
+}
+
+h1 {
+  font-family: 'Cal Sans', sans-serif;
+  color: $primary-color;
+}
