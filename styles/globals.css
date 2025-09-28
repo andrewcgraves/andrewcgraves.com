@@ -15,7 +15,8 @@
   --color-base-200: oklch(95% 0.03 240);
   --color-base-300: oklch(92% 0.04 240);
   --color-base-content: oklch(20% 0.05 240); */
-  --color-primary: rgba();
+  --color-primary: rgb(255, 102, 91);
+  --color-secondary: rgb(239, 146, 97);
   --color-background: rgba(0, 0, 0, 1);
   --color-content: rgba(18, 18, 18, 1);
   /* --color-primary-content: oklch(98% 0.01 240);
@@ -96,4 +97,8 @@ h2 {
   position: sticky;
   top: calc(var(--spacing) * 0);
   left: calc(var(--spacing) * 0)
+}
+
+.gradient-theme:hover {
+  background-image: radial-gradient("closest-side", var(--color-primary), var(--color-secondary));
 }

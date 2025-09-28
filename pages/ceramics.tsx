@@ -16,43 +16,43 @@ interface Photo {
 
 const photos: Array<Photo> = [
     {
-        src: "ceramics/two-mugs.jpg",
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f102cf27e30aa6989_d20250928_m175150_c004_v0402007_t0052_u01759081910219",
         width: 200,
         height: 100,
         caption: ""
     },
     {
-        src: "ceramics/ramen-bowls.jpg",
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1071b9487835410b_d20250928_m175133_c004_v0402026_t0024_u01759081893909",
         width: 200,
         height: 3,
         caption: ""
     },
     {
-        src: "ceramics/raw-angular-mugs.jpg",
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f10786810c074c97b_d20250928_m175136_c004_v0402000_t0057_u01759081896368",
         width: 2,
         height: 3,
         caption: ""
     },
     {
-        src: "ceramics/raw-various-pieces.jpg",
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f107d8a16ace0d755_d20250928_m175144_c004_v0402029_t0054_u01759081904111",
         width: 2,
         height: 3,
         caption: ""
     },
     {
-        src: "ceramics/two-celedon-mugs.jpg",
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1197e503498e592d_d20250928_m175148_c004_v0402026_t0003_u01759081908161",
         width: 2,
         height: 3,
         caption: ""
     },
     {
-        src: "ceramics/cobalt-cup-and-saucer.jpg",
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f11984df882bd8f37_d20250928_m175126_c004_v0402012_t0036_u01759081886846",
         width: 3024,
         height: 4032,
         caption: ""
     },
     {
-        src: "ceramics/single-mug.jpg",
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f101f76678969f1dc_d20250928_m175145_c004_v0402028_t0032_u01759081905173",
         width: 2,
         height: 3,
         caption: ""
