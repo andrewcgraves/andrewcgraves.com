@@ -11,6 +11,7 @@
     "@tailwindcss/postcss": "^4.1.13",
     "daisyui": "^5.1.25",
     "next": "15.5.4",
+    "photoswipe": "^5.4.4",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-particles": "^2.7.1",
