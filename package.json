@@ -3,24 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "^13.1.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "@tailwindcss/postcss": "^4.1.13",
+    "daisyui": "^5.1.25",
+    "next": "15.5.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "react-particles": "^2.7.1",
     "tsparticles": "^2.7.1",
     "tsparticles-engine": "^2.7.1"
   },
   "devDependencies": {
     "@types/node": "18.11.18",
-    "@types/react": "17.0.11",
+    "@types/react": "19.1.14",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
-    "tailwindcss": "^3.3.2",
+    "tailwindcss": "^4.1.13",
     "typescript": "^5.0.2"
-  }
+  },
+  "overrides": {
+    "@types/react": "19.1.14"
+  },
+  "browserslist": "> 1%"
 }
