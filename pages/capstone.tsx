@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import LinkBox from '../src/Components/LinkBox.js'
 import Head from 'next/head'
-import HeaderBar from '../src/Components/HeaderBar.js'
+import UniversalHeaderBar from '../src/Components/UniversalHeaderBar.js/index.js'
 import Pill from '../src/Components/Pill.js'
 
 export default function Capstone() {
@@ -18,9 +18,9 @@ export default function Capstone() {
 
             <main className='p-8 sm:p-16 md:p-32'>
                 <div className='text-center mb-8'>
-                    <HeaderBar>
+                    <UniversalHeaderBar>
                         <Pill link="/"><b>Home</b></Pill>
-                    </HeaderBar>
+                    </UniversalHeaderBar>
                     <h1 className='mb-8'><b>Neural Networks and Laser Experiments</b></h1>
                     <p>Andrew Graves - Advisor: Dr. Scott Feister</p>
                     <p>COMP 499, Section 7</p>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import type { AppProps } from 'next/app'
 // import styles from '../styles/Home.module.css'
 import LinkBox from '../src/Components/LinkBox.js'
-import HeaderBar from '../src/Components/HeaderBar.js'
+import UniversalHeaderBar from '../src/Components/UniversalHeaderBar.js'
 import Pill from '../src/Components/Pill.js'
 
 // images
@@ -20,11 +20,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <HeaderBar>
-          <Pill link="/ceramics"><b>CERAMICS</b></Pill>
-          <Pill link="/"><b>DESIGN</b></Pill>
-          <Pill link="/"><b>PROJECTS</b></Pill>
-        </HeaderBar>
+        <UniversalHeaderBar/>
         <div className="flex flex-wrap gap-4 p-16">
           <div className="flex-initial lg:flex-1">
             <h1 className='mb-8'>

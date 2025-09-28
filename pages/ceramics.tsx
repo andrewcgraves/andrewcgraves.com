@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import HeaderBar from '../src/Components/HeaderBar.js'
+import UniversalHeaderBar from '../src/Components/UniversalHeaderBar.js'
 import Pill from '../src/Components/Pill.js'
 
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
@@ -81,11 +81,7 @@ export default function Ceramics() {
                 <link rel="icon" href="/logo.png" />
             </Head>
             <main>
-                <HeaderBar>
-                    <Pill link="/"><b>CERAMICS</b></Pill>
-                    <Pill link="/"><b>DESIGN</b></Pill>
-                    <Pill link="/"><b>PROJECTS</b></Pill>
-                </HeaderBar>
+                <UniversalHeaderBar/>
                 <div className='main-container'>
                     <h1>Ceramics: IN PROGRESS</h1>
                     <p>Ceramics has become a big part of my life in the last few years. I teach and produce work with CSU Channel Islands, where I graduated. Ceramics is one of the ways I unwind, and express my creativity. Here are some of my favorite pieces.</p>

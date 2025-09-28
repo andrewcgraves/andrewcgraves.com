@@ -88,3 +88,12 @@ h2 {
 .main-container {
   padding: calc(var(--spacing) * 16);
 }
+
+.banner-theme {
+  background: var(--color-primary);
+  padding: calc(var(--spacing) * 2);
+  text-align: center;
+  position: sticky;
+  top: calc(var(--spacing) * 0);
+  left: calc(var(--spacing) * 0)
+}
