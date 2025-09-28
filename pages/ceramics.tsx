@@ -1,11 +1,8 @@
 import Head from 'next/head'
 import UniversalHeaderBar from '../src/Components/UniversalHeaderBar.js'
-import Pill from '../src/Components/Pill.js'
 
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import 'photoswipe/style.css'
-
-import { useEffect, useState } from 'react'
 
 interface Photo {
     src: string,
