@@ -1,6 +1,9 @@
 export default function HeaderBar({children}) {
     return (
-        <div className='w-fit mb-4 flex gap-4 flex-wrap'>
+        <div className='p-4 w-fit flex gap-8 flex-wrap'>
+            <a href="/">
+                <img className='w-10' src='/website-large-dark.svg' />
+            </a>
             {children}
         </div>
     )

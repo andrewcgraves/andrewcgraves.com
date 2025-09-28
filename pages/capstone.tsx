@@ -7,7 +7,7 @@ import Pill from '../src/Components/Pill.js'
 
 export default function Capstone() {
     return (
-        <div className='flex bg-slate-800 h-full'>
+        <div className='flex h-full'>
             <Head>
                 <title>Capstone 2023</title>
                 <meta name="description" content="Contains information on my CSUCI undergraduate capstone project." />
