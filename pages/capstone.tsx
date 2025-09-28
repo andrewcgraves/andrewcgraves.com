@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import LinkBox from '../src/Components/LinkBox.js'
 import Head from 'next/head'
-import UniversalHeaderBar from '../src/Components/UniversalHeaderBar.js/index.js'
+import UniversalHeaderBar from '../src/Components/UniversalHeaderBar.js'
 import Pill from '../src/Components/Pill.js'
 
 export default function Capstone() {
@@ -18,9 +18,7 @@ export default function Capstone() {
 
             <main className='p-8 sm:p-16 md:p-32'>
                 <div className='text-center mb-8'>
-                    <UniversalHeaderBar>
-                        <Pill link="/"><b>Home</b></Pill>
-                    </UniversalHeaderBar>
+                    <UniversalHeaderBar/>
                     <h1 className='mb-8'><b>Neural Networks and Laser Experiments</b></h1>
                     <p>Andrew Graves - Advisor: Dr. Scott Feister</p>
                     <p>COMP 499, Section 7</p>
@@ -108,7 +106,7 @@ export default function Capstone() {
                             </div>
                         </div>
 
-                        <div className='mb-16 p-16 bg-slate-900 rounded-xl'>
+                        <div className='mb-16 rounded-xl'>
                             <h2>Resources</h2>
                             <p>
                                 LPA Seminars, (2022). Workshop Day 4. [Cognitive Simulation models for inertial confinement fusion]. YouTube. <a className='link' href='https://www.youtube.com/watch?v=haCVtpoqr70&t=877s'>https://www.youtube.com/watch?v=haCVtpoqr70&t=877s</a>
