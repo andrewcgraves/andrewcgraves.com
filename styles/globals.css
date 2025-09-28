@@ -102,3 +102,7 @@ h2 {
 .gradient-theme:hover {
   background-image: radial-gradient("closest-side", var(--color-primary), var(--color-secondary));
 }
+
+.disabled {
+  color: grey;
+}

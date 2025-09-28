@@ -1,6 +1,6 @@
 import Pill from "./Pill"
 
-const defaultElements = ["ceramics", "design", "projects"]
+const defaultElements = [{name: "ceramics", isDisabled: false}, {name: "design", isDisabled: true}, {name: "projects", isDisabled: true}]
 
 export default function UniversalHeaderBar({children = null}) {
     return (
@@ -9,11 +9,11 @@ export default function UniversalHeaderBar({children = null}) {
                 <img className='w-10' src='/website-large-dark.svg' />
             </a>
             {children == null ? defaultElements.map(element => {
-                let link = `/${element}`
+                let link = `/${element['name']}`
 
                 return (
-                    <Pill link={link}>
-                        <p>{element.toUpperCase()}</p>
+                    <Pill link={link} isDisabled={element.isDisabled}>
+                        <p>{element['name'].toUpperCase()}</p>
                     </Pill>
                 )
             }): children}
