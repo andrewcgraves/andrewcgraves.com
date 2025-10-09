@@ -1,9 +1,21 @@
-export default function Pill({ link, h = 8, children}) {
-    return(
-        <a href={link} className={`object-contain flex-none h-${h} w-fit `}>
-            <div className='px-4 py-2 bg-slate-950 hover:bg-slate-900 rounded-lg hover:px-8 ease-in-out duration-200 h-full grid place-content-center'>
-                {children}
+export default function Pill({ link, h = 8, children, isDisabled = false}) {
+
+    if (isDisabled) {
+        return (
+            <div className={`object-contain flex-none h-${h} w-fit header-cat`}>
+                <div className='rounded-lg h-full grid place-content-center disabled'>
+                    {children}
+                </div>
             </div>
-        </a>
-    )
+        )
+    } else {
+        return (
+            <a href={link} className={`object-contain flex-none h-${h} w-fit header-cat`}>
+                <div className='rounded-lg hover:px-4 ease-in-out duration-200 h-full grid place-content-center hover:bg-black hover:text-white'>
+                    {children}
+                </div>
+            </a>
+        )
+    }
+
 }
