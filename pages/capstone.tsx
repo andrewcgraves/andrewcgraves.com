@@ -16,15 +16,15 @@ export default function Capstone() {
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/> 
             </Head>
 
-            <main className='p-8 sm:p-16 md:p-32'>
-                <div className='text-center mb-8'>
-                    <UniversalHeaderBar/>
-                    <h1 className='mb-8'><b>Neural Networks and Laser Experiments</b></h1>
-                    <p>Andrew Graves - Advisor: Dr. Scott Feister</p>
-                    <p>COMP 499, Section 7</p>
-                    <p>🔗 Important Links: <a className='link' href='capstone/capstone-poster.pdf' target='_blank'>Capstone Poster</a>, <a className='link' href='https://youtu.be/tc9USxLXiAg' target='_blank'>Youtube Video</a>, <a className='link' href='https://github.com/andrewcgraves/capstone-2023' target='_blank'>Code / Github</a></p>
-                </div>
-                <div className='items-start'>
+            <main>
+                <UniversalHeaderBar/>
+                <div className='items-start main-container'>
+                    <div className='text-center mb-8'>
+                        <h1>Neural Networks and Laser Experiments</h1>
+                        <p>Andrew Graves - Advisor: Dr. Scott Feister</p>
+                        <p>COMP 499, Section 7</p>
+                        <p>🔗 Important Links: <a className='link' href='capstone/capstone-poster.pdf' target='_blank'>Capstone Poster</a>, <a className='link' href='https://youtu.be/tc9USxLXiAg' target='_blank'>Youtube Video</a>, <a className='link' href='https://github.com/andrewcgraves/capstone-2023' target='_blank'>Code / Github</a></p>
+                    </div>
                     <div>
                         <h2>Introduction</h2>
                         <p>
