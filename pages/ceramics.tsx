@@ -83,7 +83,7 @@ export default function Ceramics() {
                 <div className='main-container'>
                     <h1>Ceramics: IN PROGRESS</h1>
                     <p>Ceramics has become a big part of my life in the last few years. I teach and produce work with CSU Channel Islands, where I graduated. Ceramics is one of the ways I unwind, and express my creativity. Here are some of my favorite pieces.</p>
-                    <div id="image-gallery" className="pwsp-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-8">
+                    <div id="image-gallery" className="pwsp-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0 sm:gap-4 pt-8">
                         <div>
                             {photos.map((photo, index) => {
                                 if (index % 3 == 0) {
