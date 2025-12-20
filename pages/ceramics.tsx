@@ -55,6 +55,18 @@ const photos: Array<Photo> = [
         height: 4032,
         caption: ""
     },
+    {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f103f2dcf8add5a40_d20251220_m180102_c004_v0402015_t0027_u01766253662867",
+        width: 9504,
+        height: 6336,
+        caption: ""
+    },
+    {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f100aa8d5593015dc_d20251220_m180048_c004_v0402003_t0006_u01766253648659",
+        width: 3024,
+        height: 4032,
+        caption: ""
+    },
 ]
 
 export default function Ceramics() {
