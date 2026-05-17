@@ -1,9 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.js";
-import { PROJECTS } from "../src/data/projects";
-
-type Project = (typeof PROJECTS)[number];
+import { getAllProjects } from "../src/lib/projects";
+import { ProjectEntry } from "../src/data/projects";
 
 function shade(hex: string, pct: number): string {
   const n = parseInt(hex.slice(1), 16);
@@ -13,7 +12,7 @@ function shade(hex: string, pct: number): string {
   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
 }
 
-function ProjectCardImage({ item }: { item: Project }) {
+function ProjectCardImage({ item }: { item: ProjectEntry }) {
   if (item.cover?.src) {
     return (
       <img
@@ -44,7 +43,7 @@ function ProjectCardImage({ item }: { item: Project }) {
   );
 }
 
-function ProjectCard({ item }: { item: Project }) {
+function ProjectCard({ item }: { item: ProjectEntry }) {
   return (
     <article className="ceramics-card">
       <Link href={`/projects/${item.slug}`} style={{ display: "block" }}>
@@ -139,9 +138,7 @@ function ProjectCard({ item }: { item: Project }) {
   );
 }
 
-export default function Projects() {
-  const sorted = [...PROJECTS].sort((a, b) => b.year - a.year);
-
+export default function Projects({ projects }: { projects: ProjectEntry[] }) {
   return (
     <div className="page-shell">
       <Head>
@@ -159,7 +156,7 @@ export default function Projects() {
         <hgroup>
           <h1>Projects</h1>
           <p>
-            Things I've made or worked on — across the workshop, the trail, and
+            Things I&apos;ve made or worked on — across the workshop, the trail, and
             the page.
           </p>
         </hgroup>
@@ -167,11 +164,16 @@ export default function Projects() {
 
       <section className="ceramics-grid-section">
         <div className="ceramics-grid">
-          {sorted.map((item) => (
+          {projects.map((item) => (
             <ProjectCard key={item.slug} item={item} />
           ))}
         </div>
       </section>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const projects = getAllProjects();
+  return { props: { projects } };
 }

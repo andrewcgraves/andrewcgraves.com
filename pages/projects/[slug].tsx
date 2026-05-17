@@ -2,10 +2,13 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, CSSProperties } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
-import { PROJECTS, ProjectEntry, BodyBlock, GalleryPhoto } from "../../src/data/projects";
+import { getProjectBySlug, getAllProjectSlugs } from "../../src/lib/projects";
+import { ProjectEntry, GalleryPhoto } from "../../src/data/projects";
 
 function shade(hex: string, pct: number): string {
   const n = parseInt(hex.slice(1), 16);
@@ -103,72 +106,57 @@ function BackLink() {
   );
 }
 
-function Block({ block, color }: { block: BodyBlock; color: string }) {
-  switch (block.type) {
-    case "p":
-      return <p className="pd-body-p">{block.text}</p>;
-
-    case "h2":
-      return <h2 className="pd-body-h2">{block.text}</h2>;
-
-    case "h3":
-      return <h3 className="pd-body-h3">{block.text}</h3>;
-
-    case "list":
-      return (
-        <ul className="pd-body-ul">
-          {block.items.map((text, i) => (
-            <li key={i} className="pd-body-li">
-              <span className="pd-body-bullet" style={{ background: color }} />
-              <span>{text}</span>
-            </li>
-          ))}
-        </ul>
-      );
-
-    case "quote":
-      return (
-        <blockquote className="pd-body-quote">
-          <span className="pd-body-quote-rule" style={{ background: color }} />
-          <span className="pd-body-quote-text">{block.text}</span>
-        </blockquote>
-      );
-
-    case "image":
-      return (
-        <figure className="pd-body-figure">
-          {block.src ? (
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                aspectRatio: block.aspect || "16 / 10",
-                borderRadius: 10,
-                overflow: "hidden",
-              }}
-            >
-              <Image
-                src={block.src}
-                alt={block.caption || ""}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="880px"
-              />
-            </div>
-          ) : (
-            <PlaceholderImage
-              color={color}
-              id={block.slot || "inline"}
-              aspect={block.aspect || "16 / 10"}
-            />
-          )}
-          {block.caption && <figcaption className="pd-body-figcap">{block.caption}</figcaption>}
-        </figure>
-      );
-
-    default:
-      return null;
-  }
+function ProjectBody({ content, color }: { content: string; color: string }) {
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        p: ({ children }) => <p className="pd-body-p">{children}</p>,
+        h2: ({ children }) => <h2 className="pd-body-h2">{children}</h2>,
+        h3: ({ children }) => <h3 className="pd-body-h3">{children}</h3>,
+        ul: ({ children }) => <ul className="pd-body-ul">{children}</ul>,
+        li: ({ children }) => (
+          <li className="pd-body-li">
+            <span className="pd-body-bullet" style={{ background: color }} />
+            <span>{children}</span>
+          </li>
+        ),
+        blockquote: ({ children }) => (
+          <blockquote className="pd-body-quote">
+            <span className="pd-body-quote-rule" style={{ background: color }} />
+            <span className="pd-body-quote-text">{children}</span>
+          </blockquote>
+        ),
+        img: ({ src, alt }) => {
+          const safeSrc = typeof src === "string" ? src : "";
+          return (
+            <figure className="pd-body-figure">
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  aspectRatio: "16 / 10",
+                  borderRadius: 10,
+                  overflow: "hidden",
+                }}
+              >
+                <Image
+                  src={safeSrc}
+                  alt={alt || ""}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="880px"
+                />
+              </div>
+              {alt && <figcaption className="pd-body-figcap">{alt}</figcaption>}
+            </figure>
+          );
+        },
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  );
 }
 
 function GalleryThumb({
@@ -369,9 +357,7 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
       {/* Article body */}
       <article className="pd-article">
         <div className="pd-column">
-          {project.body.map((block, i) => (
-            <Block key={i} block={block} color={project.color} />
-          ))}
+          <ProjectBody content={project.content} color={project.color} />
         </div>
       </article>
 
@@ -449,14 +435,15 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
 }
 
 export async function getStaticPaths() {
+  const slugs = getAllProjectSlugs();
   return {
-    paths: PROJECTS.map((p) => ({ params: { slug: p.slug } })),
+    paths: slugs.map((slug) => ({ params: { slug } })),
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const project = PROJECTS.find((p) => p.slug === params.slug);
+  const project = getProjectBySlug(params.slug);
   if (!project) return { notFound: true };
   return { props: { project } };
 }
