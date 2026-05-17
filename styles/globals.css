@@ -211,6 +211,21 @@ hgroup {
   opacity: 0.65;
 }
 
+/* ── Animated arrow links ─────────────────────────────────── */
+.arrow-right,
+.arrow-left {
+  display: inline-flex;
+  transition: transform 220ms var(--ease-smooth);
+}
+
+.arrow-link:hover .arrow-right {
+  transform: translateX(3px);
+}
+
+.arrow-link:hover .arrow-left {
+  transform: translateX(-3px);
+}
+
 /* ── Social link boxes ────────────────────────────────────── */
 .link-box {
   padding: 1rem;
