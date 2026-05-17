@@ -41,7 +41,7 @@ export default function SeriesDetail() {
 
   const metaRows = [
     series.material && ["Material", series.material],
-    ["Pieces", String(series.photos.length)],
+    ["Photos", String(series.photos.length)],
     series.year && ["Year", series.year],
     ["Status", series.status === "in-progress" ? "In progress" : "Complete"],
   ].filter(Boolean) as [string, string][];
@@ -77,7 +77,7 @@ export default function SeriesDetail() {
             <div style={{ position: "relative", width: "100%", height: "100%" }}>
               <Image
                 src={series.photos[activeThumb].src}
-                alt={`${series.title}, piece ${activeThumb + 1}`}
+                alt={`${series.title} — photo ${activeThumb + 1}`}
                 fill
                 priority
                 sizes="(max-width: 900px) 100vw, 50vw"
@@ -92,7 +92,7 @@ export default function SeriesDetail() {
                 <button
                   key={i}
                   onClick={() => { setActiveThumb(i); openAt(i); }}
-                  aria-label={`View piece ${i + 1}`}
+                  aria-label={`View photo ${i + 1}`}
                   style={{
                     padding: 0, border: 0, background: "transparent",
                     position: "relative", aspectRatio: "1/1",
@@ -103,7 +103,7 @@ export default function SeriesDetail() {
                 >
                   <Image
                     src={photo.src}
-                    alt={`${series.title}, piece ${i + 1}`}
+                    alt={`${series.title} — photo ${i + 1}`}
                     fill
                     sizes="80px"
                     style={{ objectFit: "cover" }}
@@ -169,7 +169,7 @@ export default function SeriesDetail() {
               padding: "14px 22px", textDecoration: "none", marginTop: 16, display: "inline-block",
             }}
           >
-            View all {series.photos.length} pieces
+            View gallery
           </a>
         </div>
       </section>
@@ -200,14 +200,14 @@ export default function SeriesDetail() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
           <div>
             <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em", display: "block", marginBottom: 6 }}>
-              The complete set
+              Gallery
             </span>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.05, color: "var(--color-ink-true)", letterSpacing: "-0.02em", margin: 0 }}>
-              All {series.photos.length} pieces
+              {series.photos.length} photos
             </h2>
           </div>
           <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 12, color: "var(--color-ink-muted)" }}>
-            Click any piece to enlarge
+            Click any photo to enlarge
           </span>
         </div>
 
@@ -228,7 +228,7 @@ export default function SeriesDetail() {
               >
                 <Image
                   src={photo.src}
-                  alt={`${series.title}, piece ${i + 1}`}
+                  alt={`${series.title} — photo ${i + 1}`}
                   fill
                   sizes="(max-width: 640px) 50vw, 25vw"
                   style={{ objectFit: "cover", transition: "transform 300ms cubic-bezier(.2,.8,.2,1)" }}
