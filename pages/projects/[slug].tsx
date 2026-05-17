@@ -104,7 +104,13 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        p: ({ children }) => <p className="pd-body-p">{children}</p>,
+        p: ({ children, node }) => {
+          const onlyChild = node?.children?.length === 1 && node.children[0];
+          if (onlyChild && onlyChild.type === "element" && onlyChild.tagName === "img") {
+            return <>{children}</>;
+          }
+          return <p className="pd-body-p">{children}</p>;
+        },
         h2: ({ children }) => <h2 className="pd-body-h2">{children}</h2>,
         h3: ({ children }) => <h3 className="pd-body-h3">{children}</h3>,
         ul: ({ children }) => <ul className="pd-body-ul">{children}</ul>,
@@ -124,23 +130,29 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
           const safeSrc = typeof src === "string" ? src : "";
           return (
             <figure className="pd-body-figure">
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "16 / 10",
-                  borderRadius: 10,
-                  overflow: "hidden",
-                }}
+              <a
+                className="pswp-gallery-item"
+                href={safeSrc}
+                data-pswp-width={1600}
+                data-pswp-height={1000}
+                style={{ display: "block", cursor: "zoom-in", borderRadius: 10, overflow: "hidden" }}
               >
-                <Image
-                  src={safeSrc}
-                  alt={alt || ""}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  sizes="880px"
-                />
-              </div>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "16 / 10",
+                  }}
+                >
+                  <Image
+                    src={safeSrc}
+                    alt={alt || ""}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="880px"
+                  />
+                </div>
+              </a>
               {alt && <figcaption className="pd-body-figcap">{alt}</figcaption>}
             </figure>
           );
@@ -238,8 +250,21 @@ function GalleryThumb({
 }
 
 export default function ProjectDetail({ project }: { project: ProjectEntry }) {
+  const bodyRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const hasRealImages = project.gallery.some((g) => g.src);
+
+  useEffect(() => {
+    if (!bodyRef.current) return;
+    const lb = new PhotoSwipeLightbox({
+      gallery: bodyRef.current,
+      children: "a.pswp-gallery-item",
+      pswpModule: () => import("photoswipe"),
+    });
+    lb.init();
+    return () => lb.destroy();
+  }, [project.slug]);
+
   useEffect(() => {
     if (!hasRealImages || !galleryRef.current) return;
     const lb = new PhotoSwipeLightbox({
@@ -347,7 +372,7 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
 
       {/* Article body */}
       <article className="pd-article">
-        <div className="pd-column">
+        <div className="pd-column" ref={bodyRef}>
           <ProjectBody content={project.content} color={project.color} />
         </div>
       </article>
