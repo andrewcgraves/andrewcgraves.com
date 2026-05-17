@@ -122,6 +122,7 @@ function ProjectCard({ item }: { item: Project }) {
         )}
         <Link
           href={`/projects/${item.slug}`}
+          className="arrow-link"
           style={{
             alignSelf: "flex-start",
             fontFamily: "var(--font-display)",
@@ -132,7 +133,7 @@ function ProjectCard({ item }: { item: Project }) {
             textUnderlineOffset: 3,
           }}
         >
-          View project →
+          View project <span className="arrow-right">→</span>
         </Link>
       </div>
     </article>

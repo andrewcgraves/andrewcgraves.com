@@ -60,12 +60,10 @@ function PlaceholderImage({
 }
 
 function BackLink() {
-  const [hover, setHover] = useState(false);
   return (
     <Link
       href="/projects"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      className="arrow-link"
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -80,13 +78,7 @@ function BackLink() {
         width: "fit-content",
       }}
     >
-      <span
-        style={{
-          display: "inline-flex",
-          transition: "transform 220ms var(--ease-smooth)",
-          transform: hover ? "translateX(-3px)" : "translateX(0)",
-        }}
-      >
+      <span className="arrow-left">
         <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
           <path
             d="M11 7H3M7 3L3 7l4 4"
@@ -259,8 +251,6 @@ function GalleryThumb({
 export default function ProjectDetail({ project }: { project: ProjectEntry }) {
   const galleryRef = useRef<HTMLDivElement>(null);
   const hasRealImages = project.gallery.some((g) => g.src);
-  const [endHover, setEndHover] = useState(false);
-
   useEffect(() => {
     if (!hasRealImages || !galleryRef.current) return;
     const lb = new PhotoSwipeLightbox({
@@ -411,22 +401,14 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
 
       {/* End link */}
       <section className="pd-end-section">
-        <Link
-          href="/projects"
-          className="pd-end-link"
-          onMouseEnter={() => setEndHover(true)}
-          onMouseLeave={() => setEndHover(false)}
-        >
+        <Link href="/projects" className="pd-end-link arrow-link">
           <span>Back to all projects</span>
           <svg
             width="16"
             height="16"
             viewBox="0 0 16 16"
             aria-hidden="true"
-            style={{
-              transition: "transform 220ms var(--ease-smooth)",
-              transform: endHover ? "translateX(3px)" : "translateX(0)",
-            }}
+            className="arrow-right"
           >
             <path
               d="M3 8h10M9 4l4 4-4 4"
