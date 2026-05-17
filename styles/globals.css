@@ -606,6 +606,19 @@ hgroup {
   gap: 10px;
 }
 
+.pd-body-link {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-placeholder);
+  transition: text-decoration-color 180ms ease, color 180ms ease;
+}
+
+.pd-body-link:hover {
+  color: var(--color-ink-true);
+  text-decoration-color: var(--color-ink-true);
+}
+
 .pd-body-figcap {
   font-family: var(--font-body);
   font-style: italic;

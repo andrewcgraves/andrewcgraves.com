@@ -126,6 +126,18 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
             <span className="pd-body-quote-text">{children}</span>
           </blockquote>
         ),
+        a: ({ href, children }) => {
+          const isExternal = typeof href === "string" && /^https?:\/\//.test(href);
+          return (
+            <a
+              className="pd-body-link"
+              href={href}
+              {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
+              {children}
+            </a>
+          );
+        },
         img: ({ src, alt }) => {
           const safeSrc = typeof src === "string" ? src : "";
           return (
