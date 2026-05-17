@@ -156,6 +156,8 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
         },
         img: ({ src, alt }) => {
           const safeSrc = typeof src === "string" ? src : "";
+          const explicitVideo = typeof alt === "string" && alt.startsWith("video:");
+          const caption = explicitVideo ? alt.slice(6).trim() || undefined : alt;
 
           const embedUrl = getVideoEmbedUrl(safeSrc);
           if (embedUrl) {
@@ -176,21 +178,21 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
                     }}
                   />
                 </div>
-                {alt && <figcaption className="pd-body-figcap">{alt}</figcaption>}
+                {caption && <figcaption className="pd-body-figcap">{caption}</figcaption>}
               </figure>
             );
           }
 
-          if (isVideoUrl(safeSrc)) {
+          if (explicitVideo || isVideoUrl(safeSrc)) {
             return (
               <figure className="pd-body-figure">
                 <video
                   src={safeSrc}
                   controls
                   style={{ width: "100%", borderRadius: 10, display: "block" }}
-                  aria-label={alt || undefined}
+                  aria-label={caption || undefined}
                 />
-                {alt && <figcaption className="pd-body-figcap">{alt}</figcaption>}
+                {caption && <figcaption className="pd-body-figcap">{caption}</figcaption>}
               </figure>
             );
           }
@@ -213,14 +215,14 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
                 >
                   <Image
                     src={safeSrc}
-                    alt={alt || ""}
+                    alt={caption || ""}
                     fill
                     style={{ objectFit: "cover" }}
                     sizes="880px"
                   />
                 </div>
               </a>
-              {alt && <figcaption className="pd-body-figcap">{alt}</figcaption>}
+              {caption && <figcaption className="pd-body-figcap">{caption}</figcaption>}
             </figure>
           );
         },
