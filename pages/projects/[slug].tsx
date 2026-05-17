@@ -318,6 +318,41 @@ function GalleryThumb({
   );
 }
 
+function attachDynamicDimensions(lb: PhotoSwipeLightbox) {
+  // Sync: read natural dimensions from the already-loaded thumbnail <img>.
+  // domItemData fires before the lightbox opens, so no stretch flash.
+  lb.addFilter("domItemData", (itemData, element) => {
+    if (!itemData.w || !itemData.h) {
+      const thumb = element.querySelector("img");
+      if (thumb && thumb.complete && thumb.naturalWidth > 0) {
+        itemData.w = thumb.naturalWidth;
+        itemData.h = thumb.naturalHeight;
+      }
+    }
+    return itemData;
+  });
+
+  // Async fallback: if the thumbnail wasn't loaded yet, update once the
+  // full lightbox image finishes loading.
+  lb.on("contentLoadImage", ({ content }) => {
+    if (content.data.w && content.data.h) return;
+    const img = content.element as HTMLImageElement;
+    if (!img) return;
+    img.addEventListener(
+      "load",
+      () => {
+        if (img.naturalWidth && img.naturalHeight) {
+          content.data.w = img.naturalWidth;
+          content.data.h = img.naturalHeight;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (content.instance as any).updateSize(true);
+        }
+      },
+      { once: true },
+    );
+  });
+}
+
 export default function ProjectDetail({ project }: { project: ProjectEntry }) {
   const bodyRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -330,21 +365,7 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
       children: "a.pswp-gallery-item",
       pswpModule: () => import("photoswipe"),
     });
-    lb.on("contentActivate", ({ content }) => {
-      if (content.type !== "image") return;
-      const img = content.element as HTMLImageElement;
-      if (!img) return;
-      const update = () => {
-        if (img.naturalWidth && img.naturalHeight) {
-          content.data.w = img.naturalWidth;
-          content.data.h = img.naturalHeight;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (content.instance as any).updateSize(true);
-        }
-      };
-      if (img.complete) update();
-      else img.addEventListener("load", update, { once: true });
-    });
+    attachDynamicDimensions(lb);
     lb.init();
     return () => lb.destroy();
   }, [project.slug]);
@@ -356,21 +377,7 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
       children: "a.pswp-gallery-item",
       pswpModule: () => import("photoswipe"),
     });
-    lb.on("contentActivate", ({ content }) => {
-      if (content.type !== "image") return;
-      const img = content.element as HTMLImageElement;
-      if (!img) return;
-      const update = () => {
-        if (img.naturalWidth && img.naturalHeight) {
-          content.data.w = img.naturalWidth;
-          content.data.h = img.naturalHeight;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (content.instance as any).updateSize(true);
-        }
-      };
-      if (img.complete) update();
-      else img.addEventListener("load", update, { once: true });
-    });
+    attachDynamicDimensions(lb);
     lb.init();
     return () => lb.destroy();
   }, [project.slug, hasRealImages]);
