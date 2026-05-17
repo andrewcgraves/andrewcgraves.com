@@ -63,8 +63,8 @@ export default function SeriesDetail() {
 
       {/* Breadcrumb */}
       <div className="series-crumb">
-        <Link href="/ceramics" className="series-crumb-back">
-          ← All series
+        <Link href="/ceramics" className="series-crumb-back arrow-link">
+          <span className="arrow-left">←</span> All series
         </Link>
         <span style={{ color: "var(--color-placeholder)", fontSize: 12 }}>/</span>
         <span
