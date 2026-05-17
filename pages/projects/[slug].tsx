@@ -407,11 +407,6 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
           </svg>
         </Link>
       </section>
-
-      <footer className="pd-footer">
-        <span>© Andrew Graves</span>
-        <span>hi@andrewcgraves.com</span>
-      </footer>
     </div>
   );
 }
