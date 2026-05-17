@@ -202,8 +202,8 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
               <a
                 className="pswp-gallery-item"
                 href={safeSrc}
-                data-pswp-width={1600}
-                data-pswp-height={1000}
+                data-pswp-width={0}
+                data-pswp-height={0}
                 style={{ display: "block", cursor: "zoom-in", borderRadius: 10, overflow: "hidden" }}
               >
                 <div
@@ -253,8 +253,8 @@ function GalleryThumb({
         <a
           className="pswp-gallery-item"
           href={photo.src}
-          data-pswp-width={photo.width || 1200}
-          data-pswp-height={photo.height || 800}
+          data-pswp-width={photo.width || 0}
+          data-pswp-height={photo.height || 0}
           style={{
             display: "block",
             borderRadius: 10,
@@ -330,6 +330,21 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
       children: "a.pswp-gallery-item",
       pswpModule: () => import("photoswipe"),
     });
+    lb.on("contentActivate", ({ content }) => {
+      if (content.type !== "image") return;
+      const img = content.element as HTMLImageElement;
+      if (!img) return;
+      const update = () => {
+        if (img.naturalWidth && img.naturalHeight) {
+          content.data.w = img.naturalWidth;
+          content.data.h = img.naturalHeight;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (content.instance as any).updateSize(true);
+        }
+      };
+      if (img.complete) update();
+      else img.addEventListener("load", update, { once: true });
+    });
     lb.init();
     return () => lb.destroy();
   }, [project.slug]);
@@ -340,6 +355,21 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
       gallery: galleryRef.current,
       children: "a.pswp-gallery-item",
       pswpModule: () => import("photoswipe"),
+    });
+    lb.on("contentActivate", ({ content }) => {
+      if (content.type !== "image") return;
+      const img = content.element as HTMLImageElement;
+      if (!img) return;
+      const update = () => {
+        if (img.naturalWidth && img.naturalHeight) {
+          content.data.w = img.naturalWidth;
+          content.data.h = img.naturalHeight;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (content.instance as any).updateSize(true);
+        }
+      };
+      if (img.complete) update();
+      else img.addEventListener("load", update, { once: true });
     });
     lb.init();
     return () => lb.destroy();
