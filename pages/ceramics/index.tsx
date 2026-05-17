@@ -11,7 +11,12 @@ export default function CeramicsLanding() {
 
   const scrollTo = (i: number) => {
     const el = trackRef.current?.children[i] as HTMLElement | undefined;
-    if (el) el.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    if (el)
+      el.scrollIntoView({
+        behavior: "smooth",
+        inline: "start",
+        block: "nearest",
+      });
     setActiveIdx(i);
   };
 
@@ -26,7 +31,10 @@ export default function CeramicsLanding() {
         const el = child as HTMLElement;
         const mid = el.offsetLeft + el.clientWidth / 2;
         const d = Math.abs(mid - center);
-        if (d < bestDist) { bestDist = d; best = i; }
+        if (d < bestDist) {
+          bestDist = d;
+          best = i;
+        }
       });
       setActiveIdx(best);
     };
@@ -38,14 +46,20 @@ export default function CeramicsLanding() {
     <div className="page-shell">
       <Head>
         <title>Ceramics — Andrew Graves</title>
-        <meta name="description" content="Ceramics work by Andrew Graves — stoneware and porcelain made at CSU Channel Islands." />
+        <meta
+          name="description"
+          content="Ceramics work by Andrew Graves — stoneware and porcelain made at CSU Channel Islands."
+        />
         <link rel="icon" href="/logo.png" />
       </Head>
 
       <UniversalHeaderBar />
 
       {/* Intro */}
-      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0 }}>
+      <div
+        className="page-main"
+        style={{ flex: "none", paddingBottom: 0, gap: 0 }}
+      >
         <hgroup>
           <h1>Ceramics</h1>
           <p>
@@ -60,38 +74,97 @@ export default function CeramicsLanding() {
         <div ref={trackRef} className="ceramics-track">
           {CERAMICS_SERIES.map((series, i) => (
             <article key={series.slug} className="ceramics-card">
-              <Link href={`/ceramics/${series.slug}`} style={{ display: "block" }}>
-                <div style={{ position: "relative", aspectRatio: "4/5", borderRadius: 10, overflow: "hidden", background: "var(--color-placeholder)" }}>
+              <Link
+                href={`/ceramics/${series.slug}`}
+                style={{ display: "block" }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    aspectRatio: "4/5",
+                    borderRadius: 10,
+                    overflow: "hidden",
+                    background: "var(--color-placeholder)",
+                  }}
+                >
                   <Image
                     src={series.photos[0].src}
                     alt={series.title}
                     fill
                     sizes="(max-width: 640px) 85vw, 380px"
-                    style={{ objectFit: "cover", transition: "transform 400ms cubic-bezier(.2,.8,.2,1)" }}
+                    style={{
+                      objectFit: "cover",
+                      transition: "transform 400ms cubic-bezier(.2,.8,.2,1)",
+                    }}
                     className="ceramics-card-img"
                     priority={i === 0}
                   />
-                  <span className="ceramics-card-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="ceramics-card-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
               </Link>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16 }}>
-                  <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 24, lineHeight: 1, color: "var(--color-ink-true)", letterSpacing: "-0.01em", margin: 0 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                    gap: 16,
+                  }}
+                >
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: 700,
+                      fontSize: 24,
+                      lineHeight: 1,
+                      color: "var(--color-ink-true)",
+                      letterSpacing: "-0.01em",
+                      margin: 0,
+                    }}
+                  >
                     {series.title}
                   </h2>
                   {series.year && (
-                    <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 12, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontStyle: "italic",
+                        fontSize: 12,
+                        color: "var(--color-ink-muted)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
                       {series.year}
                     </span>
                   )}
                 </div>
                 {series.material && (
-                  <span style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                    {series.material} · {series.photos.length} pieces
+                  <span
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 12,
+                      color: "var(--color-ink-muted)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
+                    }}
+                  >
+                    {series.material} · {series.photos.length} photos
                   </span>
                 )}
                 {series.tagline && (
-                  <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.55, color: "var(--color-ink)", margin: 0 }}>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 14,
+                      lineHeight: 1.55,
+                      color: "var(--color-ink)",
+                      margin: 0,
+                    }}
+                  >
                     {series.tagline}
                   </p>
                 )}
@@ -99,8 +172,12 @@ export default function CeramicsLanding() {
                   href={`/ceramics/${series.slug}`}
                   style={{
                     alignSelf: "flex-start",
-                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
-                    color: "var(--color-ink)", textDecoration: "underline", textUnderlineOffset: 3,
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 700,
+                    fontSize: 13,
+                    color: "var(--color-ink)",
+                    textDecoration: "underline",
+                    textUnderlineOffset: 3,
                   }}
                 >
                   View series →
@@ -123,9 +200,13 @@ export default function CeramicsLanding() {
                   height: 8,
                   borderRadius: 999,
                   border: 0,
-                  background: i === activeIdx ? "var(--color-ink)" : "var(--color-placeholder)",
+                  background:
+                    i === activeIdx
+                      ? "var(--color-ink)"
+                      : "var(--color-placeholder)",
                   cursor: "pointer",
-                  transition: "width 280ms cubic-bezier(.2,.8,.2,1), background 200ms",
+                  transition:
+                    "width 280ms cubic-bezier(.2,.8,.2,1), background 200ms",
                   padding: 0,
                 }}
               />
@@ -138,18 +219,25 @@ export default function CeramicsLanding() {
               aria-label="Previous series"
               className="ceramics-arrow"
               style={{ opacity: activeIdx === 0 ? 0.35 : 1 }}
-            >←</button>
+            >
+              ←
+            </button>
             <button
-              onClick={() => scrollTo(Math.min(CERAMICS_SERIES.length - 1, activeIdx + 1))}
+              onClick={() =>
+                scrollTo(Math.min(CERAMICS_SERIES.length - 1, activeIdx + 1))
+              }
               disabled={activeIdx === CERAMICS_SERIES.length - 1}
               aria-label="Next series"
               className="ceramics-arrow"
-              style={{ opacity: activeIdx === CERAMICS_SERIES.length - 1 ? 0.35 : 1 }}
-            >→</button>
+              style={{
+                opacity: activeIdx === CERAMICS_SERIES.length - 1 ? 0.35 : 1,
+              }}
+            >
+              →
+            </button>
           </div>
         </div>
       </section>
-
     </div>
   );
 }
