@@ -27,17 +27,17 @@ export interface ProjectEntry {
 
 export const PROJECTS: ProjectEntry[] = [
   {
-    slug: "example-project",
-    year: 2025,
+    slug: "irrigation-controller",
+    year: 2021,
     kind: "Project",
-    title: "Example project",
+    title: "Irrigation Controller",
     blurb:
-      "This is a placeholder. Replace this entry with your real project — fill in the title, blurb, body blocks, and gallery photos.",
+      "A long term project to replace our old dumb controller with something that I could control through Home Assistant.",
     color: "#E1665B",
     body: [
       {
         type: "p",
-        text: "This is the opening paragraph of the project writeup. It sets the scene — what you were trying to do, why it mattered, and what the reader is about to learn. Keep it short: two or three sentences is usually enough to earn the scroll.",
+        text: "This has been one of my longest running projects. What started as an intro into embedded systems and an effort to have more control over our old sprinkler controller, turned into a bit of an always improving project that I could sink my teeth into whenever freetime presented itself.",
       },
       {
         type: "p",
