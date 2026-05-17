@@ -45,17 +45,15 @@ export default function CeramicsLanding() {
       <UniversalHeaderBar />
 
       {/* Intro */}
-      <section className="ceramics-intro">
-        <div className="ceramics-intro-left">
-          <span className="ceramics-kicker">Ceramics</span>
-          <h1 className="ceramics-h1">A slow practice.</h1>
-        </div>
-        <div className="ceramics-intro-right">
-          <p className="ceramics-bio-p">
-            Ceramics has become a big part of my life in the last few years. I teach and produce work with CSU Channel Islands, where I graduated. It is one of the ways I unwind, and express my creativity.
+      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0 }}>
+        <hgroup>
+          <h1>Ceramics</h1>
+          <p>
+            Ceramics has become a big part of my life in the last few years. I
+            teach and produce work with CSU Channel Islands, where I graduated.
           </p>
-        </div>
-      </section>
+        </hgroup>
+      </div>
 
       {/* Carousel */}
       <section style={{ paddingBottom: 96 }}>
