@@ -153,7 +153,7 @@ export default function Projects({ projects }: { projects: ProjectEntry[] }) {
 
       <UniversalHeaderBar />
 
-      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0 }}>
+      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0, maxWidth: "none", margin: 0 }}>
         <hgroup>
           <h1>Projects</h1>
           <p>
