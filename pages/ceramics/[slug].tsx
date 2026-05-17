@@ -462,6 +462,29 @@ export default function SeriesDetail() {
           ))}
         </div>
       </section>
+
+      {/* End link */}
+      <section className="pd-end-section">
+        <Link href="/ceramics" className="pd-end-link arrow-link">
+          <span>Back to all series</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            className="arrow-right"
+          >
+            <path
+              d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
+      </section>
     </div>
   );
 }
