@@ -1,0 +1,18 @@
+{
+  "worktree": {
+    "baseRef": "head"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -q 'git commit'; then cd \"$(git -C \"$(pwd)\" rev-parse --show-toplevel 2>/dev/null || echo .)\" && yarn lint && yarn format:check; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
