@@ -4,7 +4,7 @@ import React from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="h-screen overflow-auto">
+    <div>
       <Component {...pageProps} />
     </div>
   );
