@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
-export default function LinkBox({ link, imgSrc, size}) {
+export default function LinkBox({ link, imgSrc }) {
     return(
-        <a href={link} target="_blank" className={`object-contain aspect-square flex-none h-${size}`}>
-            <div className='p-4 bg-slate-950 hover:bg-slate-900 rounded-xl ease-in-out duration-200 h-full grid place-content-center'>
+        <a href={link} target="_blank" className="object-contain aspect-square flex-none h-24">
+            <div className="link-box">
                 <Image src={imgSrc}/>
             </div>
         </a>
