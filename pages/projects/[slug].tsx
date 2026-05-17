@@ -11,6 +11,22 @@ import BackButton from "../../src/Components/BackButton";
 import { getProjectBySlug, getAllProjectSlugs } from "../../src/lib/projects";
 import { ProjectEntry, GalleryPhoto } from "../../src/data/projects";
 
+function isVideoUrl(src: string): boolean {
+  return /\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(src);
+}
+
+function getVideoEmbedUrl(src: string): string | null {
+  const yt = src.match(
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{11})/,
+  );
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`;
+
+  const vimeo = src.match(/(?:vimeo\.com\/)(\d+)/);
+  if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}`;
+
+  return null;
+}
+
 function shade(hex: string, pct: number): string {
   const n = parseInt(hex.slice(1), 16);
   const r = Math.max(0, Math.min(255, ((n >> 16) & 0xff) + pct));
@@ -140,6 +156,45 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
         },
         img: ({ src, alt }) => {
           const safeSrc = typeof src === "string" ? src : "";
+
+          const embedUrl = getVideoEmbedUrl(safeSrc);
+          if (embedUrl) {
+            return (
+              <figure className="pd-body-figure">
+                <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
+                  <iframe
+                    src={embedUrl}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
+                      borderRadius: 10,
+                    }}
+                  />
+                </div>
+                {alt && <figcaption className="pd-body-figcap">{alt}</figcaption>}
+              </figure>
+            );
+          }
+
+          if (isVideoUrl(safeSrc)) {
+            return (
+              <figure className="pd-body-figure">
+                <video
+                  src={safeSrc}
+                  controls
+                  style={{ width: "100%", borderRadius: 10, display: "block" }}
+                  aria-label={alt || undefined}
+                />
+                {alt && <figcaption className="pd-body-figcap">{alt}</figcaption>}
+              </figure>
+            );
+          }
+
           return (
             <figure className="pd-body-figure">
               <a
