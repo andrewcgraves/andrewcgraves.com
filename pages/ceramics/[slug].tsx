@@ -245,51 +245,6 @@ export default function SeriesDetail() {
         </div>
       </section>
 
-      <style>{`
-        .series-crumb {
-          display: flex; align-items: center; gap: 10px;
-          padding: 20px var(--page-gutter) 0;
-        }
-        .series-crumb-back {
-          font-family: var(--font-display); font-weight: 700; font-size: 12px;
-          color: var(--color-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-        }
-        .series-crumb-back:hover { color: var(--color-ink); }
-        .series-hero {
-          display: grid;
-          grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-          gap: 64px;
-          padding: 32px var(--page-gutter) 80px;
-          align-items: start;
-        }
-        .series-description {
-          padding: 56px var(--page-gutter) 80px;
-          display: grid;
-          grid-template-columns: minmax(0, 320px) minmax(0, 720px);
-          gap: 64px;
-          border-top: 1px solid var(--color-border);
-        }
-        .series-gallery-section {
-          padding: 56px var(--page-gutter) 96px;
-          border-top: 1px solid var(--color-border);
-          display: flex; flex-direction: column; gap: 24px;
-          scroll-margin-top: 80px;
-        }
-        .series-gallery-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
-        }
-        .gallery-img:hover { transform: scale(1.03); }
-
-        @media (max-width: 900px) {
-          .series-crumb { padding: 16px var(--page-gutter) 0; }
-          .series-hero { grid-template-columns: 1fr; gap: 32px; padding: 24px var(--page-gutter) 48px; }
-          .series-description { grid-template-columns: 1fr; gap: 24px; padding: 40px var(--page-gutter) 48px; }
-          .series-gallery-section { padding: 40px var(--page-gutter) 64px; }
-          .series-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        }
-      `}</style>
     </div>
   );
 }
