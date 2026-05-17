@@ -22,7 +22,11 @@ export const CERAMICS_SERIES: Series[] = [
     material: "stonewear (LBC)",
     status: "complete",
     tagline: "a housewarming gift for my sister",
-    longread: [],
+    longread: [
+      "I've been interested in trying to see how quick I could make a small cup so I saught to do that with these two. I also experimented with using a throwing gague again, something I hadn't done since I attempted the second set of ramen bowls I worked on. It was a futile effort though as the one I was using marked and scored the piece and delayed their completion.",
+      "Overall, this was a very plesent experience, I got these out in record time, only taking about 2 weeks from throwing to final glaze fire where most of that time was waiting for the actual fire.",
+      "I love how they turned out, with the smooth shino texture and the blotchy appearence, they really are a comfortable piece to hold and use on a daily basis. These handles were also some of the thinnest that I've pulled thus far and I think they turned out strong and stylish.",
+    ],
     year: "2026",
     photos: [
       {
@@ -48,7 +52,11 @@ export const CERAMICS_SERIES: Series[] = [
     material: "stonewear (LBC)",
     status: "complete",
     tagline: "An expermentation with tape and how it can resist glaze flow",
-    longread: [],
+    longread: [
+      "These were some of first pieces I was actually proud of, specifically the green one. I was wanting to try out doing a large assembly line batch where all pieces had a similar style and I could really refine the creation process. Overall I threw 6 pieces but the three on the white background are my favorites",
+      "This was also the first batch where I was able to try refining a style I had been drawing, sharp and angular pieces, into my work. As I was able to feel more confident about my work, I designed, carved and fired my first makers mark! You can see this v1 on some of the early pieces I made but it would soon by replaced with the v2 that you see as the logo on this website.",
+      "I've included some sketches and process photos below.",
+    ],
     year: "2025",
     photos: [
       {
@@ -71,15 +79,49 @@ export const CERAMICS_SERIES: Series[] = [
         width: 6240,
         height: 4160,
       },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f11949c603bbb32e7_d20260517_m174338_c004_v0402005_t0057_u01779039818274",
+        width: 3024,
+        height: 4032,
+      },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1047196fd981fdc1_d20260517_m174707_c004_v0402032_t0017_u01779040027862",
+        width: 3024,
+        height: 4032,
+      },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f10181a82447680dd_d20260517_m174707_c004_v0402011_t0017_u01779040027190",
+        width: 4032,
+        height: 3024,
+      },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1103a5a71096ae19_d20260517_m174706_c004_v0402030_t0032_u01779040026977",
+        width: 4032,
+        height: 3024,
+      },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f116f6c8fe88dde81_d20260517_m174706_c004_v0402007_t0037_u01779040026736",
+        width: 4032,
+        height: 3024,
+      },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1109596b2411e306_d20260517_m174706_c004_v0402021_t0055_u01779040026548",
+        width: 4032,
+        height: 3024,
+      },
     ],
   },
   {
-    slug: "ramen-bowls-01",
+    slug: "ramen-bowls-02",
     title: "Ramen Bowls",
     material: "porcelain",
     status: "complete",
     tagline: "An excercise in throwing large with porcelain",
-    longread: [],
+    longread: [
+      "These bowls were a huge excercise in patience. They are the second round of bowls that I made after experiencing cracking, warping and excessive shrinking on the first batch. That first batch was a great learning experience because it forced me to go back to the drawing board with my creation process for working in porcelain.",
+      "The main takeaway was that I needed to throw much bigger to get the sizes I needed, allow more time for slow drying and to compress a bit more to prevent cracking and ensure I got the proper end size I wanted",
+      "I was much more cautious when throwing this batch and made sure to follow all my observations from the last batch. To mix things up a bit I also got back into cobalt painting on one of the pieces.",
+    ],
     year: "2025",
     photos: [
       {

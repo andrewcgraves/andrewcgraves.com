@@ -14,7 +14,8 @@ export default function SeriesDetail() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [activeThumb, setActiveThumb] = useState(0);
 
-  const series = CERAMICS_SERIES.find((s) => s.slug === slug) ?? CERAMICS_SERIES[0];
+  const series =
+    CERAMICS_SERIES.find((s) => s.slug === slug) ?? CERAMICS_SERIES[0];
 
   useEffect(() => {
     setActiveThumb(0);
@@ -33,7 +34,9 @@ export default function SeriesDetail() {
 
   const openAt = (index: number) => {
     if (!galleryRef.current) return;
-    const el = galleryRef.current.querySelectorAll("a.pswp-gallery-item")[index] as HTMLAnchorElement | undefined;
+    const el = galleryRef.current.querySelectorAll("a.pswp-gallery-item")[
+      index
+    ] as HTMLAnchorElement | undefined;
     el?.click();
   };
 
@@ -41,7 +44,6 @@ export default function SeriesDetail() {
 
   const metaRows = [
     series.material && ["Material", series.material],
-    ["Photos", String(series.photos.length)],
     series.year && ["Year", series.year],
     ["Status", series.status === "in-progress" ? "In progress" : "Complete"],
   ].filter(Boolean) as [string, string][];
@@ -50,7 +52,12 @@ export default function SeriesDetail() {
     <div className="page-shell">
       <Head>
         <title>{series.title} — Ceramics — Andrew Graves</title>
-        <meta name="description" content={series.tagline || `${series.title} — ceramics by Andrew Graves`} />
+        <meta
+          name="description"
+          content={
+            series.tagline || `${series.title} — ceramics by Andrew Graves`
+          }
+        />
         <link rel="icon" href="/logo.png" />
       </Head>
 
@@ -58,9 +65,22 @@ export default function SeriesDetail() {
 
       {/* Breadcrumb */}
       <div className="series-crumb">
-        <Link href="/ceramics" className="series-crumb-back">← All series</Link>
-        <span style={{ color: "var(--color-placeholder)", fontSize: 12 }}>/</span>
-        <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12, color: "var(--color-ink)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+        <Link href="/ceramics" className="series-crumb-back">
+          ← All series
+        </Link>
+        <span style={{ color: "var(--color-placeholder)", fontSize: 12 }}>
+          /
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 700,
+            fontSize: 12,
+            color: "var(--color-ink)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+          }}
+        >
           {series.title}
         </span>
       </div>
@@ -72,9 +92,22 @@ export default function SeriesDetail() {
           <button
             onClick={() => openAt(activeThumb)}
             aria-label="Open in lightbox"
-            style={{ padding: 0, border: 0, background: "transparent", cursor: "zoom-in", borderRadius: 10, overflow: "hidden", position: "relative", aspectRatio: "1/1", display: "block", width: "100%" }}
+            style={{
+              padding: 0,
+              border: 0,
+              background: "transparent",
+              cursor: "zoom-in",
+              borderRadius: 10,
+              overflow: "hidden",
+              position: "relative",
+              aspectRatio: "1/1",
+              display: "block",
+              width: "100%",
+            }}
           >
-            <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <div
+              style={{ position: "relative", width: "100%", height: "100%" }}
+            >
               <Image
                 src={series.photos[activeThumb].src}
                 alt={`${series.title} — photo ${activeThumb + 1}`}
@@ -87,17 +120,34 @@ export default function SeriesDetail() {
           </button>
 
           {series.photos.length > 1 && (
-            <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(series.photos.length, 6)}, 1fr)`, gap: 8 }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${Math.min(series.photos.length, 6)}, 1fr)`,
+                gap: 8,
+              }}
+            >
               {series.photos.slice(0, 5).map((photo, i) => (
                 <button
                   key={i}
-                  onClick={() => { setActiveThumb(i); openAt(i); }}
+                  onClick={() => {
+                    setActiveThumb(i);
+                    openAt(i);
+                  }}
                   aria-label={`View photo ${i + 1}`}
                   style={{
-                    padding: 0, border: 0, background: "transparent",
-                    position: "relative", aspectRatio: "1/1",
-                    borderRadius: 6, overflow: "hidden", cursor: "zoom-in",
-                    outline: i === activeThumb ? "2px solid var(--color-ink)" : "1px solid var(--color-border)",
+                    padding: 0,
+                    border: 0,
+                    background: "transparent",
+                    position: "relative",
+                    aspectRatio: "1/1",
+                    borderRadius: 6,
+                    overflow: "hidden",
+                    cursor: "zoom-in",
+                    outline:
+                      i === activeThumb
+                        ? "2px solid var(--color-ink)"
+                        : "1px solid var(--color-border)",
                     outlineOffset: i === activeThumb ? -2 : -1,
                   }}
                 >
@@ -114,10 +164,16 @@ export default function SeriesDetail() {
                 <a
                   href="#gallery"
                   style={{
-                    aspectRatio: "1/1", background: "var(--color-surface)",
-                    border: "1px solid var(--color-border)", borderRadius: 6,
-                    display: "grid", placeItems: "center",
-                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, color: "var(--color-ink-muted)",
+                    aspectRatio: "1/1",
+                    background: "var(--color-surface)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: 6,
+                    display: "grid",
+                    placeItems: "center",
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 700,
+                    fontSize: 13,
+                    color: "var(--color-ink-muted)",
                     textDecoration: "none",
                   }}
                 >
@@ -131,28 +187,104 @@ export default function SeriesDetail() {
         {/* Right: info */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {(series.year || series.status === "in-progress") && (
-            <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-body)",
+                fontStyle: "italic",
+                fontSize: 10,
+                color: "var(--color-ink-muted)",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+              }}
+            >
               {series.year ? `Series · ${series.year}` : "Series"}
-              {series.status === "in-progress" && <span style={{ color: "var(--color-coral)" }}> · In progress</span>}
+              {series.status === "in-progress" && (
+                <span style={{ color: "var(--color-coral)" }}>
+                  {" "}
+                  · In progress
+                </span>
+              )}
             </span>
           )}
-          <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(40px, 4vw, 56px)", lineHeight: 1, color: "var(--color-ink-true)", letterSpacing: "-0.025em", margin: 0 }}>
+          <h1
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 700,
+              fontSize: "clamp(40px, 4vw, 56px)",
+              lineHeight: 1,
+              color: "var(--color-ink-true)",
+              letterSpacing: "-0.025em",
+              margin: 0,
+            }}
+          >
             {series.title}
           </h1>
-          <span style={{ width: 36, height: 3, borderRadius: 2, background: "linear-gradient(90deg, var(--color-coral) 0%, var(--color-apricot) 100%)", display: "block" }} />
+          <span
+            style={{
+              width: 36,
+              height: 3,
+              borderRadius: 2,
+              background:
+                "linear-gradient(90deg, var(--color-coral) 0%, var(--color-apricot) 100%)",
+              display: "block",
+            }}
+          />
           {series.tagline && (
-            <p style={{ fontFamily: "var(--font-body)", fontSize: 18, lineHeight: 1.55, color: "var(--color-ink)", margin: "4px 0 8px" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: 18,
+                lineHeight: 1.55,
+                color: "var(--color-ink)",
+                margin: "4px 0 8px",
+              }}
+            >
               {series.tagline}
             </p>
           )}
 
-          <dl style={{ display: "flex", flexDirection: "column", margin: "16px 0 8px", padding: 0, borderTop: "1px solid var(--color-border)" }}>
+          <dl
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              margin: "16px 0 8px",
+              padding: 0,
+              borderTop: "1px solid var(--color-border)",
+            }}
+          >
             {metaRows.map(([dt, dd]) => (
-              <div key={dt} style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: 16, padding: "12px 0", borderBottom: "1px solid var(--color-border)", alignItems: "baseline" }}>
-                <dt style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em", margin: 0 }}>
+              <div
+                key={dt}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "120px 1fr",
+                  gap: 16,
+                  padding: "12px 0",
+                  borderBottom: "1px solid var(--color-border)",
+                  alignItems: "baseline",
+                }}
+              >
+                <dt
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 700,
+                    fontSize: 10,
+                    color: "var(--color-ink-muted)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    margin: 0,
+                  }}
+                >
                   {dt}
                 </dt>
-                <dd style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "var(--color-ink)", margin: 0 }}>
+                <dd
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: 14,
+                    color: "var(--color-ink)",
+                    margin: 0,
+                  }}
+                >
                   {dd}
                 </dd>
               </div>
@@ -163,10 +295,18 @@ export default function SeriesDetail() {
             href="#gallery"
             style={{
               alignSelf: "flex-start",
-              background: "var(--color-ink)", color: "#FFFFFF", borderRadius: 10,
-              fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
-              textTransform: "uppercase", letterSpacing: "0.06em",
-              padding: "14px 22px", textDecoration: "none", marginTop: 16, display: "inline-block",
+              background: "var(--color-ink)",
+              color: "#FFFFFF",
+              borderRadius: 10,
+              fontFamily: "var(--font-display)",
+              fontWeight: 700,
+              fontSize: 13,
+              textTransform: "uppercase",
+              letterSpacing: "0.06em",
+              padding: "14px 22px",
+              textDecoration: "none",
+              marginTop: 16,
+              display: "inline-block",
             }}
           >
             View gallery
@@ -178,16 +318,44 @@ export default function SeriesDetail() {
       {series.longread.length > 0 && (
         <section className="series-description">
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-body)",
+                fontStyle: "italic",
+                fontSize: 10,
+                color: "var(--color-ink-muted)",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+              }}
+            >
               About this series
             </span>
-            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.05, color: "var(--color-ink-true)", letterSpacing: "-0.02em", margin: 0 }}>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: "clamp(24px, 3vw, 32px)",
+                lineHeight: 1.05,
+                color: "var(--color-ink-true)",
+                letterSpacing: "-0.02em",
+                margin: 0,
+              }}
+            >
               How it was made
             </h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {series.longread.map((para, i) => (
-              <p key={i} style={{ fontFamily: "var(--font-body)", fontSize: 16, lineHeight: 1.7, color: "var(--color-ink)", margin: 0 }}>
+              <p
+                key={i}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: "var(--color-ink)",
+                  margin: 0,
+                }}
+              >
                 {para}
               </p>
             ))}
@@ -197,23 +365,66 @@ export default function SeriesDetail() {
 
       {/* Gallery */}
       <section id="gallery" className="series-gallery-section">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            gap: 24,
+          }}
+        >
           <div>
-            <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em", display: "block", marginBottom: 6 }}>
+            <span
+              style={{
+                fontFamily: "var(--font-body)",
+                fontStyle: "italic",
+                fontSize: 10,
+                color: "var(--color-ink-muted)",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                display: "block",
+                marginBottom: 6,
+              }}
+            >
               Gallery
             </span>
-            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.05, color: "var(--color-ink-true)", letterSpacing: "-0.02em", margin: 0 }}>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: "clamp(24px, 3vw, 32px)",
+                lineHeight: 1.05,
+                color: "var(--color-ink-true)",
+                letterSpacing: "-0.02em",
+                margin: 0,
+              }}
+            >
               {series.photos.length} photos
             </h2>
           </div>
-          <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 12, color: "var(--color-ink-muted)" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-body)",
+              fontStyle: "italic",
+              fontSize: 12,
+              color: "var(--color-ink-muted)",
+            }}
+          >
             Click any photo to enlarge
           </span>
         </div>
 
         <div ref={galleryRef} className="series-gallery-grid">
           {series.photos.map((photo, i) => (
-            <figure key={i} style={{ margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+            <figure
+              key={i}
+              style={{
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: 8,
+              }}
+            >
               <a
                 className="pswp-gallery-item"
                 href={photo.src}
@@ -222,8 +433,13 @@ export default function SeriesDetail() {
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  display: "block", borderRadius: 10, overflow: "hidden",
-                  background: "var(--color-placeholder)", position: "relative", aspectRatio: "1/1", cursor: "zoom-in",
+                  display: "block",
+                  borderRadius: 10,
+                  overflow: "hidden",
+                  background: "var(--color-placeholder)",
+                  position: "relative",
+                  aspectRatio: "1/1",
+                  cursor: "zoom-in",
                 }}
               >
                 <Image
@@ -231,12 +447,25 @@ export default function SeriesDetail() {
                   alt={`${series.title} — photo ${i + 1}`}
                   fill
                   sizes="(max-width: 640px) 50vw, 25vw"
-                  style={{ objectFit: "cover", transition: "transform 300ms cubic-bezier(.2,.8,.2,1)" }}
+                  style={{
+                    objectFit: "cover",
+                    transition: "transform 300ms cubic-bezier(.2,.8,.2,1)",
+                  }}
                   className="gallery-img"
                 />
               </a>
-              <figcaption style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10, color: "var(--color-ink-muted)", letterSpacing: "0.12em" }}>
+              <figcaption
+                style={{ display: "flex", alignItems: "baseline", gap: 8 }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 700,
+                    fontSize: 10,
+                    color: "var(--color-ink-muted)",
+                    letterSpacing: "0.12em",
+                  }}
+                >
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </figcaption>
@@ -244,7 +473,6 @@ export default function SeriesDetail() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }
