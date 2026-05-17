@@ -30,12 +30,7 @@ function PreviewImage({ item }: { item: Project | null }) {
         style={{ position: "absolute", inset: 0, opacity: 0.18 }}
       >
         <defs>
-          <pattern
-            id={`p-${item.slug}`}
-            width="24"
-            height="24"
-            patternUnits="userSpaceOnUse"
-          >
+          <pattern id={`p-${item.slug}`} width="24" height="24" patternUnits="userSpaceOnUse">
             <circle cx="12" cy="12" r="1" fill="#FFFFFF" />
           </pattern>
         </defs>
@@ -92,6 +87,7 @@ function PreviewPanel({ item }: { item: Project | null }) {
   const [fade, setFade] = useState(1);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFade(0);
     const t = setTimeout(() => {
       setShown(item);
@@ -122,12 +118,7 @@ function PreviewPanel({ item }: { item: Project | null }) {
             <p style={panelStyles.blurb}>{shown.blurb}</p>
             <a href={`/projects/${shown.slug}`} style={panelStyles.cta}>
               <span style={panelStyles.ctaLabel}>View project</span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                style={panelStyles.ctaArrow}
-              >
+              <svg width="14" height="14" viewBox="0 0 14 14" style={panelStyles.ctaArrow}>
                 <path
                   d="M3 7h8M7 3l4 4-4 4"
                   stroke="currentColor"
@@ -159,8 +150,7 @@ const panelStyles: Record<string, CSSProperties> = {
     alignSelf: "start",
   },
   imageWrap: {
-    transition:
-      "opacity 240ms var(--ease-smooth), transform 240ms var(--ease-smooth)",
+    transition: "opacity 240ms var(--ease-smooth), transform 240ms var(--ease-smooth)",
   },
   text: { transition: "opacity 240ms var(--ease-smooth)" },
   meta: { display: "flex", alignItems: "center", gap: 10 },
@@ -286,8 +276,7 @@ export default function Projects() {
   }, []);
 
   const filtered = useMemo(() => {
-    const list =
-      filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.kind === filter);
+    const list = filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.kind === filter);
     return [...list].sort((a, b) => b.year - a.year);
   }, [filter]);
 
@@ -309,10 +298,7 @@ export default function Projects() {
       <main className="page-main">
         <hgroup>
           <h1>Projects</h1>
-          <p>
-            Things I've made or worked on — across the workshop, the trail, and
-            the page.
-          </p>
+          <p>Things I&apos;ve made or worked on — across the workshop, the trail, and the page.</p>
         </hgroup>
 
         <section
@@ -351,9 +337,7 @@ export default function Projects() {
               <ProjectRow
                 key={item.slug}
                 item={item}
-                isDimmed={
-                  isDesktop && hovered != null && hovered.slug !== item.slug
-                }
+                isDimmed={isDesktop && hovered != null && hovered.slug !== item.slug}
                 isActive={hovered?.slug === item.slug}
                 onHover={() => setHovered(item)}
                 onLeave={() => {}}

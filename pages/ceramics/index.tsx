@@ -18,18 +18,14 @@ export default function CeramicsLanding() {
 
       <UniversalHeaderBar />
 
-      <div
-        className="page-main"
-        style={{ flex: "none", paddingBottom: 0, gap: 0 }}
-      >
+      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0 }}>
         <hgroup>
           <h1>Ceramics</h1>
           <p>
-            Ceramics has become a big part of my life in the last few years. I
-            have served as an lab tech and teachers assistant at California
-            State University Channel Islands since I graguated in 2023. It's
-            such a beautiful place and its inspired me to continue working in
-            clay.
+            Ceramics has become a big part of my life in the last few years. I have served as an lab
+            tech and teachers assistant at California State University Channel Islands since I
+            graguated in 2023. It&apos;s such a beautiful place and its inspired me to continue
+            working in clay.
           </p>
         </hgroup>
       </div>
@@ -38,10 +34,7 @@ export default function CeramicsLanding() {
         <div className="ceramics-grid">
           {CERAMICS_SERIES.map((series, i) => (
             <article key={series.slug} className="ceramics-card">
-              <Link
-                href={`/ceramics/${series.slug}`}
-                style={{ display: "block" }}
-              >
+              <Link href={`/ceramics/${series.slug}`} style={{ display: "block" }}>
                 <div
                   style={{
                     position: "relative",
