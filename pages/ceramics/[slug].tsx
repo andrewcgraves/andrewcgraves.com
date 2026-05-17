@@ -47,7 +47,7 @@ export default function SeriesDetail() {
   ].filter(Boolean) as [string, string][];
 
   return (
-    <div style={{ background: "#FFFFFF", minHeight: "100vh" }}>
+    <div className="page-shell">
       <Head>
         <title>{series.title} — Ceramics — Andrew Graves</title>
         <meta name="description" content={series.tagline || `${series.title} — ceramics by Andrew Graves`} />
@@ -59,8 +59,8 @@ export default function SeriesDetail() {
       {/* Breadcrumb */}
       <div className="series-crumb">
         <Link href="/ceramics" className="series-crumb-back">← All series</Link>
-        <span style={{ color: "#D9D9D9", fontSize: 12 }}>/</span>
-        <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#121212", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+        <span style={{ color: "var(--color-placeholder)", fontSize: 12 }}>/</span>
+        <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12, color: "var(--color-ink)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
           {series.title}
         </span>
       </div>
@@ -97,7 +97,7 @@ export default function SeriesDetail() {
                     padding: 0, border: 0, background: "transparent",
                     position: "relative", aspectRatio: "1/1",
                     borderRadius: 6, overflow: "hidden", cursor: "zoom-in",
-                    outline: i === activeThumb ? "2px solid #121212" : "1px solid #E5E5E5",
+                    outline: i === activeThumb ? "2px solid var(--color-ink)" : "1px solid var(--color-border)",
                     outlineOffset: i === activeThumb ? -2 : -1,
                   }}
                 >
@@ -114,10 +114,10 @@ export default function SeriesDetail() {
                 <a
                   href="#gallery"
                   style={{
-                    aspectRatio: "1/1", background: "#F4F4F5",
-                    border: "1px solid #E5E5E5", borderRadius: 6,
+                    aspectRatio: "1/1", background: "var(--color-surface)",
+                    border: "1px solid var(--color-border)", borderRadius: 6,
                     display: "grid", placeItems: "center",
-                    fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 13, color: "#4A4A4F",
+                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, color: "var(--color-ink-muted)",
                     textDecoration: "none",
                   }}
                 >
@@ -131,28 +131,28 @@ export default function SeriesDetail() {
         {/* Right: info */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {(series.year || series.status === "in-progress") && (
-            <span style={{ fontFamily: "'Open Sans', sans-serif", fontStyle: "italic", fontSize: 10, color: "#4A4A4F", textTransform: "uppercase", letterSpacing: "0.12em" }}>
+            <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em" }}>
               {series.year ? `Series · ${series.year}` : "Series"}
-              {series.status === "in-progress" && <span style={{ color: "#E1665B" }}> · In progress</span>}
+              {series.status === "in-progress" && <span style={{ color: "var(--color-coral)" }}> · In progress</span>}
             </span>
           )}
-          <h1 style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "clamp(40px, 4vw, 56px)", lineHeight: 1, color: "#000", letterSpacing: "-0.025em", margin: 0 }}>
+          <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(40px, 4vw, 56px)", lineHeight: 1, color: "var(--color-ink-true)", letterSpacing: "-0.025em", margin: 0 }}>
             {series.title}
           </h1>
-          <span style={{ width: 36, height: 3, borderRadius: 2, background: "linear-gradient(90deg, #E1665B 0%, #EF9261 100%)", display: "block" }} />
+          <span style={{ width: 36, height: 3, borderRadius: 2, background: "linear-gradient(90deg, var(--color-coral) 0%, var(--color-apricot) 100%)", display: "block" }} />
           {series.tagline && (
-            <p style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 18, lineHeight: 1.55, color: "#121212", margin: "4px 0 8px" }}>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 18, lineHeight: 1.55, color: "var(--color-ink)", margin: "4px 0 8px" }}>
               {series.tagline}
             </p>
           )}
 
-          <dl style={{ display: "flex", flexDirection: "column", margin: "16px 0 8px", padding: 0, borderTop: "1px solid #E5E5E5" }}>
+          <dl style={{ display: "flex", flexDirection: "column", margin: "16px 0 8px", padding: 0, borderTop: "1px solid var(--color-border)" }}>
             {metaRows.map(([dt, dd]) => (
-              <div key={dt} style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: 16, padding: "12px 0", borderBottom: "1px solid #E5E5E5", alignItems: "baseline" }}>
-                <dt style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 10, color: "#4A4A4F", textTransform: "uppercase", letterSpacing: "0.12em", margin: 0 }}>
+              <div key={dt} style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: 16, padding: "12px 0", borderBottom: "1px solid var(--color-border)", alignItems: "baseline" }}>
+                <dt style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em", margin: 0 }}>
                   {dt}
                 </dt>
-                <dd style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 14, color: "#121212", margin: 0 }}>
+                <dd style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "var(--color-ink)", margin: 0 }}>
                   {dd}
                 </dd>
               </div>
@@ -163,8 +163,8 @@ export default function SeriesDetail() {
             href="#gallery"
             style={{
               alignSelf: "flex-start",
-              background: "#121212", color: "#FFFFFF", borderRadius: 10,
-              fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 13,
+              background: "var(--color-ink)", color: "#FFFFFF", borderRadius: 10,
+              fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
               textTransform: "uppercase", letterSpacing: "0.06em",
               padding: "14px 22px", textDecoration: "none", marginTop: 16, display: "inline-block",
             }}
@@ -178,16 +178,16 @@ export default function SeriesDetail() {
       {series.longread.length > 0 && (
         <section className="series-description">
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <span style={{ fontFamily: "'Open Sans', sans-serif", fontStyle: "italic", fontSize: 10, color: "#4A4A4F", textTransform: "uppercase", letterSpacing: "0.12em" }}>
+            <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em" }}>
               About this series
             </span>
-            <h2 style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.05, color: "#000", letterSpacing: "-0.02em", margin: 0 }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.05, color: "var(--color-ink-true)", letterSpacing: "-0.02em", margin: 0 }}>
               How it was made
             </h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {series.longread.map((para, i) => (
-              <p key={i} style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 16, lineHeight: 1.7, color: "#121212", margin: 0 }}>
+              <p key={i} style={{ fontFamily: "var(--font-body)", fontSize: 16, lineHeight: 1.7, color: "var(--color-ink)", margin: 0 }}>
                 {para}
               </p>
             ))}
@@ -199,14 +199,14 @@ export default function SeriesDetail() {
       <section id="gallery" className="series-gallery-section">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
           <div>
-            <span style={{ fontFamily: "'Open Sans', sans-serif", fontStyle: "italic", fontSize: 10, color: "#4A4A4F", textTransform: "uppercase", letterSpacing: "0.12em", display: "block", marginBottom: 6 }}>
+            <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 10, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.12em", display: "block", marginBottom: 6 }}>
               The complete set
             </span>
-            <h2 style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.05, color: "#000", letterSpacing: "-0.02em", margin: 0 }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.05, color: "var(--color-ink-true)", letterSpacing: "-0.02em", margin: 0 }}>
               All {series.photos.length} pieces
             </h2>
           </div>
-          <span style={{ fontFamily: "'Open Sans', sans-serif", fontStyle: "italic", fontSize: 12, color: "#4A4A4F" }}>
+          <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 12, color: "var(--color-ink-muted)" }}>
             Click any piece to enlarge
           </span>
         </div>
@@ -223,7 +223,7 @@ export default function SeriesDetail() {
                 rel="noreferrer"
                 style={{
                   display: "block", borderRadius: 10, overflow: "hidden",
-                  background: "#D9D9D9", position: "relative", aspectRatio: "1/1", cursor: "zoom-in",
+                  background: "var(--color-placeholder)", position: "relative", aspectRatio: "1/1", cursor: "zoom-in",
                 }}
               >
                 <Image
@@ -236,7 +236,7 @@ export default function SeriesDetail() {
                 />
               </a>
               <figcaption style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 10, color: "#4A4A4F", letterSpacing: "0.12em" }}>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10, color: "var(--color-ink-muted)", letterSpacing: "0.12em" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </figcaption>
@@ -248,30 +248,30 @@ export default function SeriesDetail() {
       <style>{`
         .series-crumb {
           display: flex; align-items: center; gap: 10px;
-          padding: 20px 109px 0;
+          padding: 20px var(--page-gutter) 0;
         }
         .series-crumb-back {
-          font-family: Inter, sans-serif; font-weight: 700; font-size: 12px;
-          color: #4A4A4F; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+          font-family: var(--font-display); font-weight: 700; font-size: 12px;
+          color: var(--color-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
         }
-        .series-crumb-back:hover { color: #121212; }
+        .series-crumb-back:hover { color: var(--color-ink); }
         .series-hero {
           display: grid;
           grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
           gap: 64px;
-          padding: 32px 109px 80px;
+          padding: 32px var(--page-gutter) 80px;
           align-items: start;
         }
         .series-description {
-          padding: 56px 109px 80px;
+          padding: 56px var(--page-gutter) 80px;
           display: grid;
           grid-template-columns: minmax(0, 320px) minmax(0, 720px);
           gap: 64px;
-          border-top: 1px solid #E5E5E5;
+          border-top: 1px solid var(--color-border);
         }
         .series-gallery-section {
-          padding: 56px 109px 96px;
-          border-top: 1px solid #E5E5E5;
+          padding: 56px var(--page-gutter) 96px;
+          border-top: 1px solid var(--color-border);
           display: flex; flex-direction: column; gap: 24px;
           scroll-margin-top: 80px;
         }
@@ -283,10 +283,10 @@ export default function SeriesDetail() {
         .gallery-img:hover { transform: scale(1.03); }
 
         @media (max-width: 900px) {
-          .series-crumb { padding: 16px 20px 0; }
-          .series-hero { grid-template-columns: 1fr; gap: 32px; padding: 24px 20px 48px; }
-          .series-description { grid-template-columns: 1fr; gap: 24px; padding: 40px 20px 48px; }
-          .series-gallery-section { padding: 40px 20px 64px; }
+          .series-crumb { padding: 16px var(--page-gutter) 0; }
+          .series-hero { grid-template-columns: 1fr; gap: 32px; padding: 24px var(--page-gutter) 48px; }
+          .series-description { grid-template-columns: 1fr; gap: 24px; padding: 40px var(--page-gutter) 48px; }
+          .series-gallery-section { padding: 40px var(--page-gutter) 64px; }
           .series-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
         }
       `}</style>

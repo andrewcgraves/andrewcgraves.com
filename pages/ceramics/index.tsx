@@ -35,7 +35,7 @@ export default function CeramicsLanding() {
   }, []);
 
   return (
-    <div style={{ background: "#FFFFFF", minHeight: "100vh" }}>
+    <div className="page-shell">
       <Head>
         <title>Ceramics — Andrew Graves</title>
         <meta name="description" content="Ceramics work by Andrew Graves — stoneware and porcelain made at CSU Channel Islands." />
@@ -63,7 +63,7 @@ export default function CeramicsLanding() {
           {CERAMICS_SERIES.map((series, i) => (
             <article key={series.slug} className="ceramics-card">
               <Link href={`/ceramics/${series.slug}`} style={{ display: "block" }}>
-                <div style={{ position: "relative", aspectRatio: "4/5", borderRadius: 10, overflow: "hidden", background: "#D9D9D9" }}>
+                <div style={{ position: "relative", aspectRatio: "4/5", borderRadius: 10, overflow: "hidden", background: "var(--color-placeholder)" }}>
                   <Image
                     src={series.photos[0].src}
                     alt={series.title}
@@ -78,22 +78,22 @@ export default function CeramicsLanding() {
               </Link>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16 }}>
-                  <h2 style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 24, lineHeight: 1, color: "#000", letterSpacing: "-0.01em", margin: 0 }}>
+                  <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 24, lineHeight: 1, color: "var(--color-ink-true)", letterSpacing: "-0.01em", margin: 0 }}>
                     {series.title}
                   </h2>
                   {series.year && (
-                    <span style={{ fontFamily: "'Open Sans', sans-serif", fontStyle: "italic", fontSize: 12, color: "#4A4A4F", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>
+                    <span style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 12, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>
                       {series.year}
                     </span>
                   )}
                 </div>
                 {series.material && (
-                  <span style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 12, color: "#4A4A4F", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
                     {series.material} · {series.photos.length} pieces
                   </span>
                 )}
                 {series.tagline && (
-                  <p style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 14, lineHeight: 1.55, color: "#121212", margin: 0 }}>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.55, color: "var(--color-ink)", margin: 0 }}>
                     {series.tagline}
                   </p>
                 )}
@@ -101,8 +101,8 @@ export default function CeramicsLanding() {
                   href={`/ceramics/${series.slug}`}
                   style={{
                     alignSelf: "flex-start",
-                    fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 13,
-                    color: "#121212", textDecoration: "underline", textUnderlineOffset: 3,
+                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                    color: "var(--color-ink)", textDecoration: "underline", textUnderlineOffset: 3,
                   }}
                 >
                   View series →
@@ -125,7 +125,7 @@ export default function CeramicsLanding() {
                   height: 8,
                   borderRadius: 999,
                   border: 0,
-                  background: i === activeIdx ? "#121212" : "#D9D9D9",
+                  background: i === activeIdx ? "var(--color-ink)" : "var(--color-placeholder)",
                   cursor: "pointer",
                   transition: "width 280ms cubic-bezier(.2,.8,.2,1), background 200ms",
                   padding: 0,
@@ -157,30 +157,30 @@ export default function CeramicsLanding() {
           display: grid;
           grid-template-columns: 1.1fr 1fr;
           gap: 64px;
-          padding: 60px 109px 56px;
+          padding: 60px var(--page-gutter) 56px;
           align-items: start;
         }
         .ceramics-intro-left { display: flex; flex-direction: column; gap: 12px; }
         .ceramics-intro-right { display: flex; flex-direction: column; gap: 12px; max-width: 480px; padding-top: 8px; }
         .ceramics-kicker {
-          font-family: 'Open Sans', sans-serif;
-          font-style: italic; font-size: 10px; color: #4A4A4F;
+          font-family: var(--font-body);
+          font-style: italic; font-size: 10px; color: var(--color-ink-muted);
           text-transform: uppercase; letter-spacing: 0.12em;
         }
         .ceramics-h1 {
-          font-family: Inter, sans-serif;
+          font-family: var(--font-display);
           font-weight: 700; font-size: clamp(36px, 4vw, 56px);
-          line-height: 1.05; color: #000; letter-spacing: -0.02em;
+          line-height: 1.05; color: var(--color-ink-true); letter-spacing: -0.02em;
           margin: 0; max-width: 600px;
         }
         .ceramics-bio-p {
-          font-family: 'Open Sans', sans-serif;
-          font-size: 16px; line-height: 1.6; color: #121212; margin: 0;
+          font-family: var(--font-body);
+          font-size: 16px; line-height: 1.6; color: var(--color-ink-muted); margin: 0;
         }
         .ceramics-track {
           display: flex; gap: 24px; overflow-x: auto;
           scroll-snap-type: x mandatory;
-          padding: 32px 109px 32px; scroll-padding-left: 109px;
+          padding: 32px var(--page-gutter); scroll-padding-left: var(--page-gutter);
           scrollbar-width: none;
         }
         .ceramics-track::-webkit-scrollbar { display: none; }
@@ -193,29 +193,29 @@ export default function CeramicsLanding() {
         .ceramics-card-num {
           position: absolute; top: 16px; left: 16px;
           background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
-          font-family: Inter, sans-serif; font-weight: 700; font-size: 12px;
-          letter-spacing: 0.08em; color: #121212;
+          font-family: var(--font-display); font-weight: 700; font-size: 12px;
+          letter-spacing: 0.08em; color: var(--color-ink);
           padding: 6px 10px; border-radius: 6px;
         }
         .ceramics-controls {
           display: flex; justify-content: space-between; align-items: center;
-          padding: 0 109px; margin-top: 16px;
+          padding: 0 var(--page-gutter); margin-top: 16px;
         }
         .ceramics-arrow {
           width: 44px; height: 44px; border-radius: 10px;
-          border: 1px solid #E5E5E5; background: #FFFFFF; color: #121212;
+          border: 1px solid var(--color-border); background: #FFFFFF; color: var(--color-ink);
           cursor: pointer; font-size: 16px;
           display: grid; place-items: center; transition: background 200ms;
         }
-        .ceramics-arrow:hover:not(:disabled) { background: #F4F4F5; }
+        .ceramics-arrow:hover:not(:disabled) { background: var(--color-surface); }
         .ceramics-arrow:disabled { cursor: not-allowed; }
 
         @media (max-width: 768px) {
-          .ceramics-intro { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px 40px; }
+          .ceramics-intro { grid-template-columns: 1fr; gap: 24px; padding: 32px var(--page-gutter) 40px; }
           .ceramics-intro-right { max-width: none; padding-top: 0; }
-          .ceramics-track { padding: 16px 20px 24px; scroll-padding-left: 20px; }
+          .ceramics-track { padding: 16px var(--page-gutter) 24px; scroll-padding-left: var(--page-gutter); }
           .ceramics-card { width: min(85vw, 340px); }
-          .ceramics-controls { padding: 0 20px; }
+          .ceramics-controls { padding: 0 var(--page-gutter); }
         }
       `}</style>
     </div>
