@@ -84,7 +84,7 @@ export default function Ceramics() {
   // }, [])
 
   return (
-    <div>
+    <div className="page-shell">
       <Head>
         <title>Ceramics</title>
         <meta
@@ -93,9 +93,9 @@ export default function Ceramics() {
         />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <main>
-        <UniversalHeaderBar />
-        <div className="main-container">
+      <UniversalHeaderBar />
+      <main className="page-main">
+        <hgroup>
           <h1>Ceramics</h1>
           <p>
             Ceramics has become a big part of my life in the last few years. I
@@ -103,10 +103,11 @@ export default function Ceramics() {
             Ceramics is one of the ways I unwind, and express my creativity.
             Here are some of my favorite pieces.
           </p>
-          <div
-            id="image-gallery"
-            className="pwsp-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0 sm:gap-4 pt-8"
-          >
+        </hgroup>
+        <div
+          id="image-gallery"
+          className="pwsp-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0 sm:gap-4"
+        >
             <div>
               {photos.map((photo, index) => {
                 if (index % 3 == 0) {
@@ -155,7 +156,6 @@ export default function Ceramics() {
                 }
               })}
             </div>
-          </div>
         </div>
       </main>
     </div>
