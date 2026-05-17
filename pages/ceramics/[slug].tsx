@@ -14,10 +14,10 @@ export default function SeriesDetail() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [activeThumb, setActiveThumb] = useState(0);
 
-  const series =
-    CERAMICS_SERIES.find((s) => s.slug === slug) ?? CERAMICS_SERIES[0];
+  const series = CERAMICS_SERIES.find((s) => s.slug === slug) ?? CERAMICS_SERIES[0];
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveThumb(0);
   }, [slug]);
 
@@ -34,9 +34,9 @@ export default function SeriesDetail() {
 
   const openAt = (index: number) => {
     if (!galleryRef.current) return;
-    const el = galleryRef.current.querySelectorAll("a.pswp-gallery-item")[
-      index
-    ] as HTMLAnchorElement | undefined;
+    const el = galleryRef.current.querySelectorAll("a.pswp-gallery-item")[index] as
+      | HTMLAnchorElement
+      | undefined;
     el?.click();
   };
 
@@ -54,9 +54,7 @@ export default function SeriesDetail() {
         <title>{series.title} — Ceramics — Andrew Graves</title>
         <meta
           name="description"
-          content={
-            series.tagline || `${series.title} — ceramics by Andrew Graves`
-          }
+          content={series.tagline || `${series.title} — ceramics by Andrew Graves`}
         />
         <link rel="icon" href="/logo.png" />
       </Head>
@@ -68,9 +66,7 @@ export default function SeriesDetail() {
         <Link href="/ceramics" className="series-crumb-back">
           ← All series
         </Link>
-        <span style={{ color: "var(--color-placeholder)", fontSize: 12 }}>
-          /
-        </span>
+        <span style={{ color: "var(--color-placeholder)", fontSize: 12 }}>/</span>
         <span
           style={{
             fontFamily: "var(--font-display)",
@@ -105,9 +101,7 @@ export default function SeriesDetail() {
               width: "100%",
             }}
           >
-            <div
-              style={{ position: "relative", width: "100%", height: "100%" }}
-            >
+            <div style={{ position: "relative", width: "100%", height: "100%" }}>
               <Image
                 src={series.photos[activeThumb].src}
                 alt={`${series.title} — photo ${activeThumb + 1}`}
@@ -199,10 +193,7 @@ export default function SeriesDetail() {
             >
               {series.year ? `Series · ${series.year}` : "Series"}
               {series.status === "in-progress" && (
-                <span style={{ color: "var(--color-coral)" }}>
-                  {" "}
-                  · In progress
-                </span>
+                <span style={{ color: "var(--color-coral)" }}> · In progress</span>
               )}
             </span>
           )}
@@ -454,9 +445,7 @@ export default function SeriesDetail() {
                   className="gallery-img"
                 />
               </a>
-              <figcaption
-                style={{ display: "flex", alignItems: "baseline", gap: 8 }}
-              >
+              <figcaption style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <span
                   style={{
                     fontFamily: "var(--font-display)",
