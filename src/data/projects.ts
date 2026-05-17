@@ -54,7 +54,8 @@ export const PROJECTS: ProjectEntry[] = [
       {
         type: "image",
         slot: "inline",
-        caption: "Inline images break out to 880px and sit centered across the column. Drop a real src here when you have photography.",
+        caption:
+          "Inline images break out to 880px and sit centered across the column. Drop a real src here when you have photography.",
       },
       {
         type: "p",

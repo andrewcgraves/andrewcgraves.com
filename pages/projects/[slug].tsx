@@ -49,12 +49,7 @@ function PlaceholderImage({
         style={{ position: "absolute", inset: 0, opacity: 0.15 }}
       >
         <defs>
-          <pattern
-            id={`pat-${id}`}
-            width="28"
-            height="28"
-            patternUnits="userSpaceOnUse"
-          >
+          <pattern id={`pat-${id}`} width="28" height="28" patternUnits="userSpaceOnUse">
             <circle cx="14" cy="14" r="1.2" fill="#FFFFFF" />
           </pattern>
         </defs>
@@ -92,12 +87,7 @@ function BackLink() {
           transform: hover ? "translateX(-3px)" : "translateX(0)",
         }}
       >
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          aria-hidden="true"
-        >
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
           <path
             d="M11 7H3M7 3L3 7l4 4"
             stroke="currentColor"
@@ -129,10 +119,7 @@ function Block({ block, color }: { block: BodyBlock; color: string }) {
         <ul className="pd-body-ul">
           {block.items.map((text, i) => (
             <li key={i} className="pd-body-li">
-              <span
-                className="pd-body-bullet"
-                style={{ background: color }}
-              />
+              <span className="pd-body-bullet" style={{ background: color }} />
               <span>{text}</span>
             </li>
           ))}
@@ -175,9 +162,7 @@ function Block({ block, color }: { block: BodyBlock; color: string }) {
               aspect={block.aspect || "16 / 10"}
             />
           )}
-          {block.caption && (
-            <figcaption className="pd-body-figcap">{block.caption}</figcaption>
-          )}
+          {block.caption && <figcaption className="pd-body-figcap">{block.caption}</figcaption>}
         </figure>
       );
 
@@ -214,11 +199,8 @@ function GalleryThumb({
             overflow: "hidden",
             cursor: "zoom-in",
             transform: hover ? "scale(1.015)" : "scale(1)",
-            boxShadow: hover
-              ? "0 12px 32px rgba(0,0,0,0.12)"
-              : "0 0 0 rgba(0,0,0,0)",
-            transition:
-              "transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)",
+            boxShadow: hover ? "0 12px 32px rgba(0,0,0,0.12)" : "0 0 0 rgba(0,0,0,0)",
+            transition: "transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)",
           }}
         >
           <div
@@ -245,11 +227,8 @@ function GalleryThumb({
             borderRadius: 10,
             overflow: "hidden",
             transform: hover ? "scale(1.015)" : "scale(1)",
-            boxShadow: hover
-              ? "0 12px 32px rgba(0,0,0,0.12)"
-              : "0 0 0 rgba(0,0,0,0)",
-            transition:
-              "transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)",
+            boxShadow: hover ? "0 12px 32px rgba(0,0,0,0.12)" : "0 0 0 rgba(0,0,0,0)",
+            transition: "transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)",
           }}
         >
           <PlaceholderImage
@@ -424,12 +403,7 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
           </div>
           <div ref={galleryRef} className="pd-gallery-grid">
             {project.gallery.map((photo, i) => (
-              <GalleryThumb
-                key={i}
-                photo={photo}
-                index={i}
-                color={project.color}
-              />
+              <GalleryThumb key={i} photo={photo} index={i} color={project.color} />
             ))}
           </div>
         </section>
