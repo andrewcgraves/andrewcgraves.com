@@ -127,6 +127,7 @@ export default function CeramicsLanding() {
                 )}
                 <Link
                   href={`/ceramics/${series.slug}`}
+                  className="arrow-link"
                   style={{
                     alignSelf: "flex-start",
                     fontFamily: "var(--font-display)",
@@ -137,7 +138,7 @@ export default function CeramicsLanding() {
                     textUnderlineOffset: 3,
                   }}
                 >
-                  View series →
+                  View series <span className="arrow-right">→</span>
                 </Link>
               </div>
             </article>
