@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
+import BackButton from "../../src/Components/BackButton";
 import { getProjectBySlug, getAllProjectSlugs } from "../../src/lib/projects";
 import { ProjectEntry, GalleryPhoto } from "../../src/data/projects";
 
@@ -387,25 +388,7 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
 
       {/* End link */}
       <section className="pd-end-section">
-        <Link href="/projects" className="pd-end-link arrow-link">
-          <span>Back to all projects</span>
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
-            className="arrow-right"
-          >
-            <path
-              d="M3 8h10M9 4l4 4-4 4"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
+        <BackButton href="/projects" label="Back to all projects" />
       </section>
     </div>
   );
