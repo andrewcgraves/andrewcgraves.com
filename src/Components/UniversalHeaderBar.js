@@ -28,7 +28,7 @@ export default function UniversalHeaderBar({ children = null }) {
                 isDisabled={element.isDisabled}
                 isActive={isActive}
               >
-                <p>{element["name"].toUpperCase()}</p>
+                <span>{element["name"].toUpperCase()}</span>
               </Pill>
             );
           })
