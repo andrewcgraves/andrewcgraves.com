@@ -1,11 +1,10 @@
 import Head from "next/head";
+import Link from "next/link";
 import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.js";
-import { useState, useEffect, useMemo, CSSProperties } from "react";
 import { PROJECTS } from "../src/data/projects";
 
 type Project = (typeof PROJECTS)[number];
 
-// ── Color utility ─────────────────────────────────────────────────
 function shade(hex: string, pct: number): string {
   const n = parseInt(hex.slice(1), 16);
   const r = Math.max(0, Math.min(255, ((n >> 16) & 0xff) + pct));
@@ -14,273 +13,134 @@ function shade(hex: string, pct: number): string {
   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
 }
 
-// ── Preview image swatch ──────────────────────────────────────────
-function PreviewImage({ item }: { item: Project | null }) {
-  if (!item) {
-    return <div style={{ ...previewStyles.swatch, background: "var(--color-surface)" }} />;
+function ProjectCardImage({ item }: { item: Project }) {
+  if (item.cover?.src) {
+    return (
+      <img
+        src={item.cover.src}
+        alt={item.title}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+      />
+    );
   }
-  const grad = `linear-gradient(135deg, ${item.color} 0%, ${shade(item.color, -12)} 100%)`;
+  const grad = `linear-gradient(135deg, ${item.color} 0%, ${shade(item.color, -30)} 100%)`;
   return (
-    <div style={{ ...previewStyles.swatch, background: grad }}>
+    <div style={{ position: "absolute", inset: 0, background: grad }}>
       <svg
         width="100%"
         height="100%"
-        viewBox="0 0 400 280"
+        viewBox="0 0 400 320"
         preserveAspectRatio="none"
-        style={{ position: "absolute", inset: 0, opacity: 0.18 }}
+        style={{ position: "absolute", inset: 0, opacity: 0.14 }}
       >
         <defs>
           <pattern id={`p-${item.slug}`} width="24" height="24" patternUnits="userSpaceOnUse">
             <circle cx="12" cy="12" r="1" fill="#FFFFFF" />
           </pattern>
         </defs>
-        <rect width="400" height="280" fill={`url(#p-${item.slug})`} />
+        <rect width="400" height="320" fill={`url(#p-${item.slug})`} />
       </svg>
-      <div style={previewStyles.swatchLabel}>
-        <span style={previewStyles.swatchKind}>
-          {item.kind} · {item.year}
-        </span>
-        <span style={previewStyles.swatchTitle}>{item.title}</span>
-      </div>
     </div>
   );
 }
 
-const previewStyles: Record<string, CSSProperties> = {
-  swatch: {
-    position: "relative",
-    overflow: "hidden",
-    width: "100%",
-    aspectRatio: "10 / 7",
-    borderRadius: 10,
-    display: "flex",
-    alignItems: "flex-end",
-  },
-  swatchLabel: {
-    position: "relative",
-    padding: 16,
-    color: "white",
-    display: "flex",
-    flexDirection: "column",
-    gap: 4,
-    textShadow: "0 1px 2px rgba(0,0,0,0.25)",
-  },
-  swatchKind: {
-    fontFamily: "var(--font-body)",
-    fontStyle: "italic",
-    fontSize: 10,
-    letterSpacing: "0.08em",
-    textTransform: "uppercase",
-    opacity: 0.9,
-  },
-  swatchTitle: {
-    fontFamily: "var(--font-display)",
-    fontWeight: 700,
-    fontSize: 18,
-    lineHeight: 1.15,
-  },
-};
-
-// ── Preview panel (desktop, sticky) ──────────────────────────────
-function PreviewPanel({ item }: { item: Project | null }) {
-  const [shown, setShown] = useState<Project | null>(item);
-  const [fade, setFade] = useState(1);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setFade(0);
-    const t = setTimeout(() => {
-      setShown(item);
-      setFade(1);
-    }, 120);
-    return () => clearTimeout(t);
-  }, [item?.slug]);
-
+function ProjectCard({ item }: { item: Project }) {
   return (
-    <aside style={panelStyles.panel} aria-live="polite">
-      <div
-        style={{
-          ...panelStyles.imageWrap,
-          opacity: fade,
-          transform: `translateY(${fade ? 0 : 4}px)`,
-        }}
-      >
-        <PreviewImage item={shown} />
-      </div>
-      <div style={{ ...panelStyles.text, opacity: fade }}>
-        {shown ? (
-          <>
-            <div style={panelStyles.meta}>
-              <span style={panelStyles.metaYear}>{shown.year}</span>
-              <span style={panelStyles.dot} />
-              <span style={panelStyles.metaKind}>{shown.kind}</span>
-            </div>
-            <p style={panelStyles.blurb}>{shown.blurb}</p>
-            <a href={`/projects/${shown.slug}`} style={panelStyles.cta}>
-              <span style={panelStyles.ctaLabel}>View project</span>
-              <svg width="14" height="14" viewBox="0 0 14 14" style={panelStyles.ctaArrow}>
-                <path
-                  d="M3 7h8M7 3l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </>
-        ) : (
-          <p style={{ ...panelStyles.blurb, color: "var(--color-ink-muted)" }}>
-            Hover a project to preview, or tap one to open.
+    <article className="ceramics-card">
+      <Link href={`/projects/${item.slug}`} style={{ display: "block" }}>
+        <div
+          style={{
+            position: "relative",
+            aspectRatio: "4/3",
+            borderRadius: 10,
+            overflow: "hidden",
+            background: "var(--color-placeholder)",
+          }}
+        >
+          <ProjectCardImage item={item} />
+        </div>
+      </Link>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "baseline",
+            gap: 16,
+          }}
+        >
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 700,
+              fontSize: 24,
+              lineHeight: 1,
+              color: "var(--color-ink-true)",
+              letterSpacing: "-0.01em",
+              margin: 0,
+            }}
+          >
+            {item.title}
+          </h2>
+          <span
+            style={{
+              fontFamily: "var(--font-body)",
+              fontStyle: "italic",
+              fontSize: 12,
+              color: "var(--color-ink-muted)",
+              textTransform: "uppercase",
+              letterSpacing: "0.06em",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {item.year}
+          </span>
+        </div>
+        <span
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: 12,
+            color: "var(--color-ink-muted)",
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+          }}
+        >
+          {item.kind}
+        </span>
+        {item.blurb && (
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: 14,
+              lineHeight: 1.55,
+              color: "var(--color-ink)",
+              margin: 0,
+            }}
+          >
+            {item.blurb}
           </p>
         )}
+        <Link
+          href={`/projects/${item.slug}`}
+          style={{
+            alignSelf: "flex-start",
+            fontFamily: "var(--font-display)",
+            fontWeight: 700,
+            fontSize: 13,
+            color: "var(--color-ink)",
+            textDecoration: "underline",
+            textUnderlineOffset: 3,
+          }}
+        >
+          View project →
+        </Link>
       </div>
-    </aside>
+    </article>
   );
 }
 
-const panelStyles: Record<string, CSSProperties> = {
-  panel: {
-    position: "sticky",
-    top: "var(--header-height)",
-    display: "flex",
-    flexDirection: "column",
-    gap: 18,
-    alignSelf: "start",
-  },
-  imageWrap: {
-    transition: "opacity 240ms var(--ease-smooth), transform 240ms var(--ease-smooth)",
-  },
-  text: { transition: "opacity 240ms var(--ease-smooth)" },
-  meta: { display: "flex", alignItems: "center", gap: 10 },
-  metaYear: {
-    fontFamily: "var(--font-display)",
-    fontWeight: 700,
-    fontSize: 12,
-    letterSpacing: "0.04em",
-    color: "var(--color-ink)",
-  },
-  dot: { width: 3, height: 3, borderRadius: 999, background: "var(--color-placeholder)" },
-  metaKind: {
-    fontFamily: "var(--font-body)",
-    fontStyle: "italic",
-    fontSize: 12,
-    letterSpacing: "0.04em",
-    textTransform: "uppercase",
-    color: "var(--color-ink-muted)",
-  },
-  blurb: {
-    fontFamily: "var(--font-body)",
-    fontSize: 14,
-    lineHeight: 1.6,
-    color: "var(--color-ink)",
-    margin: "10px 0 0",
-  },
-  cta: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 8,
-    marginTop: 16,
-    fontFamily: "var(--font-display)",
-    fontWeight: 700,
-    fontSize: 13,
-    letterSpacing: "0.04em",
-    color: "var(--color-ink)",
-    textDecoration: "none",
-    cursor: "pointer",
-  },
-  ctaLabel: {
-    backgroundImage: "linear-gradient(var(--color-ink), var(--color-ink))",
-    backgroundSize: "100% 1px",
-    backgroundPosition: "0 100%",
-    backgroundRepeat: "no-repeat",
-    paddingBottom: 2,
-  },
-  ctaArrow: {
-    transition: "transform 220ms var(--ease-smooth)",
-  },
-};
-
-// ── Project row ───────────────────────────────────────────────────
-function ProjectRow({
-  item,
-  isDimmed,
-  isActive,
-  onHover,
-  onLeave,
-  onClick,
-}: {
-  item: Project;
-  isDimmed: boolean;
-  isActive: boolean;
-  onHover: () => void;
-  onLeave: () => void;
-  onClick: () => void;
-}) {
-  return (
-    <li
-      className="ag-row proj-row"
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      onFocus={onHover}
-      onBlur={onLeave}
-      onClick={onClick}
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") onClick();
-      }}
-      style={{ opacity: isDimmed ? 0.32 : 1 }}
-    >
-      <span className="proj-row-year">{item.year}</span>
-      <span
-        className="proj-row-title"
-        style={{ transform: isActive ? "translateX(6px)" : "translateX(0)" }}
-      >
-        {item.title}
-      </span>
-      <span className="proj-row-kind">{item.kind}</span>
-      <span
-        className="proj-row-arrow"
-        style={{
-          opacity: isActive ? 1 : 0,
-          transform: isActive ? "translateX(0)" : "translateX(-6px)",
-        }}
-      >
-        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-          <path
-            d="M3 7h8M7 3l4 4-4 4"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-    </li>
-  );
-}
-
-// ── Main page ─────────────────────────────────────────────────────
 export default function Projects() {
-  const [filter, setFilter] = useState("all");
-  const [hovered, setHovered] = useState<Project | null>(null);
-  const [isDesktop, setIsDesktop] = useState(true);
-
-  useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 880);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  const filtered = useMemo(() => {
-    const list = filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.kind === filter);
-    return [...list].sort((a, b) => b.year - a.year);
-  }, [filter]);
-
-  const activeItem = hovered ?? filtered[0] ?? null;
+  const sorted = [...PROJECTS].sort((a, b) => b.year - a.year);
 
   return (
     <div className="page-shell">
@@ -295,75 +155,23 @@ export default function Projects() {
 
       <UniversalHeaderBar />
 
-      <main className="page-main">
+      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0 }}>
         <hgroup>
           <h1>Projects</h1>
-          <p>Things I&apos;ve made or worked on — across the workshop, the trail, and the page.</p>
+          <p>
+            Things I've made or worked on — across the workshop, the trail, and
+            the page.
+          </p>
         </hgroup>
+      </div>
 
-        <section
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            flexWrap: "wrap",
-          }}
-        >
-          <span className="proj-count">
-            <span className="proj-count-num">{filtered.length}</span>
-            &nbsp;{filtered.length === 1 ? "project" : "projects"}
-          </span>
-        </section>
-
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: isDesktop ? "1fr 400px" : "1fr",
-            gap: isDesktop ? 64 : 0,
-            alignItems: "start",
-          }}
-        >
-          <ul
-            style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              borderTop: "1px solid var(--color-border)",
-            }}
-            onMouseLeave={() => setHovered(null)}
-          >
-            {filtered.map((item) => (
-              <ProjectRow
-                key={item.slug}
-                item={item}
-                isDimmed={isDesktop && hovered != null && hovered.slug !== item.slug}
-                isActive={hovered?.slug === item.slug}
-                onHover={() => setHovered(item)}
-                onLeave={() => {}}
-                onClick={() => {
-                  window.location.href = `/projects/${item.slug}`;
-                }}
-              />
-            ))}
-            {filtered.length === 0 && (
-              <li
-                style={{
-                  padding: "32px 4px",
-                  color: "var(--color-ink-muted)",
-                  fontFamily: "var(--font-body)",
-                  fontStyle: "italic",
-                  borderBottom: "1px solid var(--color-border)",
-                }}
-              >
-                No projects in this category yet.
-              </li>
-            )}
-          </ul>
-
-          {isDesktop && <PreviewPanel item={activeItem} />}
-        </section>
-      </main>
+      <section className="ceramics-grid-section">
+        <div className="ceramics-grid">
+          {sorted.map((item) => (
+            <ProjectCard key={item.slug} item={item} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
