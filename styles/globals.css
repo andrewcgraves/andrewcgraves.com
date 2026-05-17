@@ -93,6 +93,7 @@ hgroup {
   flex-direction: column;
   gap: 8px;
   max-width: 720px;
+  text-align: left;
 }
 
 /* ── Page layout ──────────────────────────────────────────── */
