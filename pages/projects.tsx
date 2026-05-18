@@ -18,7 +18,13 @@ function ProjectCardImage({ item }: { item: ProjectEntry }) {
       <img
         src={item.cover.src}
         alt={item.title}
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
       />
     );
   }
@@ -146,20 +152,20 @@ export default function Projects({ projects }: { projects: ProjectEntry[] }) {
         <title>Projects — Andrew Graves</title>
         <meta
           name="description"
-          content="A collection of projects I've made or worked on — across the workshop, the trail, and the page."
+          content="A collection of projects I've made or worked on across various fields."
         />
         <link rel="icon" href="/logo.png" />
       </Head>
 
       <UniversalHeaderBar />
 
-      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0, maxWidth: "none", margin: 0 }}>
+      <div
+        className="page-main"
+        style={{ flex: "none", paddingBottom: 0, gap: 0, maxWidth: "none", margin: 0 }}
+      >
         <hgroup>
           <h1>Projects</h1>
-          <p>
-            Things I&apos;ve made or worked on — across the workshop, the trail, and
-            the page.
-          </p>
+          <p>Things I&apos;ve made or worked on — across the workshop, the trail, and the page.</p>
         </hgroup>
       </div>
 

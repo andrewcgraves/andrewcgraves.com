@@ -23,9 +23,9 @@ export const CERAMICS_SERIES: Series[] = [
     status: "complete",
     tagline: "a housewarming gift for my sister",
     longread: [
-      "I've been interested in trying to see how quick I could make a small cup so I saught to do that with these two. I also experimented with using a throwing gague again, something I hadn't done since I attempted the second set of ramen bowls I worked on. It was a futile effort though as the one I was using marked and scored the piece and delayed their completion.",
-      "Overall, this was a very plesent experience, I got these out in record time, only taking about 2 weeks from throwing to final glaze fire where most of that time was waiting for the actual fire.",
-      "I love how they turned out, with the smooth shino texture and the blotchy appearence, they really are a comfortable piece to hold and use on a daily basis. These handles were also some of the thinnest that I've pulled thus far and I think they turned out strong and stylish.",
+      "I've been interested in trying to see how quickly I could make a small cup, so I sought to do that with these two. I also experimented with using a throwing gauge again, something I hadn't done since I attempted the second set of ramen bowls I worked on. It was a futile effort, though, as the one I was using marked and scored the piece and delayed their completion.",
+      "Overall, this was a very pleasant experience. I got these out in record time, only taking about 2 weeks from throwing to final glaze fire, where most of that time was waiting for the actual fire.",
+      "I love how they turned out; with the smooth shino texture and the blotchy appearance, they really are a comfortable piece to hold and use daily. These handles were also some of the thinnest that I've pulled thus far, and I think they turned out strong and stylish.",
     ],
     year: "2026",
     photos: [
@@ -53,8 +53,8 @@ export const CERAMICS_SERIES: Series[] = [
     status: "complete",
     tagline: "An expermentation with tape and how it can resist glaze flow",
     longread: [
-      "These were some of first pieces I was actually proud of, specifically the green one. I was wanting to try out doing a large assembly line batch where all pieces had a similar style and I could really refine the creation process. Overall I threw 6 pieces but the three on the white background are my favorites",
-      "This was also the first batch where I was able to try refining a style I had been drawing, sharp and angular pieces, into my work. As I was able to feel more confident about my work, I designed, carved and fired my first makers mark! You can see this v1 on some of the early pieces I made but it would soon by replaced with the v2 that you see as the logo on this website.",
+      "These were some of the first pieces I was actually proud of, specifically the green one. I wanted to try out doing a large assembly line batch where all pieces had a similar style and could really refine the creation process. Overall I threw 6 pieces, but the three on the white background are my favorites.",
+      "This was also the first batch where I was able to try refining a style I had been drawing, sharp and angular pieces, into my work. As I felt more confident about my work, I designed, carved, and fired my first maker's mark! You can see this v1 on some of the early pieces I made, but it would soon be replaced with the v2 that you see as the logo on this website.",
       "I've included some sketches and process photos below.",
     ],
     year: "2025",
@@ -118,9 +118,9 @@ export const CERAMICS_SERIES: Series[] = [
     status: "complete",
     tagline: "An excercise in throwing large with porcelain",
     longread: [
-      "These bowls were a huge excercise in patience. They are the second round of bowls that I made after experiencing cracking, warping and excessive shrinking on the first batch. That first batch was a great learning experience because it forced me to go back to the drawing board with my creation process for working in porcelain.",
-      "The main takeaway was that I needed to throw much bigger to get the sizes I needed, allow more time for slow drying and to compress a bit more to prevent cracking and ensure I got the proper end size I wanted",
-      "I was much more cautious when throwing this batch and made sure to follow all my observations from the last batch. To mix things up a bit I also got back into cobalt painting on one of the pieces.",
+      "These bowls were a huge exercise in patience. They are the second round of bowls that I made after experiencing cracking, warping, and excessive shrinking on the first batch. That first batch was a great learning experience because it forced me to go back to the drawing board with my creation process for working in porcelain.",
+      "The main takeaway was that I needed to throw much bigger to get the sizes I needed, allow more time for slow drying, and compress a bit more to prevent cracking and ensure I got the proper end size I wanted.",
+      "I was much more cautious when throwing this batch and made sure to follow all my observations from the last batch. To mix things up a bit, I also got back into cobalt painting on one of the pieces.",
     ],
     year: "2025",
     photos: [
