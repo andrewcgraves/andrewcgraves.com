@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.js";
 import { getAllProjects } from "../src/lib/projects";
@@ -15,16 +16,11 @@ function shade(hex: string, pct: number): string {
 function ProjectCardImage({ item }: { item: ProjectEntry }) {
   if (item.cover?.src) {
     return (
-      <img
+      <Image
         src={item.cover.src}
         alt={item.title}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
+        fill
+        style={{ objectFit: "cover" }}
       />
     );
   }
