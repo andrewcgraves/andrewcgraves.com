@@ -47,7 +47,7 @@ I also used this chance to add features to support the additional hardware I add
 
 ![Printing the current iteration](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f100a4a52ac9b8d73_d20260517_m221952_c004_v0402011_t0056_u01779056392919)
 
-![video:test](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1144e8cea8c09b1e_d20260517_m224845_c004_v0402035_t0052_u01779058125276)
+![video:Timelapse of printing](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1144e8cea8c09b1e_d20260517_m224845_c004_v0402035_t0052_u01779058125276)
 
 Being able to use Claude to work on these features was an incredible help. Being able to architect a system, review the results, and learn how actual complex embedded systems work was a catalyst for my development. I was able to create a functionally better product that I could use every day manually, which I couldn't before. It also gave me valuable experience that I could apply at work in this incredibly fast-paced market.
 
