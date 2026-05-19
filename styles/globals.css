@@ -145,73 +145,6 @@ hgroup {
   color: white;
 }
 
-/* ── Project list rows ────────────────────────────────────── */
-.proj-row {
-  display: grid;
-  grid-template-columns: 64px 1fr auto 20px;
-  column-gap: 24px;
-  align-items: baseline;
-  padding: 20px 4px;
-  border-bottom: 1px solid var(--color-border);
-  cursor: pointer;
-  outline: none;
-  transition: opacity 260ms var(--ease-smooth);
-}
-
-.proj-row-year {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--color-ink-muted);
-  letter-spacing: 0.04em;
-}
-
-.proj-row-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--color-ink);
-  line-height: 1.1;
-  letter-spacing: -0.005em;
-  transition: transform 260ms var(--ease-smooth);
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.proj-row-kind {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-}
-
-.proj-row-arrow {
-  color: var(--color-ink);
-  display: inline-flex;
-  transition:
-    opacity 220ms var(--ease-smooth),
-    transform 220ms var(--ease-smooth);
-}
-
-.proj-count {
-  font-family: var(--font-body);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--color-ink-muted);
-  text-transform: uppercase;
-}
-
-.proj-count-num {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--color-ink);
-  opacity: 0.65;
-}
-
 /* ── Animated arrow links ─────────────────────────────────── */
 .arrow-right,
 .arrow-left {
@@ -242,31 +175,6 @@ hgroup {
   background: var(--color-ink);
 }
 
-/* ── Photo grid ───────────────────────────────────────────── */
-.photo-grid-photo {
-  padding-top: calc(var(--spacing) * 2);
-  padding-bottom: calc(var(--spacing) * 2);
-}
-
-/* ── Project row hover background ─────────────────────────── */
-.ag-row {
-  position: relative;
-}
-.ag-row::before {
-  content: "";
-  position: absolute;
-  inset: 0 -8px;
-  background: transparent;
-  border-radius: 8px;
-  transition: background 220ms var(--ease-smooth);
-  pointer-events: none;
-  z-index: -1;
-}
-.ag-row:hover::before,
-.ag-row:focus-visible::before {
-  background: var(--color-surface);
-}
-
 *:focus-visible {
   outline: 2px solid var(--color-coral);
   outline-offset: 3px;
@@ -292,42 +200,6 @@ hgroup {
 }
 
 /* ── Ceramics landing ─────────────────────────────────────── */
-.ceramics-intro {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 64px;
-  padding: 60px var(--page-gutter) 56px;
-  align-items: start;
-}
-.ceramics-intro-left {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.ceramics-intro-right {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 480px;
-  padding-top: 8px;
-}
-.ceramics-kicker {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 10px;
-  color: var(--color-ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-.ceramics-h1 {
-  /* tighter clamp + max-width vs global h1 */
-  font-size: clamp(36px, 4vw, 56px);
-  line-height: 1.05;
-  max-width: 600px;
-}
-.ceramics-bio-p {
-  line-height: 1.6;
-} /* wider leading vs global p */
 .ceramics-grid-section {
   padding-bottom: 96px;
 }
@@ -434,15 +306,6 @@ hgroup {
 }
 
 @media (max-width: 768px) {
-  .ceramics-intro {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 32px var(--page-gutter) 40px;
-  }
-  .ceramics-intro-right {
-    max-width: none;
-    padding-top: 0;
-  }
   .ceramics-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 24px;
@@ -691,21 +554,6 @@ hgroup {
   text-decoration: none;
 }
 
-.pd-footer {
-  padding: 24px clamp(20px, 6vw, 96px) 40px;
-  border-top: 1px solid var(--color-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-body);
-  font-size: 12px;
-  color: var(--color-ink-muted);
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
 @media (max-width: 640px) {
   .ceramics-grid {
     grid-template-columns: 1fr;
@@ -721,10 +569,5 @@ hgroup {
   .pd-body-p,
   .pd-body-li {
     font-size: 17px;
-  }
-  .pd-footer {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
   }
 }
