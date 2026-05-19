@@ -2,25 +2,26 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
 import BackButton from "../../src/Components/BackButton";
-import { CERAMICS_SERIES } from "../../src/data/ceramics";
+import { getAllSeriesSlugs, getSeriesBySlug, CeramicsEntry } from "../../src/lib/ceramics";
 
-export default function SeriesDetail() {
-  const router = useRouter();
-  const { slug } = router.query;
+interface Props {
+  series: CeramicsEntry;
+}
+
+export default function SeriesDetail({ series }: Props) {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [activeThumb, setActiveThumb] = useState(0);
-
-  const series = CERAMICS_SERIES.find((s) => s.slug === slug) ?? CERAMICS_SERIES[0];
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveThumb(0);
-  }, [slug]);
+  }, [series.slug]);
 
   useEffect(() => {
     if (!galleryRef.current) return;
@@ -31,7 +32,7 @@ export default function SeriesDetail() {
     });
     lightbox.init();
     return () => lightbox.destroy();
-  }, [slug]);
+  }, [series.slug]);
 
   const openAt = (index: number) => {
     if (!galleryRef.current) return;
@@ -40,8 +41,6 @@ export default function SeriesDetail() {
       | undefined;
     el?.click();
   };
-
-  if (router.isFallback || !series) return null;
 
   const metaRows = [
     series.material && ["Material", series.material],
@@ -306,8 +305,8 @@ export default function SeriesDetail() {
         </div>
       </section>
 
-      {/* Description — only shown when longread is populated */}
-      {series.longread.length > 0 && (
+      {/* Description — only shown when content is populated */}
+      {series.content.trim().length > 0 && (
         <section className="series-description">
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <span
@@ -336,21 +335,119 @@ export default function SeriesDetail() {
               How it was made
             </h2>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {series.longread.map((para, i) => (
-              <p
-                key={i}
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: 16,
-                  lineHeight: 1.7,
-                  color: "var(--color-ink)",
-                  margin: 0,
-                }}
-              >
-                {para}
-              </p>
-            ))}
+          <div className="ceramics-prose">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children }) => (
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 16,
+                      lineHeight: 1.7,
+                      color: "var(--color-ink)",
+                      margin: "0 0 16px",
+                    }}
+                  >
+                    {children}
+                  </p>
+                ),
+                h2: ({ children }) => (
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: 700,
+                      fontSize: 22,
+                      lineHeight: 1.15,
+                      color: "var(--color-ink-true)",
+                      letterSpacing: "-0.015em",
+                      margin: "28px 0 10px",
+                    }}
+                  >
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: 700,
+                      fontSize: 17,
+                      lineHeight: 1.2,
+                      color: "var(--color-ink-true)",
+                      letterSpacing: "-0.01em",
+                      margin: "22px 0 8px",
+                    }}
+                  >
+                    {children}
+                  </h3>
+                ),
+                ul: ({ children }) => (
+                  <ul
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 16,
+                      lineHeight: 1.7,
+                      color: "var(--color-ink)",
+                      margin: "0 0 16px",
+                      paddingLeft: 24,
+                    }}
+                  >
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 16,
+                      lineHeight: 1.7,
+                      color: "var(--color-ink)",
+                      margin: "0 0 16px",
+                      paddingLeft: 24,
+                    }}
+                  >
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li style={{ marginBottom: 4 }}>{children}</li>
+                ),
+                strong: ({ children }) => (
+                  <strong style={{ fontWeight: 700, color: "var(--color-ink-true)" }}>
+                    {children}
+                  </strong>
+                ),
+                em: ({ children }) => (
+                  <em style={{ fontStyle: "italic" }}>{children}</em>
+                ),
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    style={{ color: "var(--color-coral)", textDecoration: "underline" }}
+                    target={href?.startsWith("http") ? "_blank" : undefined}
+                    rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                  >
+                    {children}
+                  </a>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote
+                    style={{
+                      borderLeft: "3px solid var(--color-coral)",
+                      margin: "16px 0",
+                      paddingLeft: 16,
+                      color: "var(--color-ink-muted)",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {children}
+                  </blockquote>
+                ),
+              }}
+            >
+              {series.content}
+            </ReactMarkdown>
           </div>
         </section>
       )}
@@ -473,14 +570,16 @@ export default function SeriesDetail() {
 }
 
 export async function getStaticPaths() {
+  const { getAllSeriesSlugs } = await import("../../src/lib/ceramics");
   return {
-    paths: CERAMICS_SERIES.map((s) => ({ params: { slug: s.slug } })),
+    paths: getAllSeriesSlugs().map((slug) => ({ params: { slug } })),
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const series = CERAMICS_SERIES.find((s) => s.slug === params.slug);
+  const { getSeriesBySlug } = await import("../../src/lib/ceramics");
+  const series = getSeriesBySlug(params.slug);
   if (!series) return { notFound: true };
-  return { props: {} };
+  return { props: { series } };
 }
