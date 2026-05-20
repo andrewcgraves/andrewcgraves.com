@@ -49,10 +49,7 @@ export default function CeramicsLanding() {
                     alt={series.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    style={{
-                      objectFit: "cover",
-                      transition: "transform 400ms cubic-bezier(.2,.8,.2,1)",
-                    }}
+                    style={{ objectFit: "cover" }}
                     className="ceramics-card-img"
                     priority={i < 3}
                   />

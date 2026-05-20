@@ -21,12 +21,13 @@ function ProjectCardImage({ item }: { item: ProjectEntry }) {
         alt={item.title}
         fill
         style={{ objectFit: "cover" }}
+        className="ceramics-card-img"
       />
     );
   }
   const grad = `linear-gradient(135deg, ${item.color} 0%, ${shade(item.color, -30)} 100%)`;
   return (
-    <div style={{ position: "absolute", inset: 0, background: grad }}>
+    <div className="ceramics-card-img" style={{ position: "absolute", inset: 0, background: grad }}>
       <svg
         width="100%"
         height="100%"
