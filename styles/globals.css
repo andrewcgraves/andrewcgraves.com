@@ -117,9 +117,8 @@ hgroup {
 
 /* ── Logo animation ───────────────────────────────────────── */
 .logo-triangle {
-  transform-box: fill-box;
-  transform-origin: 0% 0%;
-  transition: transform 400ms var(--ease-smooth);
+  transform-origin: 26.78px 24.14px;
+  transition: transform 280ms cubic-bezier(.2,.8,.2,1);
 }
 .logo-link:hover .logo-triangle {
   transform: rotate(90deg);
