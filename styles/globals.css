@@ -115,6 +115,16 @@ hgroup {
   box-sizing: border-box;
 }
 
+/* ── Logo animation ───────────────────────────────────────── */
+.logo-triangle {
+  transform-box: fill-box;
+  transform-origin: 0% 0%;
+  transition: transform 400ms var(--ease-smooth);
+}
+.logo-link:hover .logo-triangle {
+  transform: rotate(90deg);
+}
+
 /* ── Nav header ───────────────────────────────────────────── */
 .header-cat {
   font-family: var(--font-display);

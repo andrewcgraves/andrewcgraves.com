@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Pill from "./Pill";
+import LogoIcon from "./LogoIcon";
 
 const defaultElements = [
   { name: "projects", isDisabled: false },
@@ -14,8 +15,8 @@ export default function UniversalHeaderBar({ children = null }) {
 
   return (
     <div className="p-4 w-fit flex gap-8 flex-wrap">
-      <Link href="/">
-        <img className="w-10" src="/website-large-dark.svg" />
+      <Link href="/" className="logo-link">
+        <LogoIcon className="w-10" />
       </Link>
       {children == null
         ? defaultElements.map((element) => {
