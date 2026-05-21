@@ -44,6 +44,21 @@ export const CERAMICS_SERIES: Series[] = [
         width: 6240,
         height: 4160,
       },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f101ce3a1d35d6601_d20260521_m023148_c004_v0402029_t0018_u01779330708825",
+        width: 9504,
+        height: 6336,
+      },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f113196d4028d97a7_d20260521_m023149_c004_v0402035_t0014_u01779330709229",
+        width: 5673,
+        height: 7564,
+      },
+      {
+        src: "https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f11385d39d03d7365_d20260521_m023147_c004_v0402029_t0033_u01779330707325",
+        width: 9315,
+        height: 6210,
+      },
     ],
   },
   {
