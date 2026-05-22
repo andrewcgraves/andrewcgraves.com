@@ -9,6 +9,7 @@ Available scripts:
 - `yarn lint` / `yarn lint:fix` — ESLint
 - `yarn format` / `yarn format:check` — Prettier
 - `yarn test` / `yarn test:watch` / `yarn test:coverage` — Vitest
+- `yarn knip` — dead code check (unused files, exports, dependencies)
 
 ## Package manager
 Always use **yarn**. Never use `npm` or `npx`.
@@ -18,7 +19,7 @@ When starting work in a new worktree:
 
 1. `git pull` on the base branch before creating the worktree so it includes the latest commits (including this file)
 2. Run `yarn install` inside the worktree immediately after entering it — git worktrees do not include `node_modules`, so yarn commands will fail without this step
-3. Run all checks (`yarn lint`, `yarn format:check`, `yarn test`, `yarn build`) from inside the worktree, never from the main project directory
+3. Run all checks (`yarn lint`, `yarn format:check`, `yarn test`, `yarn test:coverage`, `yarn knip`, `yarn build`) from inside the worktree, never from the main project directory
 
 ## Before pushing
 Before pushing any branch or creating a PR, always run the following in order and fix any failures before proceeding:
@@ -26,7 +27,9 @@ Before pushing any branch or creating a PR, always run the following in order an
 1. `yarn lint` — fix any ESLint errors (use `yarn lint:fix` to auto-fix)
 2. `yarn format:check` — fix any formatting issues (use `yarn format` to auto-fix)
 3. `yarn test` — confirm all tests pass
-4. `yarn build` — confirm the production build succeeds
+4. `yarn test:coverage` — confirm coverage is at or above 85% for all metrics
+5. `yarn knip` — confirm no unused files, exports, or dependencies
+6. `yarn build` — confirm the production build succeeds
 
 Do not push if any of these commands fail.
 

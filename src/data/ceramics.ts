@@ -1,4 +1,4 @@
-export interface Photo {
+interface Photo {
   src: string;
   width: number;
   height: number;
