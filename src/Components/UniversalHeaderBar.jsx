@@ -27,6 +27,7 @@ export default function UniversalHeaderBar({ children = null }) {
               <Pill
                 key={element.name}
                 link={link}
+                h={10}
                 isDisabled={element.isDisabled}
                 isActive={isActive}
               >
