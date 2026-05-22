@@ -1,5 +1,6 @@
 ---
 title: Irrigation Controller
+order: 0
 year: 2021-current
 kind: Project
 blurb: A long term project to replace our old dumb controller with something that I could control through Home Assistant.

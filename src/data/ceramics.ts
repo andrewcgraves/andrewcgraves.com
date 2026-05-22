@@ -19,6 +19,7 @@ export interface Series {
 export const CERAMICS_SERIES: Series[] = [
   {
     slug: "espresso-mugs-01",
+    order: 0,
     title: "Espresso Mugs",
     material: "stonewear (LBC)",
     status: "complete",
@@ -64,6 +65,7 @@ export const CERAMICS_SERIES: Series[] = [
   },
   {
     slug: "taped-mugs-01",
+    order: 1,
     title: "Taped Tea Mugs",
     material: "stonewear (LBC)",
     status: "complete",
@@ -129,6 +131,7 @@ export const CERAMICS_SERIES: Series[] = [
   },
   {
     slug: "ramen-bowls-02",
+    order: 2,
     title: "Ramen Bowls",
     material: "porcelain",
     status: "complete",
@@ -179,6 +182,7 @@ export const CERAMICS_SERIES: Series[] = [
   },
   {
     slug: "misc-pieces",
+    order: 3,
     title: "Misc Pieces",
     material: "various",
     year: "2023-2026",
