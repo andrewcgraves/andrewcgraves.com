@@ -6,6 +6,7 @@ export interface Photo {
 
 export interface Series {
   slug: string;
+  order?: number;
   title: string;
   material: string;
   year: string;

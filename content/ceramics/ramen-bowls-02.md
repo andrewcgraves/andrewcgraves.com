@@ -1,5 +1,6 @@
 ---
 title: Ramen Bowls
+order: 2
 material: porcelain
 year: "2025"
 status: complete

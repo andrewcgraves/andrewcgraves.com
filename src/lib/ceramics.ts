@@ -10,6 +10,11 @@ export function getAllSeries(): Series[] {
   return files
     .map((filename) => parseSeriesFile(filename))
     .sort((a, b) => {
+      const aHasOrder = a.order !== undefined;
+      const bHasOrder = b.order !== undefined;
+      if (aHasOrder && bHasOrder) return a.order! - b.order!;
+      if (aHasOrder) return -1;
+      if (bHasOrder) return 1;
       const yearA = parseInt(a.year, 10) || 0;
       const yearB = parseInt(b.year, 10) || 0;
       if (yearB !== yearA) return yearB - yearA;
@@ -36,6 +41,7 @@ function parseSeriesFile(filename: string): Series {
   const { data, content } = matter(raw);
   return {
     slug,
+    ...(data.order !== undefined && { order: data.order }),
     title: data.title ?? "",
     material: data.material ?? "",
     year: String(data.year ?? ""),

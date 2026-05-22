@@ -7,7 +7,16 @@ const CONTENT_DIR = path.join(process.cwd(), "content/projects");
 
 export function getAllProjects(): ProjectEntry[] {
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".md"));
-  return files.map((filename) => parseProjectFile(filename)).sort((a, b) => b.year - a.year);
+  return files
+    .map((filename) => parseProjectFile(filename))
+    .sort((a, b) => {
+      const aHasOrder = a.order !== undefined;
+      const bHasOrder = b.order !== undefined;
+      if (aHasOrder && bHasOrder) return a.order! - b.order!;
+      if (aHasOrder) return -1;
+      if (bHasOrder) return 1;
+      return b.year - a.year;
+    });
 }
 
 export function getProjectBySlug(slug: string): ProjectEntry | null {
@@ -29,6 +38,7 @@ function parseProjectFile(filename: string): ProjectEntry {
   const { data, content } = matter(raw);
   return {
     slug,
+    ...(data.order !== undefined ? { order: data.order } : {}),
     year: data.year ?? 0,
     kind: data.kind ?? "",
     title: data.title ?? "",

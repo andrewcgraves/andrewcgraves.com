@@ -1,5 +1,6 @@
 ---
 title: Misc Pieces
+order: 3
 material: various
 year: "2023-2026"
 status: complete

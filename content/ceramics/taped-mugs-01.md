@@ -1,5 +1,6 @@
 ---
 title: Taped Tea Mugs
+order: 1
 material: stonewear (LBC)
 year: "2025"
 status: complete

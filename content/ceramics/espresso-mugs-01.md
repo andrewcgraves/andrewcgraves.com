@@ -1,5 +1,6 @@
 ---
 title: Espresso Mugs
+order: 0
 material: stonewear (LBC)
 year: "2026"
 status: complete
