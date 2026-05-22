@@ -16,12 +16,12 @@ vi.mock("fs", () => {
 
 const mockFs = vi.mocked(fs);
 
-const FAKE_MD = (year: number, title: string) => `---
+const FAKE_MD = (year: number, title: string, order?: number) => `---
 title: ${title}
 year: ${year}
 kind: Engineering
 blurb: A test project
-color: "#FF0000"
+color: "#FF0000"${order !== undefined ? `\norder: ${order}` : ""}
 cover:
   src: https://example.com/cover.jpg
 gallery:
@@ -58,6 +58,52 @@ describe("getAllProjects", () => {
     expect(projects[0].year).toBe(2023);
     expect(projects[1].title).toBe("Alpha");
     expect(projects[1].year).toBe(2021);
+  });
+
+  it("sorts ordered projects before unordered ones", () => {
+    mockFs.readdirSync.mockReturnValue(["alpha.md", "beta.md", "gamma.md"] as never);
+    mockFs.readFileSync
+      .mockReturnValueOnce(FAKE_MD(2023, "Alpha") as never)
+      .mockReturnValueOnce(FAKE_MD(2020, "Beta", 1) as never)
+      .mockReturnValueOnce(FAKE_MD(2022, "Gamma", 0) as never);
+
+    const projects = getAllProjects();
+
+    expect(projects[0].title).toBe("Gamma");
+    expect(projects[1].title).toBe("Beta");
+    expect(projects[2].title).toBe("Alpha");
+  });
+
+  it("sorts ordered projects by order ascending", () => {
+    mockFs.readdirSync.mockReturnValue(["a.md", "b.md", "c.md"] as never);
+    mockFs.readFileSync
+      .mockReturnValueOnce(FAKE_MD(2023, "A", 2) as never)
+      .mockReturnValueOnce(FAKE_MD(2023, "B", 0) as never)
+      .mockReturnValueOnce(FAKE_MD(2023, "C", 1) as never);
+
+    const projects = getAllProjects();
+
+    expect(projects[0].title).toBe("B");
+    expect(projects[1].title).toBe("C");
+    expect(projects[2].title).toBe("A");
+  });
+
+  it("reads order from frontmatter", () => {
+    mockFs.readdirSync.mockReturnValue(["project.md"] as never);
+    mockFs.readFileSync.mockReturnValue(FAKE_MD(2022, "Ordered", 3) as never);
+
+    const [project] = getAllProjects();
+
+    expect(project.order).toBe(3);
+  });
+
+  it("leaves order undefined when not in frontmatter", () => {
+    mockFs.readdirSync.mockReturnValue(["project.md"] as never);
+    mockFs.readFileSync.mockReturnValue(FAKE_MD(2022, "No Order") as never);
+
+    const [project] = getAllProjects();
+
+    expect(project.order).toBeUndefined();
   });
 
   it("filters out non-markdown files", () => {
