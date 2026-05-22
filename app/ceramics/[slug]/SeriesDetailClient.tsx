@@ -1,4 +1,5 @@
-import Head from "next/head";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -6,12 +7,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
-import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
-import BackButton from "../../src/Components/BackButton";
-import { getSeriesBySlug, getAllSeriesSlugs } from "../../src/lib/ceramics";
-import { Series } from "../../src/data/ceramics";
+import UniversalHeaderBar from "../../../src/Components/UniversalHeaderBar";
+import BackButton from "../../../src/Components/BackButton";
+import { Series } from "../../../src/data/ceramics";
 
-export default function SeriesDetail({ series }: { series: Series }) {
+export default function SeriesDetailClient({ series }: { series: Series }) {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [activeThumb, setActiveThumb] = useState(0);
 
@@ -47,15 +47,6 @@ export default function SeriesDetail({ series }: { series: Series }) {
 
   return (
     <div className="page-shell">
-      <Head>
-        <title>{series.title} — Ceramics — Andrew Graves</title>
-        <meta
-          name="description"
-          content={series.tagline || `${series.title} — ceramics by Andrew Graves`}
-        />
-        <link rel="icon" href="/logo.png" />
-      </Head>
-
       <UniversalHeaderBar />
 
       {/* Breadcrumb */}
@@ -80,7 +71,6 @@ export default function SeriesDetail({ series }: { series: Series }) {
 
       {/* Hero */}
       <section className="series-hero">
-        {/* Left: lead image + thumbnail strip */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <button
             onClick={() => openAt(activeThumb)}
@@ -302,7 +292,7 @@ export default function SeriesDetail({ series }: { series: Series }) {
         </div>
       </section>
 
-      {/* Description — only shown when content is populated */}
+      {/* Description */}
       {series.content && (
         <section className="series-description">
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -410,15 +400,7 @@ export default function SeriesDetail({ series }: { series: Series }) {
 
         <div ref={galleryRef} className="series-gallery-grid">
           {series.photos.map((photo, i) => (
-            <figure
-              key={i}
-              style={{
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: 8,
-              }}
-            >
+            <figure key={i} style={{ margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
               <a
                 className="pswp-gallery-item"
                 href={photo.src}
@@ -472,17 +454,4 @@ export default function SeriesDetail({ series }: { series: Series }) {
       </section>
     </div>
   );
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: getAllSeriesSlugs().map((slug) => ({ params: { slug } })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const series = getSeriesBySlug(params.slug);
-  if (!series) return { notFound: true };
-  return { props: { series } };
 }

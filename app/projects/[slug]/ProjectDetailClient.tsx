@@ -1,4 +1,5 @@
-import Head from "next/head";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, CSSProperties } from "react";
@@ -6,11 +7,10 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
-import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
-import BackButton from "../../src/Components/BackButton";
-import { getProjectBySlug, getAllProjectSlugs } from "../../src/lib/projects";
-import { ProjectEntry, GalleryPhoto } from "../../src/data/projects";
-import { isVideoUrl, getVideoEmbedUrl } from "../../src/lib/mediaUtils";
+import UniversalHeaderBar from "../../../src/Components/UniversalHeaderBar.jsx";
+import BackButton from "../../../src/Components/BackButton";
+import { ProjectEntry, GalleryPhoto } from "../../../src/data/projects";
+import { isVideoUrl, getVideoEmbedUrl } from "../../../src/lib/mediaUtils";
 
 function shade(hex: string, pct: number): string {
   const n = parseInt(hex.slice(1), 16);
@@ -196,13 +196,7 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
                   overflow: "hidden",
                 }}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: "16 / 10",
-                  }}
-                >
+                <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10" }}>
                   <Image
                     src={safeSrc}
                     alt={caption || ""}
@@ -309,8 +303,6 @@ function GalleryThumb({
 }
 
 function attachDynamicDimensions(lb: PhotoSwipeLightbox) {
-  // Sync: read natural dimensions from the already-loaded thumbnail <img>.
-  // domItemData fires before the lightbox opens, so no stretch flash.
   lb.addFilter("domItemData", (itemData, element) => {
     if (!itemData.w || !itemData.h) {
       const thumb = element.querySelector("img");
@@ -322,8 +314,6 @@ function attachDynamicDimensions(lb: PhotoSwipeLightbox) {
     return itemData;
   });
 
-  // Async fallback: if the thumbnail wasn't loaded yet, update once the
-  // full lightbox image finishes loading.
   lb.on("contentLoadImage", ({ content }) => {
     if (content.data.w && content.data.h) return;
     const img = content.element as HTMLImageElement;
@@ -334,7 +324,6 @@ function attachDynamicDimensions(lb: PhotoSwipeLightbox) {
         if (img.naturalWidth && img.naturalHeight) {
           content.data.w = img.naturalWidth;
           content.data.h = img.naturalHeight;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (content.instance as any).updateSize(true);
         }
       },
@@ -343,7 +332,7 @@ function attachDynamicDimensions(lb: PhotoSwipeLightbox) {
   });
 }
 
-export default function ProjectDetail({ project }: { project: ProjectEntry }) {
+export default function ProjectDetailClient({ project }: { project: ProjectEntry }) {
   const bodyRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const hasRealImages = project.gallery.some((g) => g.src);
@@ -374,12 +363,6 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
 
   return (
     <div className="page-shell">
-      <Head>
-        <title>{project.title} — Andrew Graves</title>
-        <meta name="description" content={project.blurb} />
-        <link rel="icon" href="/logo.png" />
-      </Head>
-
       <UniversalHeaderBar />
 
       {/* Cover */}
@@ -419,14 +402,7 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
       <header className="pd-title-block">
         <div className="pd-title-inner">
           <BackLink />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              marginTop: 8,
-            }}
-          >
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8 }}>
             <span
               style={{
                 fontFamily: "var(--font-display)",
@@ -513,18 +489,4 @@ export default function ProjectDetail({ project }: { project: ProjectEntry }) {
       </section>
     </div>
   );
-}
-
-export async function getStaticPaths() {
-  const slugs = getAllProjectSlugs();
-  return {
-    paths: slugs.map((slug) => ({ params: { slug } })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const project = getProjectBySlug(params.slug);
-  if (!project) return { notFound: true };
-  return { props: { project } };
 }

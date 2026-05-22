@@ -1,19 +1,17 @@
-import Head from "next/head";
+import type { Metadata } from "next";
 import LinkBox from "../src/Components/LinkBox.jsx";
 import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.jsx";
-
 import linkedInLogo from "../public/linkedInLogo.png";
 import githubLogo from "../public/githubLogo.png";
+
+export const metadata: Metadata = {
+  title: "Andrew Graves",
+  description: "I'm Andrew Graves and this is my personal website!",
+};
 
 export default function Home() {
   return (
     <div className="page-shell">
-      <Head>
-        <title>Andrew Graves</title>
-        <meta name="description" content="I'm Andrew Graves and this is my personal website!" />
-        <link rel="icon" href="/logo.png" />
-      </Head>
-
       <UniversalHeaderBar />
       <main className="page-main">
         <div className="flex flex-wrap gap-8">
