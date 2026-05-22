@@ -17,6 +17,7 @@ This has been one of my longest-running projects. What started as an intro into 
 The first iteration of this project consisted of our old sprinkler box with large chunks of the interior of the case dremeled out. It had an indicator light, the relays to turn the valves on and off, and an Arduino Uno WiFi Rev2 for the brain of the system. It also had buttons for manual control that, in practice, didn't work as expected.
 
 There were a few pain points with this system
+
 - Two power supplies were needed. One 5V for the Arduino and another 18V for the sprinkler.
 - The buttons didn't work reliably
 - The internet connection would time out after a few weeks of uptime.
@@ -25,6 +26,7 @@ There were a few pain points with this system
 These pain points would be addressed in due time.
 
 ## Second Iteration
+
 The next step was to remove the need for dual power inputs.
 
 ![A single power supply](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1044ed07ead95f74_d20260517_m213803_c004_v0402013_t0043_u01779053883779)
@@ -32,7 +34,8 @@ The next step was to remove the need for dual power inputs.
 I got some cheap voltage converters online and was able to use the sprinkler valve power supply to power the Arduino. However, when doing this, I managed to fry the Uno WiFi Rev2 I had, so I needed to replace it with a smaller one I had lying around that could communicate over WiFi.
 
 ## Third Iteration
-For the third iteration, I started playing around with 3D printing the enclosure so I could get rid of the old box. 
+
+For the third iteration, I started playing around with 3D printing the enclosure so I could get rid of the old box.
 
 ![Initial 3D-printed enclosure](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1014a0c7be017a71_d20260517_m215524_c004_v0402006_t0001_u01779054924301)
 
@@ -41,6 +44,7 @@ There was not much room in this enclosure, so I used some of the separate relays
 ![A later, earlier iteration of the enclosure](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1018ca0ef487086d_d20260517_m221953_c004_v0402035_t0029_u01779056393166)
 
 ## Current Iteration
+
 For the current iteration, as an effort to get more familiar with AI-assisted development tools, I decided to work on a complete rewrite of the system using PlatformIO to support easier testing and development. I specifically used Claude Code to help with this effort.
 
 I also used this chance to add features to support the additional hardware I added, the encoder and OLED display.

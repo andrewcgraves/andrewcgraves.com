@@ -118,7 +118,7 @@ hgroup {
 /* ── Logo animation ───────────────────────────────────────── */
 .logo-triangle {
   transform-origin: 26.78px 24.14px;
-  transition: transform 280ms cubic-bezier(.2,.8,.2,1);
+  transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .logo-link:hover .logo-triangle {
   transform: rotate(90deg);
@@ -623,7 +623,9 @@ hgroup {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: var(--color-placeholder);
-  transition: text-decoration-color 180ms ease, color 180ms ease;
+  transition:
+    text-decoration-color 180ms ease,
+    color 180ms ease;
 }
 
 .pd-body-link:hover {

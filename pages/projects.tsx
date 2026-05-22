@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.js";
+import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.jsx";
 import { getAllProjects } from "../src/lib/projects";
 import { ProjectEntry } from "../src/data/projects";
 

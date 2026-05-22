@@ -1,8 +1,8 @@
 import Image from "next/image";
-import LinkBox from "../src/Components/LinkBox.js";
+import LinkBox from "../src/Components/LinkBox.jsx";
 import Head from "next/head";
-import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.js";
-import Pill from "../src/Components/Pill.js";
+import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.jsx";
+import Pill from "../src/Components/Pill.jsx";
 
 export default function Capstone() {
   return (

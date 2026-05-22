@@ -1,6 +1,6 @@
 import Head from "next/head";
-import LinkBox from "../src/Components/LinkBox.js";
-import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.js";
+import LinkBox from "../src/Components/LinkBox.jsx";
+import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.jsx";
 
 import linkedInLogo from "../public/linkedInLogo.png";
 import githubLogo from "../public/githubLogo.png";

@@ -18,7 +18,10 @@ export default function CeramicsLanding() {
 
       <UniversalHeaderBar />
 
-      <div className="page-main" style={{ flex: "none", paddingBottom: 0, gap: 0, maxWidth: "none", margin: 0 }}>
+      <div
+        className="page-main"
+        style={{ flex: "none", paddingBottom: 0, gap: 0, maxWidth: "none", margin: 0 }}
+      >
         <hgroup>
           <h1>Ceramics</h1>
           <p>
