@@ -1,5 +1,6 @@
 ---
 title: Desktop Photography
+order: 2
 year: Ongoing
 kind: Design
 blurb: An ongoing effort of cataloging the places I've been in a few images I can see every day.

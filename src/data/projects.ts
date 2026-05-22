@@ -7,6 +7,7 @@ export interface GalleryPhoto {
 
 export interface ProjectEntry {
   slug: string;
+  order?: number;
   year: number;
   kind: string;
   title: string;

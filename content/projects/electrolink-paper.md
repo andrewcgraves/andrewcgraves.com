@@ -1,5 +1,6 @@
 ---
 title: Electrolink Paper
+order: 1
 year: 2025
 kind: Design
 blurb: A full layout and branding design project.

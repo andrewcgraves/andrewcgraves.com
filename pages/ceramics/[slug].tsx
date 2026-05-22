@@ -2,25 +2,23 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
 import BackButton from "../../src/Components/BackButton";
-import { CERAMICS_SERIES } from "../../src/data/ceramics";
+import { getSeriesBySlug, getAllSeriesSlugs } from "../../src/lib/ceramics";
+import { Series } from "../../src/data/ceramics";
 
-export default function SeriesDetail() {
-  const router = useRouter();
-  const { slug } = router.query;
+export default function SeriesDetail({ series }: { series: Series }) {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [activeThumb, setActiveThumb] = useState(0);
-
-  const series = CERAMICS_SERIES.find((s) => s.slug === slug) ?? CERAMICS_SERIES[0];
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveThumb(0);
-  }, [slug]);
+  }, [series.slug]);
 
   useEffect(() => {
     if (!galleryRef.current) return;
@@ -31,7 +29,7 @@ export default function SeriesDetail() {
     });
     lightbox.init();
     return () => lightbox.destroy();
-  }, [slug]);
+  }, [series.slug]);
 
   const openAt = (index: number) => {
     if (!galleryRef.current) return;
@@ -40,8 +38,6 @@ export default function SeriesDetail() {
       | undefined;
     el?.click();
   };
-
-  if (router.isFallback || !series) return null;
 
   const metaRows = [
     series.material && ["Material", series.material],
@@ -306,8 +302,8 @@ export default function SeriesDetail() {
         </div>
       </section>
 
-      {/* Description — only shown when longread is populated */}
-      {series.longread.length > 0 && (
+      {/* Description — only shown when content is populated */}
+      {series.content && (
         <section className="series-description">
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <span
@@ -337,20 +333,26 @@ export default function SeriesDetail() {
             </h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {series.longread.map((para, i) => (
-              <p
-                key={i}
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: 16,
-                  lineHeight: 1.7,
-                  color: "var(--color-ink)",
-                  margin: 0,
-                }}
-              >
-                {para}
-              </p>
-            ))}
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children }) => (
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 16,
+                      lineHeight: 1.7,
+                      color: "var(--color-ink)",
+                      margin: 0,
+                    }}
+                  >
+                    {children}
+                  </p>
+                ),
+              }}
+            >
+              {series.content}
+            </ReactMarkdown>
           </div>
         </section>
       )}
@@ -474,13 +476,13 @@ export default function SeriesDetail() {
 
 export async function getStaticPaths() {
   return {
-    paths: CERAMICS_SERIES.map((s) => ({ params: { slug: s.slug } })),
+    paths: getAllSeriesSlugs().map((slug) => ({ params: { slug } })),
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const series = CERAMICS_SERIES.find((s) => s.slug === params.slug);
+  const series = getSeriesBySlug(params.slug);
   if (!series) return { notFound: true };
-  return { props: {} };
+  return { props: { series } };
 }

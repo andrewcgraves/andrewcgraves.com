@@ -13,6 +13,13 @@ Available scripts:
 ## Package manager
 Always use **yarn**. Never use `npm` or `npx`.
 
+## Worktree setup
+When starting work in a new worktree:
+
+1. `git pull` on the base branch before creating the worktree so it includes the latest commits (including this file)
+2. Run `yarn install` inside the worktree immediately after entering it — git worktrees do not include `node_modules`, so yarn commands will fail without this step
+3. Run all checks (`yarn lint`, `yarn format:check`, `yarn test`, `yarn build`) from inside the worktree, never from the main project directory
+
 ## Before pushing
 Before pushing any branch or creating a PR, always run the following in order and fix any failures before proceeding:
 

@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
-import { CERAMICS_SERIES } from "../../src/data/ceramics";
+import UniversalHeaderBar from "../src/Components/UniversalHeaderBar";
+import { getAllSeries } from "../src/lib/ceramics";
+import { Series } from "../src/data/ceramics";
 
-export default function CeramicsLanding() {
+export default function CeramicsLanding({ series }: { series: Series[] }) {
   return (
     <div className="page-shell">
       <Head>
@@ -35,9 +36,9 @@ export default function CeramicsLanding() {
 
       <section className="ceramics-grid-section">
         <div className="ceramics-grid">
-          {CERAMICS_SERIES.map((series, i) => (
-            <article key={series.slug} className="ceramics-card">
-              <Link href={`/ceramics/${series.slug}`} style={{ display: "block" }}>
+          {series.map((s, i) => (
+            <article key={s.slug} className="ceramics-card">
+              <Link href={`/ceramics/${s.slug}`} style={{ display: "block" }}>
                 <div
                   style={{
                     position: "relative",
@@ -48,17 +49,14 @@ export default function CeramicsLanding() {
                   }}
                 >
                   <Image
-                    src={series.photos[0].src}
-                    alt={series.title}
+                    src={s.photos[0].src}
+                    alt={s.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     style={{ objectFit: "cover" }}
                     className="ceramics-card-img"
                     priority={i < 3}
                   />
-                  {/*<span className="ceramics-card-num">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>*/}
                 </div>
               </Link>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -81,9 +79,9 @@ export default function CeramicsLanding() {
                       margin: 0,
                     }}
                   >
-                    {series.title}
+                    {s.title}
                   </h2>
-                  {series.year && (
+                  {s.year && (
                     <span
                       style={{
                         fontFamily: "var(--font-body)",
@@ -95,11 +93,11 @@ export default function CeramicsLanding() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      {series.year}
+                      {s.year}
                     </span>
                   )}
                 </div>
-                {series.material && (
+                {s.material && (
                   <span
                     style={{
                       fontFamily: "var(--font-body)",
@@ -109,10 +107,10 @@ export default function CeramicsLanding() {
                       letterSpacing: "0.08em",
                     }}
                   >
-                    {series.material} · {series.photos.length} photos
+                    {s.material} · {s.photos.length} photos
                   </span>
                 )}
-                {series.tagline && (
+                {s.tagline && (
                   <p
                     style={{
                       fontFamily: "var(--font-body)",
@@ -122,11 +120,11 @@ export default function CeramicsLanding() {
                       margin: 0,
                     }}
                   >
-                    {series.tagline}
+                    {s.tagline}
                   </p>
                 )}
                 <Link
-                  href={`/ceramics/${series.slug}`}
+                  href={`/ceramics/${s.slug}`}
                   className="arrow-link"
                   style={{
                     alignSelf: "flex-start",
@@ -147,4 +145,9 @@ export default function CeramicsLanding() {
       </section>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const series = getAllSeries();
+  return { props: { series } };
 }
