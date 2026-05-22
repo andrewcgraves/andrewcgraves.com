@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import Pill from "./Pill";
 import LogoIcon from "./LogoIcon";
 
@@ -11,7 +9,7 @@ const defaultElements = [
 ];
 
 export default function UniversalHeaderBar({ children = null }) {
-  const pathname = usePathname();
+  const { pathname } = useRouter();
 
   return (
     <div className="p-4 w-fit flex gap-8 flex-wrap">

@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import UniversalHeaderBar from "../../Components/UniversalHeaderBar";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
-vi.mock("next/navigation", () => ({
-  usePathname: vi.fn(() => "/"),
+vi.mock("next/router", () => ({
+  useRouter: vi.fn(() => ({ pathname: "/" })),
 }));
 
 vi.mock("next/link", async () => {
@@ -13,7 +13,7 @@ vi.mock("next/link", async () => {
 });
 
 beforeEach(() => {
-  vi.mocked(usePathname).mockReturnValue("/");
+  vi.mocked(useRouter).mockReturnValue({ pathname: "/" } as ReturnType<typeof useRouter>);
 });
 
 describe("UniversalHeaderBar", () => {
@@ -41,7 +41,7 @@ describe("UniversalHeaderBar", () => {
   });
 
   it("marks the active nav item when pathname matches", () => {
-    vi.mocked(usePathname).mockReturnValue("/projects");
+    vi.mocked(useRouter).mockReturnValue({ pathname: "/projects" } as ReturnType<typeof useRouter>);
     render(<UniversalHeaderBar />);
 
     const projectsPill = screen.getByText("PROJECTS").closest(".nav-pill");
