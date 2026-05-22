@@ -17,7 +17,7 @@ function isVideoUrl(src: string): boolean {
 
 function getVideoEmbedUrl(src: string): string | null {
   const yt = src.match(
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{11})/,
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{11})/
   );
   if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`;
 
@@ -204,7 +204,12 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
                 href={safeSrc}
                 data-pswp-width={0}
                 data-pswp-height={0}
-                style={{ display: "block", cursor: "zoom-in", borderRadius: 10, overflow: "hidden" }}
+                style={{
+                  display: "block",
+                  cursor: "zoom-in",
+                  borderRadius: 10,
+                  overflow: "hidden",
+                }}
               >
                 <div
                   style={{
@@ -348,7 +353,7 @@ function attachDynamicDimensions(lb: PhotoSwipeLightbox) {
           (content.instance as any).updateSize(true);
         }
       },
-      { once: true },
+      { once: true }
     );
   });
 }

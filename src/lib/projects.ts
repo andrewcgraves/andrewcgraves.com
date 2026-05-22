@@ -7,9 +7,7 @@ const CONTENT_DIR = path.join(process.cwd(), "content/projects");
 
 export function getAllProjects(): ProjectEntry[] {
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".md"));
-  return files
-    .map((filename) => parseProjectFile(filename))
-    .sort((a, b) => b.year - a.year);
+  return files.map((filename) => parseProjectFile(filename)).sort((a, b) => b.year - a.year);
 }
 
 export function getProjectBySlug(slug: string): ProjectEntry | null {
