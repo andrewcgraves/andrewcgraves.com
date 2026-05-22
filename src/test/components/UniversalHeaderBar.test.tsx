@@ -1,26 +1,20 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import UniversalHeaderBar from "../../Components/UniversalHeaderBar";
+import { usePathname } from "next/navigation";
 
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(() => "/"),
 }));
 
-vi.mock("next/link", () => ({
-  default: ({
-    href,
-    children,
-    className,
-  }: {
-    href: string;
-    children: React.ReactNode;
-    className?: string;
-  }) => (
-    <a href={href} className={className}>
-      {children}
-    </a>
-  ),
-}));
+vi.mock("next/link", async () => {
+  const { default: mock } = await import("../mocks/nextLinkMock");
+  return { default: mock };
+});
+
+beforeEach(() => {
+  vi.mocked(usePathname).mockReturnValue("/");
+});
 
 describe("UniversalHeaderBar", () => {
   it("renders the logo link pointing to /", () => {
@@ -46,17 +40,9 @@ describe("UniversalHeaderBar", () => {
     expect(screen.queryByText("PROJECTS")).toBeNull();
   });
 
-  it("marks the active nav item when pathname matches", async () => {
-    const { usePathname } = await import("next/navigation");
+  it("marks the active nav item when pathname matches", () => {
     vi.mocked(usePathname).mockReturnValue("/projects");
-
     render(<UniversalHeaderBar />);
-
-    const projectsLink = screen.getByText("PROJECTS").closest("a");
-    const ceramicsLink = screen.getByText("CERAMICS").closest("a");
-
-    expect(projectsLink).not.toBeNull();
-    expect(ceramicsLink).not.toBeNull();
 
     const projectsPill = screen.getByText("PROJECTS").closest(".nav-pill");
     const ceramicsPill = screen.getByText("CERAMICS").closest(".nav-pill");

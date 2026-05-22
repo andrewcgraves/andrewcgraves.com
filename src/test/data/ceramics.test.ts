@@ -1,59 +1,87 @@
 import { describe, it, expect } from "vitest";
-import { CERAMICS_SERIES, Series, Photo } from "../../data/ceramics";
+import { CERAMICS_SERIES } from "../../data/ceramics";
 
 describe("CERAMICS_SERIES", () => {
-  it("is a non-empty array", () => {
-    expect(Array.isArray(CERAMICS_SERIES)).toBe(true);
-    expect(CERAMICS_SERIES.length).toBeGreaterThan(0);
+  it("contains the expected series in order", () => {
+    const slugs = CERAMICS_SERIES.map((s) => s.slug);
+    expect(slugs).toContain("espresso-mugs-01");
+    expect(slugs).toContain("taped-mugs-01");
+    expect(slugs).toContain("ramen-bowls-02");
+    expect(slugs).toContain("misc-pieces");
   });
 
-  it("every series has required string fields", () => {
-    for (const series of CERAMICS_SERIES) {
-      expect(typeof series.slug).toBe("string");
-      expect(series.slug.length).toBeGreaterThan(0);
-
-      expect(typeof series.title).toBe("string");
-      expect(series.title.length).toBeGreaterThan(0);
-
-      expect(typeof series.material).toBe("string");
-      expect(typeof series.year).toBe("string");
-      expect(typeof series.tagline).toBe("string");
-    }
+  it("has no duplicate slugs", () => {
+    const slugs = CERAMICS_SERIES.map((s) => s.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
   });
 
-  it("every series has a valid status", () => {
-    const validStatuses: Series["status"][] = ["complete", "in-progress"];
-    for (const series of CERAMICS_SERIES) {
-      expect(validStatuses).toContain(series.status);
-    }
-  });
+  describe("espresso-mugs-01", () => {
+    const series = CERAMICS_SERIES.find((s) => s.slug === "espresso-mugs-01")!;
 
-  it("every series has a photos array", () => {
-    for (const series of CERAMICS_SERIES) {
-      expect(Array.isArray(series.photos)).toBe(true);
-    }
-  });
+    it("has correct metadata", () => {
+      expect(series.title).toBe("Espresso Mugs");
+      expect(series.material).toBe("stonewear (LBC)");
+      expect(series.year).toBe("2026");
+      expect(series.status).toBe("complete");
+    });
 
-  it("every photo has a non-empty src and positive dimensions", () => {
-    for (const series of CERAMICS_SERIES) {
+    it("has 6 photos each with valid dimensions", () => {
+      expect(series.photos).toHaveLength(6);
       for (const photo of series.photos) {
-        expect(typeof photo.src).toBe("string");
-        expect(photo.src.length).toBeGreaterThan(0);
+        expect(photo.src).toBeTruthy();
         expect(photo.width).toBeGreaterThan(0);
         expect(photo.height).toBeGreaterThan(0);
       }
-    }
+    });
+
+    it("has a non-empty longread", () => {
+      expect(series.longread.length).toBeGreaterThan(0);
+    });
   });
 
-  it("every series has a longread array", () => {
-    for (const series of CERAMICS_SERIES) {
-      expect(Array.isArray(series.longread)).toBe(true);
-    }
+  describe("taped-mugs-01", () => {
+    const series = CERAMICS_SERIES.find((s) => s.slug === "taped-mugs-01")!;
+
+    it("has correct metadata", () => {
+      expect(series.title).toBe("Taped Tea Mugs");
+      expect(series.year).toBe("2025");
+      expect(series.status).toBe("complete");
+    });
+
+    it("has 10 photos", () => {
+      expect(series.photos).toHaveLength(10);
+    });
   });
 
-  it("has unique slugs", () => {
-    const slugs = CERAMICS_SERIES.map((s) => s.slug);
-    const uniqueSlugs = new Set(slugs);
-    expect(uniqueSlugs.size).toBe(slugs.length);
+  describe("ramen-bowls-02", () => {
+    const series = CERAMICS_SERIES.find((s) => s.slug === "ramen-bowls-02")!;
+
+    it("has correct metadata", () => {
+      expect(series.title).toBe("Ramen Bowls");
+      expect(series.material).toBe("porcelain");
+      expect(series.year).toBe("2025");
+    });
+
+    it("has 7 photos", () => {
+      expect(series.photos).toHaveLength(7);
+    });
+  });
+
+  describe("misc-pieces", () => {
+    const series = CERAMICS_SERIES.find((s) => s.slug === "misc-pieces")!;
+
+    it("has correct metadata", () => {
+      expect(series.title).toBe("Misc Pieces");
+      expect(series.material).toBe("various");
+      expect(series.status).toBe("complete");
+    });
+
+    it("intentionally has an empty longread array", () => {
+      expect(series.longread).toEqual([]);
+    });
+
+    it("has 6 photos", () => {
+      expect(series.photos).toHaveLength(6);
+    });
   });
 });

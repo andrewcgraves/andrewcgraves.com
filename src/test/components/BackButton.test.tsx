@@ -2,21 +2,10 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import BackButton from "../../Components/BackButton";
 
-vi.mock("next/link", () => ({
-  default: ({
-    href,
-    children,
-    className,
-  }: {
-    href: string;
-    children: React.ReactNode;
-    className?: string;
-  }) => (
-    <a href={href} className={className}>
-      {children}
-    </a>
-  ),
-}));
+vi.mock("next/link", async () => {
+  const { default: mock } = await import("../mocks/nextLinkMock");
+  return { default: mock };
+});
 
 describe("BackButton", () => {
   it("renders the label text", () => {
