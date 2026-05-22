@@ -70,7 +70,11 @@ describe("Pill", () => {
     });
 
     it("applies a custom height class", () => {
-      render(<Pill link="/" h={8}>TEST</Pill>);
+      render(
+        <Pill link="/" h={8}>
+          TEST
+        </Pill>
+      );
       const wrapper = screen.getByRole("link");
       expect(wrapper).toHaveClass("h-8");
     });
