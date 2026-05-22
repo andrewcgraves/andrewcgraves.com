@@ -4,6 +4,15 @@ import Link from "next/link";
 import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar";
 import { CERAMICS_SERIES } from "../../src/data/ceramics";
 
+const sortedSeries = [...CERAMICS_SERIES].sort((a, b) => {
+  const aHasOrder = a.order !== undefined;
+  const bHasOrder = b.order !== undefined;
+  if (aHasOrder && bHasOrder) return a.order! - b.order!;
+  if (aHasOrder) return -1;
+  if (bHasOrder) return 1;
+  return 0;
+});
+
 export default function CeramicsLanding() {
   return (
     <div className="page-shell">
@@ -35,7 +44,7 @@ export default function CeramicsLanding() {
 
       <section className="ceramics-grid-section">
         <div className="ceramics-grid">
-          {CERAMICS_SERIES.map((series, i) => (
+          {sortedSeries.map((series, i) => (
             <article key={series.slug} className="ceramics-card">
               <Link href={`/ceramics/${series.slug}`} style={{ display: "block" }}>
                 <div
