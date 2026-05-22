@@ -1,26 +1,14 @@
-import Image from "next/image";
-import LinkBox from "../src/Components/LinkBox.jsx";
-import Head from "next/head";
-import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.jsx";
-import Pill from "../src/Components/Pill.jsx";
+import type { Metadata } from "next";
+import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar.jsx";
+
+export const metadata: Metadata = {
+  title: "Capstone 2023 — Andrew Graves",
+  description: "Contains information on my CSUCI undergraduate capstone project.",
+};
 
 export default function Capstone() {
   return (
     <div className="flex h-full">
-      <Head>
-        <title>Capstone 2023</title>
-        <meta
-          name="description"
-          content="Contains information on my CSUCI undergraduate capstone project."
-        />
-        <link rel="icon" href="/logo.png" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
       <main>
         <UniversalHeaderBar />
         <div className="items-start main-container">
@@ -221,7 +209,7 @@ export default function Capstone() {
             <p>
               My main takeaway from this project was how applicable neural networks are to many
               different types of real-world problems. It was interesting to learn more about
-              specific types and how they modify the traditional structure to gain specific
+              specific types and how they modified the traditional structure to gain specific
               functional attributes. I learned that there were many great resources out there for
               the main types of neural networks but realized quickly that invertible neural networks
               were actively being researched and contained much less information and documentation
@@ -259,7 +247,7 @@ export default function Capstone() {
                 <figure className="table">
                   <img
                     src="/capstone/07.png"
-                    alt="Fig. 7: The dataset graphed with 4 of the 5 parameters. The green point is a data point plugged into the prediction model and the predicted value is about what is expected for a value in that region of the graph."
+                    alt="Fig. 7: The dataset graphed with 4 of the 5 parameters."
                   />
                   <figcaption className="table-caption caption-bottom">
                     Fig. 7: The dataset graphed with 4 of the 5 parameters. The green point is a

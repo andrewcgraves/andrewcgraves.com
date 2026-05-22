@@ -1,24 +1,20 @@
-import Head from "next/head";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import UniversalHeaderBar from "../src/Components/UniversalHeaderBar";
-import { getAllSeries } from "../src/lib/ceramics";
-import { Series } from "../src/data/ceramics";
+import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar.jsx";
+import { getAllSeries } from "../../src/lib/ceramics";
 
-export default function CeramicsLanding({ series }: { series: Series[] }) {
+export const metadata: Metadata = {
+  title: "Ceramics — Andrew Graves",
+  description:
+    "Ceramics work by Andrew Graves — stoneware and porcelain made at CSU Channel Islands.",
+};
+
+export default function CeramicsLanding() {
+  const series = getAllSeries();
   return (
     <div className="page-shell">
-      <Head>
-        <title>Ceramics — Andrew Graves</title>
-        <meta
-          name="description"
-          content="Ceramics work by Andrew Graves — stoneware and porcelain made at CSU Channel Islands."
-        />
-        <link rel="icon" href="/logo.png" />
-      </Head>
-
       <UniversalHeaderBar />
-
       <div
         className="page-main"
         style={{ flex: "none", paddingBottom: 0, gap: 0, maxWidth: "none", margin: 0 }}
@@ -33,7 +29,6 @@ export default function CeramicsLanding({ series }: { series: Series[] }) {
           </p>
         </hgroup>
       </div>
-
       <section className="ceramics-grid-section">
         <div className="ceramics-grid">
           {series.map((s, i) => (
@@ -145,9 +140,4 @@ export default function CeramicsLanding({ series }: { series: Series[] }) {
       </section>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const series = getAllSeries();
-  return { props: { series } };
 }

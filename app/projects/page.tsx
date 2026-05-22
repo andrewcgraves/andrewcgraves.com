@@ -1,9 +1,14 @@
-import Head from "next/head";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import UniversalHeaderBar from "../src/Components/UniversalHeaderBar.jsx";
-import { getAllProjects } from "../src/lib/projects";
-import { ProjectEntry } from "../src/data/projects";
+import UniversalHeaderBar from "../../src/Components/UniversalHeaderBar.jsx";
+import { getAllProjects } from "../../src/lib/projects";
+import { ProjectEntry } from "../../src/data/projects";
+
+export const metadata: Metadata = {
+  title: "Projects — Andrew Graves",
+  description: "A collection of projects I've made or worked on across various fields.",
+};
 
 function shade(hex: string, pct: number): string {
   const n = parseInt(hex.slice(1), 16);
@@ -142,20 +147,11 @@ function ProjectCard({ item }: { item: ProjectEntry }) {
   );
 }
 
-export default function Projects({ projects }: { projects: ProjectEntry[] }) {
+export default function Projects() {
+  const projects = getAllProjects();
   return (
     <div className="page-shell">
-      <Head>
-        <title>Projects — Andrew Graves</title>
-        <meta
-          name="description"
-          content="A collection of projects I've made or worked on across various fields."
-        />
-        <link rel="icon" href="/logo.png" />
-      </Head>
-
       <UniversalHeaderBar />
-
       <div
         className="page-main"
         style={{ flex: "none", paddingBottom: 0, gap: 0, maxWidth: "none", margin: 0 }}
@@ -165,7 +161,6 @@ export default function Projects({ projects }: { projects: ProjectEntry[] }) {
           <p>Things I&apos;ve made or worked on — across the workshop, the trail, and the page.</p>
         </hgroup>
       </div>
-
       <section className="ceramics-grid-section">
         <div className="ceramics-grid">
           {projects.map((item) => (
@@ -175,9 +170,4 @@ export default function Projects({ projects }: { projects: ProjectEntry[] }) {
       </section>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const projects = getAllProjects();
-  return { props: { projects } };
 }
