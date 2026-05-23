@@ -50,4 +50,15 @@ describe("UniversalHeaderBar", () => {
     expect(projectsPill).toHaveAttribute("data-active", "true");
     expect(ceramicsPill).not.toHaveAttribute("data-active");
   });
+
+  it("marks ceramics active and projects inactive when pathname is /ceramics", () => {
+    vi.mocked(usePathname).mockReturnValue("/ceramics");
+    render(<UniversalHeaderBar />);
+
+    const ceramicsPill = screen.getByText("CERAMICS").closest(".nav-pill");
+    const projectsPill = screen.getByText("PROJECTS").closest(".nav-pill");
+
+    expect(ceramicsPill).toHaveAttribute("data-active", "true");
+    expect(projectsPill).not.toHaveAttribute("data-active");
+  });
 });

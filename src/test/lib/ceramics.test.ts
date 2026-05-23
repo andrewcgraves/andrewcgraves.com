@@ -16,12 +16,18 @@ vi.mock("fs", () => {
 
 const mockFs = vi.mocked(fs);
 
-const FAKE_MD = (year: string, title: string, material = "porcelain", content = "") => `---
+const FAKE_MD = (
+  year: string,
+  title: string,
+  material = "porcelain",
+  content = "",
+  order?: number
+) => `---
 title: ${title}
 material: ${material}
 year: "${year}"
 status: complete
-tagline: A test tagline
+tagline: A test tagline${order !== undefined ? `\norder: ${order}` : ""}
 photos:
   - src: https://example.com/photo.jpg
     width: 6240
@@ -132,6 +138,64 @@ describe("getAllSeries", () => {
 
     expect(typeof s.year).toBe("string");
     expect(s.year).toBe("2025");
+  });
+
+  it("reads order from frontmatter", () => {
+    mockFs.readdirSync.mockReturnValue(["series.md"] as never);
+    mockFs.readFileSync.mockReturnValue(FAKE_MD("2025", "Ordered", "porcelain", "", 3) as never);
+
+    const [s] = getAllSeries();
+
+    expect(s.order).toBe(3);
+  });
+
+  it("leaves order undefined when not in frontmatter", () => {
+    mockFs.readdirSync.mockReturnValue(["series.md"] as never);
+    mockFs.readFileSync.mockReturnValue(FAKE_MD("2025", "No Order") as never);
+
+    const [s] = getAllSeries();
+
+    expect(s.order).toBeUndefined();
+  });
+
+  it("sorts ordered series before unordered ones", () => {
+    mockFs.readdirSync.mockReturnValue(["alpha.md", "beta.md", "gamma.md"] as never);
+    mockFs.readFileSync
+      .mockReturnValueOnce(FAKE_MD("2023", "Alpha") as never)
+      .mockReturnValueOnce(FAKE_MD("2020", "Beta", "stoneware", "", 1) as never)
+      .mockReturnValueOnce(FAKE_MD("2022", "Gamma", "porcelain", "", 0) as never);
+
+    const result = getAllSeries();
+
+    expect(result[0].title).toBe("Gamma");
+    expect(result[1].title).toBe("Beta");
+    expect(result[2].title).toBe("Alpha");
+  });
+
+  it("sorts ordered series by order ascending", () => {
+    mockFs.readdirSync.mockReturnValue(["a.md", "b.md", "c.md"] as never);
+    mockFs.readFileSync
+      .mockReturnValueOnce(FAKE_MD("2025", "A", "porcelain", "", 2) as never)
+      .mockReturnValueOnce(FAKE_MD("2025", "B", "porcelain", "", 0) as never)
+      .mockReturnValueOnce(FAKE_MD("2025", "C", "porcelain", "", 1) as never);
+
+    const result = getAllSeries();
+
+    expect(result[0].title).toBe("B");
+    expect(result[1].title).toBe("C");
+    expect(result[2].title).toBe("A");
+  });
+
+  it("breaks year ties alphabetically by slug", () => {
+    mockFs.readdirSync.mockReturnValue(["zebra.md", "apple.md"] as never);
+    mockFs.readFileSync
+      .mockReturnValueOnce(FAKE_MD("2025", "Zebra") as never)
+      .mockReturnValueOnce(FAKE_MD("2025", "Apple") as never);
+
+    const result = getAllSeries();
+
+    expect(result[0].slug).toBe("apple");
+    expect(result[1].slug).toBe("zebra");
   });
 });
 

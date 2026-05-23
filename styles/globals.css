@@ -216,9 +216,9 @@ hgroup {
     background 200ms ease-in-out,
     padding-inline 200ms ease-in-out,
     color 200ms ease-in-out;
-  height: 100%;
   display: grid;
   place-content: center;
+  height: 100%;
   padding-inline: 0;
 }
 
