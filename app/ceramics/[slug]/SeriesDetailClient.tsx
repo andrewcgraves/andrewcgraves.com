@@ -55,18 +55,7 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
           <span className="arrow-left">←</span> All series
         </Link>
         <span style={{ color: "var(--color-placeholder)", fontSize: 12 }}>/</span>
-        <span
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: 12,
-            color: "var(--color-ink)",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-          }}
-        >
-          {series.title}
-        </span>
+        <span className="t-btn">{series.title}</span>
       </div>
 
       {/* Hero */}
@@ -144,6 +133,7 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
               {series.photos.length > 5 && (
                 <a
                   href="#gallery"
+                  className="t-btn"
                   style={{
                     aspectRatio: "1/1",
                     background: "var(--color-surface)",
@@ -151,9 +141,6 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
                     borderRadius: 6,
                     display: "grid",
                     placeItems: "center",
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: 13,
                     color: "var(--color-ink-muted)",
                     textDecoration: "none",
                   }}
@@ -168,33 +155,14 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
         {/* Right: info */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {(series.year || series.status === "in-progress") && (
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontStyle: "italic",
-                fontSize: 10,
-                color: "var(--color-ink-muted)",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-              }}
-            >
+            <span className="t-microlabel">
               {series.year ? `Series · ${series.year}` : "Series"}
               {series.status === "in-progress" && (
                 <span style={{ color: "var(--color-coral)" }}> · In progress</span>
               )}
             </span>
           )}
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: "clamp(40px, 4vw, 56px)",
-              lineHeight: 1,
-              color: "var(--color-ink-true)",
-              letterSpacing: "-0.025em",
-              margin: 0,
-            }}
-          >
+          <h1 className="t-header" style={{ margin: 0 }}>
             {series.title}
           </h1>
           <span
@@ -208,15 +176,7 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
             }}
           />
           {series.tagline && (
-            <p
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: 18,
-                lineHeight: 1.55,
-                color: "var(--color-ink)",
-                margin: "4px 0 8px",
-              }}
-            >
+            <p className="t-lead" style={{ margin: "4px 0 8px" }}>
               {series.tagline}
             </p>
           )}
@@ -242,27 +202,10 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
                   alignItems: "baseline",
                 }}
               >
-                <dt
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: 10,
-                    color: "var(--color-ink-muted)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    margin: 0,
-                  }}
-                >
+                <dt className="t-microlabel" style={{ margin: 0 }}>
                   {dt}
                 </dt>
-                <dd
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: 14,
-                    color: "var(--color-ink)",
-                    margin: 0,
-                  }}
-                >
+                <dd className="t-body" style={{ margin: 0 }}>
                   {dd}
                 </dd>
               </div>
@@ -271,16 +214,13 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
 
           <a
             href="#gallery"
+            className="t-btn"
             style={{
               alignSelf: "flex-start",
               background: "var(--color-ink)",
               color: "#FFFFFF",
               borderRadius: 10,
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: 13,
               textTransform: "uppercase",
-              letterSpacing: "0.06em",
               padding: "14px 22px",
               textDecoration: "none",
               marginTop: 16,
@@ -296,29 +236,8 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
       {series.content && (
         <section className="series-description">
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontStyle: "italic",
-                fontSize: 10,
-                color: "var(--color-ink-muted)",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-              }}
-            >
-              About this series
-            </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 700,
-                fontSize: "clamp(24px, 3vw, 32px)",
-                lineHeight: 1.05,
-                color: "var(--color-ink-true)",
-                letterSpacing: "-0.02em",
-                margin: 0,
-              }}
-            >
+            <span className="t-microlabel">About this series</span>
+            <h2 className="t-h2" style={{ margin: 0 }}>
               How it was made
             </h2>
           </div>
@@ -327,15 +246,7 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
               remarkPlugins={[remarkGfm]}
               components={{
                 p: ({ children }) => (
-                  <p
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: 16,
-                      lineHeight: 1.7,
-                      color: "var(--color-ink)",
-                      margin: 0,
-                    }}
-                  >
+                  <p className="t-body" style={{ margin: 0 }}>
                     {children}
                   </p>
                 ),
@@ -358,44 +269,14 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
           }}
         >
           <div>
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontStyle: "italic",
-                fontSize: 10,
-                color: "var(--color-ink-muted)",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                display: "block",
-                marginBottom: 6,
-              }}
-            >
+            <span className="t-microlabel" style={{ display: "block", marginBottom: 6 }}>
               Gallery
             </span>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 700,
-                fontSize: "clamp(24px, 3vw, 32px)",
-                lineHeight: 1.05,
-                color: "var(--color-ink-true)",
-                letterSpacing: "-0.02em",
-                margin: 0,
-              }}
-            >
+            <h2 className="t-h2" style={{ margin: 0 }}>
               {series.photos.length} photos
             </h2>
           </div>
-          <span
-            style={{
-              fontFamily: "var(--font-body)",
-              fontStyle: "italic",
-              fontSize: 12,
-              color: "var(--color-ink-muted)",
-            }}
-          >
-            Click any photo to enlarge
-          </span>
+          <span className="t-caption">Click any photo to enlarge</span>
         </div>
 
         <div ref={galleryRef} className="series-gallery-grid">
@@ -431,17 +312,7 @@ export default function SeriesDetailClient({ series }: { series: Series }) {
                 />
               </a>
               <figcaption style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: 10,
-                    color: "var(--color-ink-muted)",
-                    letterSpacing: "0.12em",
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <span className="t-microlabel">{String(i + 1).padStart(2, "0")}</span>
               </figcaption>
             </figure>
           ))}

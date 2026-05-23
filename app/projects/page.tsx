@@ -76,69 +76,23 @@ function ProjectCard({ item }: { item: ProjectEntry }) {
             gap: 16,
           }}
         >
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: 24,
-              lineHeight: 1,
-              color: "var(--color-ink-true)",
-              letterSpacing: "-0.01em",
-              margin: 0,
-            }}
-          >
+          <h2 className="t-card-title" style={{ margin: 0 }}>
             {item.title}
           </h2>
-          <span
-            style={{
-              fontFamily: "var(--font-body)",
-              fontStyle: "italic",
-              fontSize: 12,
-              color: "var(--color-ink-muted)",
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <span className="t-microlabel" style={{ whiteSpace: "nowrap" }}>
             {item.year}
           </span>
         </div>
-        <span
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: 12,
-            color: "var(--color-ink-muted)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-          }}
-        >
-          {item.kind}
-        </span>
+        <span className="t-microlabel">{item.kind}</span>
         {item.blurb && (
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: 14,
-              lineHeight: 1.55,
-              color: "var(--color-ink)",
-              margin: 0,
-            }}
-          >
+          <p className="t-body" style={{ margin: 0 }}>
             {item.blurb}
           </p>
         )}
         <Link
           href={`/projects/${item.slug}`}
-          className="arrow-link"
-          style={{
-            alignSelf: "flex-start",
-            fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: 13,
-            color: "var(--color-ink)",
-            textDecoration: "underline",
-            textUnderlineOffset: 3,
-          }}
+          className="t-btn arrow-link"
+          style={{ alignSelf: "flex-start", textDecoration: "underline", textUnderlineOffset: 3 }}
         >
           View project <span className="arrow-right">→</span>
         </Link>
