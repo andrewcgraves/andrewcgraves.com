@@ -75,17 +75,92 @@ h2 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
   font-weight: 700;
-  font-style: normal;
-  font-size: 20px;
-  line-height: 1.4;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-true);
+  margin: 0;
 }
 
 p {
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.65;
   color: var(--color-ink-muted);
   margin: 0;
+}
+
+/* ── Typography primitives ────────────────────────────────── */
+.t-header {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink-true);
+}
+.t-h2 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-true);
+}
+.t-h3 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-true);
+}
+.t-card-title {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-true);
+}
+.t-body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+.t-lead {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.6vw, 21px);
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+.t-caption {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+.t-microlabel {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-muted);
+}
+.t-btn {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
 }
 
 hgroup {
@@ -128,9 +203,9 @@ hgroup {
 .header-cat {
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
   color: var(--color-ink);
 }
 
@@ -168,20 +243,22 @@ hgroup {
 }
 
 .proj-row-year {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 12px;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 10px;
   color: var(--color-ink-muted);
-  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 .proj-row-title {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 700;
-  font-size: 22px;
-  color: var(--color-ink);
-  line-height: 1.1;
-  letter-spacing: -0.005em;
+  font-size: 24px;
+  color: var(--color-ink-true);
+  line-height: 1;
+  letter-spacing: -0.01em;
   transition: transform 260ms var(--ease-smooth);
   min-width: 0;
   overflow: hidden;
@@ -192,8 +269,8 @@ hgroup {
 .proj-row-kind {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink-muted);
 }
@@ -208,8 +285,9 @@ hgroup {
 
 .proj-count {
   font-family: var(--font-body);
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  font-style: italic;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   color: var(--color-ink-muted);
   text-transform: uppercase;
 }
@@ -329,9 +407,8 @@ hgroup {
   letter-spacing: 0.12em;
 }
 .ceramics-h1 {
-  /* tighter clamp + max-width vs global h1 */
-  font-size: clamp(36px, 4vw, 56px);
-  line-height: 1.05;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1;
   max-width: 600px;
 }
 .ceramics-bio-p {
@@ -363,11 +440,12 @@ hgroup {
   left: 16px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
   padding: 6px 10px;
   border-radius: 6px;
 }
@@ -381,11 +459,11 @@ hgroup {
 }
 .series-crumb-back {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-ink-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   text-decoration: none;
 }
 .series-crumb-back:hover {
@@ -493,10 +571,11 @@ hgroup {
 
 .pd-h1 {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 700;
-  font-size: clamp(36px, 5.5vw, 56px);
+  font-size: clamp(36px, 6vw, 64px);
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1;
   color: var(--color-ink-true);
   margin: 0;
   text-wrap: balance;
@@ -505,7 +584,7 @@ hgroup {
 .pd-lede {
   font-family: var(--font-body);
   font-size: clamp(18px, 1.6vw, 21px);
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--color-ink-muted);
   margin: 8px 0 0;
   text-wrap: pretty;
@@ -530,9 +609,9 @@ hgroup {
 /* Article body typography */
 .pd-body-p {
   font-family: var(--font-body);
-  font-size: 19px;
-  line-height: 1.7;
-  color: #1b1b1b;
+  font-size: clamp(18px, 1.6vw, 21px);
+  line-height: 1.6;
+  color: var(--color-ink-muted);
   margin: 0;
   text-wrap: pretty;
 }
@@ -549,9 +628,11 @@ hgroup {
 
 .pd-body-h3 {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
+  letter-spacing: -0.01em;
   color: var(--color-ink-true);
   margin: 12px 0 0;
 }
@@ -567,9 +648,9 @@ hgroup {
 
 .pd-body-li {
   font-family: var(--font-body);
-  font-size: 19px;
+  font-size: clamp(18px, 1.6vw, 21px);
   line-height: 1.6;
-  color: #1b1b1b;
+  color: var(--color-ink-muted);
   display: grid;
   grid-template-columns: 16px 1fr;
   column-gap: 12px;
@@ -689,9 +770,10 @@ hgroup {
   border: 1px solid var(--color-border);
   background: #ffffff;
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 700;
   font-size: 13px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--color-ink);
   text-decoration: none;
   cursor: pointer;
@@ -734,7 +816,7 @@ hgroup {
   }
   .pd-body-p,
   .pd-body-li {
-    font-size: 17px;
+    font-size: clamp(16px, 5vw, 18px);
   }
   .pd-footer {
     flex-direction: column;

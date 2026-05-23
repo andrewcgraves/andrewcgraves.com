@@ -63,70 +63,30 @@ export default function CeramicsLanding() {
                     gap: 16,
                   }}
                 >
-                  <h2
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontWeight: 700,
-                      fontSize: 24,
-                      lineHeight: 1,
-                      color: "var(--color-ink-true)",
-                      letterSpacing: "-0.01em",
-                      margin: 0,
-                    }}
-                  >
+                  <h2 className="t-card-title" style={{ margin: 0 }}>
                     {s.title}
                   </h2>
                   {s.year && (
-                    <span
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontStyle: "italic",
-                        fontSize: 12,
-                        color: "var(--color-ink-muted)",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.06em",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
+                    <span className="t-microlabel" style={{ whiteSpace: "nowrap" }}>
                       {s.year}
                     </span>
                   )}
                 </div>
                 {s.material && (
-                  <span
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: 12,
-                      color: "var(--color-ink-muted)",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
-                    }}
-                  >
+                  <span className="t-microlabel">
                     {s.material} · {s.photos.length} photos
                   </span>
                 )}
                 {s.tagline && (
-                  <p
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: 14,
-                      lineHeight: 1.55,
-                      color: "var(--color-ink)",
-                      margin: 0,
-                    }}
-                  >
+                  <p className="t-body" style={{ margin: 0 }}>
                     {s.tagline}
                   </p>
                 )}
                 <Link
                   href={`/ceramics/${s.slug}`}
-                  className="arrow-link"
+                  className="t-btn arrow-link"
                   style={{
                     alignSelf: "flex-start",
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: 13,
-                    color: "var(--color-ink)",
                     textDecoration: "underline",
                     textUnderlineOffset: 3,
                   }}

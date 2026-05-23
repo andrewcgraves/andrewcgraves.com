@@ -68,16 +68,11 @@ function BackLink() {
   return (
     <Link
       href="/projects"
-      className="arrow-link"
+      className="t-btn arrow-link"
       style={{
         display: "inline-flex",
         alignItems: "center",
         gap: 8,
-        fontFamily: "var(--font-display)",
-        fontWeight: 700,
-        fontSize: 12,
-        letterSpacing: "0.06em",
-        textTransform: "uppercase" as const,
         color: "var(--color-ink-muted)",
         textDecoration: "none",
         width: "fit-content",
@@ -285,19 +280,7 @@ function GalleryThumb({
           />
         </div>
       )}
-      {photo.caption && (
-        <figcaption
-          style={{
-            fontFamily: "var(--font-body)",
-            fontStyle: "italic",
-            fontSize: 12,
-            lineHeight: 1.4,
-            color: "var(--color-ink-muted)",
-          }}
-        >
-          {photo.caption}
-        </figcaption>
-      )}
+      {photo.caption && <figcaption className="t-caption">{photo.caption}</figcaption>}
     </figure>
   );
 }
@@ -403,16 +386,7 @@ export default function ProjectDetailClient({ project }: { project: ProjectEntry
         <div className="pd-title-inner">
           <BackLink />
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8 }}>
-            <span
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: project.color,
-              }}
-            >
+            <span className="t-btn" style={{ textTransform: "uppercase", color: project.color }}>
               {project.kind}
             </span>
             <span
@@ -424,18 +398,7 @@ export default function ProjectDetailClient({ project }: { project: ProjectEntry
                 display: "inline-block",
               }}
             />
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontStyle: "italic",
-                fontSize: 12,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                color: "var(--color-ink-muted)",
-              }}
-            >
-              {project.year}
-            </span>
+            <span className="t-microlabel">{project.year}</span>
           </div>
           <h1 className="pd-h1">{project.title}</h1>
           {project.blurb && <p className="pd-lede">{project.blurb}</p>}
@@ -462,18 +425,7 @@ export default function ProjectDetailClient({ project }: { project: ProjectEntry
             }}
           >
             <h2 className="pd-gallery-title">Gallery</h2>
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontStyle: "italic",
-                fontSize: 12,
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-                color: "var(--color-ink-muted)",
-              }}
-            >
-              {project.gallery.length} photos
-            </span>
+            <span className="t-microlabel">{project.gallery.length} photos</span>
           </div>
           <div ref={galleryRef} className="pd-gallery-grid">
             {project.gallery.map((photo, i) => (
