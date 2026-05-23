@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap");
 
 @import "tailwindcss";
-@source inline("h-{4,5,6,7,8,9,10}");
 @plugin "daisyui" {
   themes: default-theme;
 }
@@ -217,9 +216,9 @@ hgroup {
     background 200ms ease-in-out,
     padding-inline 200ms ease-in-out,
     color 200ms ease-in-out;
-  height: 100%;
   display: grid;
   place-content: center;
+  padding-block: 0.5rem;
   padding-inline: 0;
 }
 

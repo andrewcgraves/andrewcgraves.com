@@ -61,22 +61,4 @@ describe("Pill", () => {
       expect(screen.getByText("CERAMICS")).toBeInTheDocument();
     });
   });
-
-  describe("height prop", () => {
-    it("applies the default height class h-4", () => {
-      render(<Pill link="/">TEST</Pill>);
-      const wrapper = screen.getByRole("link");
-      expect(wrapper).toHaveClass("h-4");
-    });
-
-    it("applies a custom height class", () => {
-      render(
-        <Pill link="/" h={8}>
-          TEST
-        </Pill>
-      );
-      const wrapper = screen.getByRole("link");
-      expect(wrapper).toHaveClass("h-8");
-    });
-  });
 });
