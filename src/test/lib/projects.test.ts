@@ -165,7 +165,6 @@ describe("getProjectBySlug", () => {
     expect(project!.slug).toBe("found-it");
     expect(project!.title).toBe("Found It");
     expect(project!.year).toBe(2022);
-    // verify the correct file path was constructed
     expect(mockFs.readFileSync).toHaveBeenCalledWith(
       expect.stringContaining("found-it.md"),
       "utf-8"

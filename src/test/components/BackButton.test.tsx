@@ -19,9 +19,9 @@ describe("BackButton", () => {
     expect(link).toHaveAttribute("href", "/projects");
   });
 
-  it("renders an SVG arrow icon", () => {
+  it("hides the SVG arrow from screen readers", () => {
     const { container } = render(<BackButton href="/" label="Home" />);
-    expect(container.querySelector("svg")).toBeInTheDocument();
+    expect(container.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
   });
 
   it("applies the expected CSS classes to the link", () => {
