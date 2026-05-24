@@ -4,3 +4,4 @@ public
 yarn.lock
 .claude
 CLAUDE.md
+content/*
