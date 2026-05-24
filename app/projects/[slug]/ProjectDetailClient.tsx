@@ -101,8 +101,10 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
       remarkPlugins={[remarkGfm]}
       components={{
         p: ({ children, node }) => {
-          const onlyChild = node?.children?.length === 1 && node.children[0];
-          if (onlyChild && onlyChild.type === "element" && onlyChild.tagName === "img") {
+          const hasImageChild = node?.children?.some(
+            (child) => child.type === "element" && child.tagName === "img"
+          );
+          if (hasImageChild) {
             return <>{children}</>;
           }
           return <p className="pd-body-p">{children}</p>;
@@ -191,15 +193,14 @@ function ProjectBody({ content, color }: { content: string; color: string }) {
                   overflow: "hidden",
                 }}
               >
-                <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10" }}>
-                  <Image
-                    src={safeSrc}
-                    alt={caption || ""}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    sizes="880px"
-                  />
-                </div>
+                <Image
+                  src={safeSrc}
+                  alt={caption || ""}
+                  width={0}
+                  height={0}
+                  sizes="880px"
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
               </a>
               {caption && <figcaption className="pd-body-figcap">{caption}</figcaption>}
             </figure>
@@ -244,23 +245,20 @@ function GalleryThumb({
             transition: "transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)",
           }}
         >
-          <div
+          <Image
+            src={photo.src}
+            alt={photo.caption || `Photo ${index + 1}`}
+            width={0}
+            height={0}
+            sizes="(max-width: 640px) 50vw, 25vw"
             style={{
-              position: "relative",
               width: "100%",
-              aspectRatio: "4 / 3",
+              height: "auto",
+              display: "block",
               transform: hover ? "scale(1.04)" : "scale(1)",
               transition: "transform 600ms var(--ease-smooth)",
             }}
-          >
-            <Image
-              src={photo.src}
-              alt={photo.caption || `Photo ${index + 1}`}
-              fill
-              sizes="(max-width: 640px) 50vw, 25vw"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
+          />
         </a>
       ) : (
         <div
