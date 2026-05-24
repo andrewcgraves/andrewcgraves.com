@@ -257,7 +257,7 @@ function GalleryThumb({
               src={photo.src}
               alt={photo.caption || `Photo ${index + 1}`}
               fill
-              sizes="(max-width: 640px) 50vw, 25vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               style={{ objectFit: "cover" }}
             />
           </div>
