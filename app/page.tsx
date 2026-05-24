@@ -31,8 +31,12 @@ export default function Home() {
             </hgroup>
           </div>
           <div className="flex-initial lg:flex-1 flex gap-4 sm:flex-row flex-wrap content-center justify-center rounded">
-            <LinkBox link="https://www.linkedin.com/in/andrewcgraves/" imgSrc={linkedInLogo} />
-            <LinkBox link="https://github.com/andrewcgraves" imgSrc={githubLogo} />
+            <LinkBox
+              link="https://www.linkedin.com/in/andrewcgraves/"
+              imgSrc={linkedInLogo}
+              alt="LinkedIn"
+            />
+            <LinkBox link="https://github.com/andrewcgraves" imgSrc={githubLogo} alt="GitHub" />
           </div>
         </div>
       </main>
