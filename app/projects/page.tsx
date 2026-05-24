@@ -25,6 +25,7 @@ function ProjectCardImage({ item }: { item: ProjectEntry }) {
         src={item.cover.src}
         alt={item.title}
         fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         style={{ objectFit: "cover" }}
         className="ceramics-card-img"
       />
@@ -116,7 +117,7 @@ export default function Projects() {
         </hgroup>
       </div>
       <section className="ceramics-grid-section">
-        <div className="ceramics-grid">
+        <div className="media-grid">
           {projects.map((item) => (
             <ProjectCard key={item.slug} item={item} />
           ))}

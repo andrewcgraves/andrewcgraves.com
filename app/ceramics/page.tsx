@@ -30,7 +30,7 @@ export default function CeramicsLanding() {
         </hgroup>
       </div>
       <section className="ceramics-grid-section">
-        <div className="ceramics-grid">
+        <div className="media-grid">
           {series.map((s, i) => (
             <article key={s.slug} className="ceramics-card">
               <Link href={`/ceramics/${s.slug}`} style={{ display: "block" }}>

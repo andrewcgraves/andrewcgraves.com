@@ -257,7 +257,7 @@ function GalleryThumb({
               src={photo.src}
               alt={photo.caption || `Photo ${index + 1}`}
               fill
-              sizes="(max-width: 640px) 50vw, 25vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               style={{ objectFit: "cover" }}
             />
           </div>
@@ -427,7 +427,7 @@ export default function ProjectDetailClient({ project }: { project: ProjectEntry
             <h2 className="pd-gallery-title">Gallery</h2>
             <span className="t-microlabel">{project.gallery.length} photos</span>
           </div>
-          <div ref={galleryRef} className="pd-gallery-grid">
+          <div ref={galleryRef} className="media-grid">
             {project.gallery.map((photo, i) => (
               <GalleryThumb key={i} photo={photo} index={i} color={project.color} />
             ))}
