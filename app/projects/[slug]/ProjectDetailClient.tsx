@@ -427,7 +427,7 @@ export default function ProjectDetailClient({ project }: { project: ProjectEntry
             <h2 className="pd-gallery-title">Gallery</h2>
             <span className="t-microlabel">{project.gallery.length} photos</span>
           </div>
-          <div ref={galleryRef} className="pd-gallery-grid">
+          <div ref={galleryRef} className="media-grid">
             {project.gallery.map((photo, i) => (
               <GalleryThumb key={i} photo={photo} index={i} color={project.color} />
             ))}

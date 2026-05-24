@@ -415,13 +415,12 @@ hgroup {
   line-height: 1.6;
 } /* wider leading vs global p */
 .ceramics-grid-section {
-  padding-bottom: 96px;
+  padding: 40px var(--page-gutter) 96px;
 }
-.ceramics-grid {
+.media-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px 32px;
-  padding: 40px var(--page-gutter) 0;
 }
 .ceramics-card {
   display: flex;
@@ -533,12 +532,10 @@ hgroup {
     max-width: none;
     padding-top: 0;
   }
-  .ceramics-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px 24px;
+  .ceramics-grid-section {
     padding-top: 32px;
   }
-  .pd-gallery-grid {
+  .media-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 24px;
   }
@@ -748,12 +745,6 @@ hgroup {
   line-height: 1.15;
 }
 
-.pd-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px 32px;
-}
-
 /* End / footer */
 .pd-end-section {
   padding: 16px clamp(20px, 6vw, 96px) 48px;
@@ -807,11 +798,7 @@ hgroup {
 }
 
 @media (max-width: 640px) {
-  .ceramics-grid {
-    grid-template-columns: 1fr;
-    gap: 48px 0;
-  }
-  .pd-gallery-grid {
+  .media-grid {
     grid-template-columns: 1fr;
     gap: 48px 0;
   }

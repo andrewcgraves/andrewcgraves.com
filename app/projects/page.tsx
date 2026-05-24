@@ -117,7 +117,7 @@ export default function Projects() {
         </hgroup>
       </div>
       <section className="ceramics-grid-section">
-        <div className="ceramics-grid">
+        <div className="media-grid">
           {projects.map((item) => (
             <ProjectCard key={item.slug} item={item} />
           ))}
