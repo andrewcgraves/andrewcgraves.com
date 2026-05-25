@@ -23,6 +23,7 @@ https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55
 https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1183a88f7f05801e_d20260524_m215332_c004_v0402034_t0050_u01779659612337)
 ![Thumbnail Sketches 3](
 https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f109a4dec41f449f9_d20260524_m215332_c004_v0402027_t0038_u01779659612121)
+![Final Sketch](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f115f5ced053106d6_d20260525_m061416_c004_v0402034_t0050_u01779689656631)
 
 After the design, it was time to move on to creating a theme template for the entire booklet. I picked a few fonts that I felt matched with the overall theme we were trying to go for and broke that up into title, subtitle, paragraph, and caption elements. I then came up with corner rounding that we would apply to this document, along with other design elements that don't play any functional role but tie the whole theme together.
 
