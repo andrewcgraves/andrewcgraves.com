@@ -7,7 +7,7 @@ import { getAllSeries } from "../../src/lib/ceramics";
 export const metadata: Metadata = {
   title: "Ceramics — Andrew Graves",
   description:
-    "Ceramics work by Andrew Graves — stoneware and porcelain made at CSU Channel Islands.",
+    "Ceramics work by Andrew Graves — stoneware and porcelain made at home and CSU Channel Islands.",
 };
 
 export default function CeramicsLanding() {
@@ -24,7 +24,7 @@ export default function CeramicsLanding() {
           <p>
             Ceramics has become a big part of my life in the last few years. I have served as an lab
             tech and teachers assistant at California State University Channel Islands since I
-            graguated in 2023. It&apos;s such a beautiful place and its inspired me to continue
+            graduated in 2023. It&apos;s such a beautiful place and its inspired me to continue
             working in clay.
           </p>
         </hgroup>
