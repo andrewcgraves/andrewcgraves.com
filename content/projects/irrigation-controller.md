@@ -42,7 +42,7 @@ For the third iteration, I started playing around with 3D printing the enclosure
 
 There was not much room in this enclosure, so I used some of the separate relays to free up some space. Along with that, I added space for an OLED screen and an encoder to take user input. This functionality didn't exist yet but would be added in the current iteration.
 
-![A later, earlier iteration of the enclosure](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1018ca0ef487086d_d20260517_m221953_c004_v0402035_t0029_u01779056393166)
+![A later iteration of the enclosure](https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f1018ca0ef487086d_d20260517_m221953_c004_v0402035_t0029_u01779056393166)
 
 ## Current Iteration
 
