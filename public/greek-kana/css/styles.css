@@ -235,18 +235,18 @@ main {
 }
 
 /* ---- Prompt glyph ---------------------------------------------------------
-   The page's true h1-scale element: display sans at 700 with tight
-   tracking. Bounded via clamp so it never forces horizontal scroll. */
+   The page's true h1-scale element: normal-weight Roboto (falls back to
+   system sans where Roboto isn't installed) for plain, textbook-like
+   letterforms. Bounded via clamp so it never forces horizontal scroll. */
 #prompt-glyph {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: clamp(5rem, 22vw, 8rem);
-  font-family: var(--font-glyph);
+  font-family: Roboto, "Helvetica Neue", "Segoe UI", system-ui, Arial, sans-serif;
   font-size: clamp(4rem, 20vw, 7rem);
   line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 400;
   text-align: center;
   color: var(--color-ink-true);
   user-select: none;
