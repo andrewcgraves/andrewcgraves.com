@@ -179,7 +179,14 @@ export function initUI({ mountIds, data, session, audio }) {
     const result = session.submit(value);
     showFeedback(result);
     els.answerInput.value = "";
-    session.next();
+    // Only advance on a correct answer. On a wrong answer the SAME prompt
+    // stays on screen (same item, same glyph, same case form) and the user
+    // retries until correct. The expected sound is visible in the
+    // "✗ {display}" feedback while retrying — typing the answer you can
+    // see is deliberate type-what-you-see reinforcement, not a loophole.
+    if (result && result.correct) {
+      session.next();
+    }
     renderStats();
     renderPrompt();
     submitting = false;

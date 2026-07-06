@@ -2,8 +2,9 @@
 
 A static, dependency-free drill app for the Modern Greek alphabet and
 digraphs, modeled on DJT Kana. One glyph is shown; you type the romanized
-sound. Wrong answers reveal the expected sound and the missed item is
-re-queued to reappear within 3 prompts.
+sound. Wrong answers reveal the expected sound and the prompt stays put
+until you type it correctly; the item is then re-queued to reappear
+within 3 prompts.
 
 **Features**
 
@@ -74,8 +75,14 @@ these shapes):
   on purpose: `submit(input)` scores the current prompt against
   `current.answers` and updates stats/miss-tracking but does not move
   the drill forward; the caller (`ui.js`) then calls `next()` to advance
-  to a new prompt. Calling `submit()` again before `next()` returns the
-  same cached result rather than re-scoring.
+  to a new prompt. Repeated `submit()` calls are re-scored until one is
+  correct; after a correct submit, further `submit()` calls return the
+  same cached result rather than re-scoring. `next()` is a no-op until
+  the current prompt has a correct submission, so a wrong answer keeps
+  the same prompt on screen until it is passed. Stats score first
+  attempts only: `seen` counts prompts first-attempted, `correct` counts
+  first-try successes, and `streak`/accuracy are first-try measures —
+  retries change nothing.
 
 ## Dataset provenance & conventions (`js/data.js`)
 
