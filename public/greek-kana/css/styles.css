@@ -1,81 +1,75 @@
 /* ==========================================================================
    DJT Greek — styles.css
+   Restyled to match andrewcgraves.com: editorial black-on-white, hairline
+   #e5e5e5 dividers instead of boxes, 700-weight display type with tight
+   tracking, italic uppercase micro-labels, and a single coral accent
+   reserved for focus rings and selected-item checkmarks.
+
    Mobile-first. Base rules target a ~360px viewport; refinements layer on
    via min-width media queries. No color-only state signaling; all
    interactive elements ≥44x44px tap targets; focus-visible everywhere;
-   prefers-reduced-motion honored; light + dark via prefers-color-scheme.
+   prefers-reduced-motion honored. Light theme only (matches parent site).
+   No network requests: system font stack, no @import, no remote url().
    ========================================================================== */
 
 /* ---- Design tokens -------------------------------------------------- */
 :root {
   color-scheme: light;
 
-  --color-bg: #f6f7f9;
-  --color-surface: #ffffff;
-  --color-surface-alt: #eef0f3;
-  --color-text: #16181c;
-  --color-text-muted: #52565e;
-  --color-border: #cdd1d8;
-  --color-border-strong: #9aa0ab;
+  /* Colors — mirror site tokens */
+  --color-bg: #ffffff;
+  --color-ink: #121212; /* body/UI text */
+  --color-ink-true: #000000; /* headings, glyph, filled states */
+  --color-ink-muted: #4a4a4f; /* secondary text, labels */
+  --color-border: #e5e5e5; /* hairlines */
+  --color-placeholder: #d9d9d9; /* dashed deselected borders, input placeholder */
+  --color-surface: #f4f4f5; /* hover fill */
+  --color-coral: #e1665b; /* focus rings, selected checkmark, ::selection */
 
-  --color-accent: #29508a;
-  --color-accent-text: #ffffff;
-  --color-accent-soft: #dfe9fb;
+  /* Semantic feedback — AA-verified on white and on their tints */
+  --color-correct: #2e7d43;
+  --color-correct-bg: #edf5ef;
+  --color-incorrect: #b23c31;
+  --color-incorrect-bg: #fbeeed;
 
-  --color-correct-bg: #dff3e3;
-  --color-correct-text: #0e6b2c;
-  --color-correct-border: #0e6b2c;
+  /* Fonts — system stack approximating Inter; zero network requests */
+  --font-display: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-glyph: var(--font-display); /* Greek set in the sans stack, not serif */
 
-  --color-incorrect-bg: #fbe3e2;
-  --color-incorrect-text: #9c241d;
-  --color-incorrect-border: #9c241d;
+  /* Radii — site scale */
+  --radius-interactive: 8px; /* inputs, row hovers, focus outline */
+  --radius-pill: 999px; /* buttons */
 
-  --color-focus: #1553c2;
+  /* Motion */
+  --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-base: 220ms;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-
+  /* Spacing + a11y */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-5: 1.5rem;
   --space-6: 2rem;
-
-  --font-sans:
-    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-glyph: Georgia, "Times New Roman", serif;
-
   --tap-min: 44px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
+/* ---- Site idioms ------------------------------------------------------- */
+::selection {
+  background: var(--color-coral);
+  color: #ffffff;
+}
 
-    --color-bg: #121316;
-    --color-surface: #1c1e22;
-    --color-surface-alt: #26282d;
-    --color-text: #f1f2f4;
-    --color-text-muted: #b0b4bd;
-    --color-border: #3c3f46;
-    --color-border-strong: #5a5e67;
-
-    --color-accent: #8fb4f2;
-    --color-accent-text: #0b1220;
-    --color-accent-soft: #253451;
-
-    --color-correct-bg: #123822;
-    --color-correct-text: #7fe3a1;
-    --color-correct-border: #7fe3a1;
-
-    --color-incorrect-bg: #3a1715;
-    --color-incorrect-text: #ffaba3;
-    --color-incorrect-border: #ffaba3;
-
-    --color-focus: #8fb4f2;
-  }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 3px;
+  border-radius: var(--radius-interactive);
 }
 
 /* ---- Reset ------------------------------------------------------------ */
@@ -94,9 +88,10 @@ body {
   margin: 0;
   min-height: 100dvh;
   background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  line-height: 1.35;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -125,17 +120,35 @@ button {
   margin-inline: auto;
   padding: calc(var(--space-3) + env(safe-area-inset-top)) calc(var(--space-3) + env(safe-area-inset-right))
     calc(var(--space-4) + env(safe-area-inset-bottom)) calc(var(--space-3) + env(safe-area-inset-left));
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
+/* ---- Header ------------------------------------------------------------
+   Editorial: left-aligned display type over a hairline divider. */
 header {
-  text-align: center;
+  text-align: left;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+header .kicker {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-1);
 }
 
 header h1 {
-  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: clamp(28px, 8vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink-true);
 }
 
 main {
@@ -147,31 +160,37 @@ main {
 
 /* ---- Drill section ------------------------------------------------------
    Compact vertical rhythm keeps prompt + input + feedback in the upper
-   viewport even when the mobile keyboard is open. */
+   viewport even when the mobile keyboard is open. No card box — the site
+   has no cards. */
 #drill {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-/* ---- Stats bar ---------------------------------------------------------- */
+/* ---- Stats bar -----------------------------------------------------------
+   Micro-label idiom: italic uppercase, wide tracking, muted ink. */
 #stats-bar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-1) var(--space-3);
-  font-size: clamp(0.75rem, 2.6vw, 0.85rem);
-  color: var(--color-text-muted);
   padding: var(--space-1) var(--space-2);
 }
 
 #stats-bar span {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-muted);
   white-space: nowrap;
 }
 
 /* ---- Case mode ----------------------------------------------------------
-   Three toggle-style radio buttons. Selected state is signaled by more
-   than color: border weight + background + a bold weight shift. */
+   Nav-pill idiom: white outlined pills; the active one inverts to a black
+   fill with white text — luminance inversion, never color alone. */
 #case-mode {
   display: flex;
   flex-wrap: wrap;
@@ -183,29 +202,41 @@ main {
   flex: 1 1 auto;
   min-height: var(--tap-min);
   min-width: var(--tap-min);
-  padding: var(--space-2) var(--space-3);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  font-size: clamp(0.8rem, 2.8vw, 0.9rem);
-  font-weight: 500;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  transition:
+    background var(--dur-base) var(--ease-smooth),
+    color var(--dur-base) var(--ease-smooth),
+    border-color var(--dur-base) var(--ease-smooth),
+    transform var(--dur-fast) var(--ease-smooth);
 }
 
-.case-btn[aria-checked="true"] {
-  background: var(--color-accent-soft);
-  border-color: var(--color-accent);
-  border-width: 2px;
-  font-weight: 700;
+.case-btn:hover {
+  background: var(--color-surface);
 }
 
 .case-btn:active {
   transform: scale(0.97);
 }
 
+.case-btn[aria-checked="true"] {
+  background: var(--color-ink-true);
+  border-color: var(--color-ink-true);
+  color: #ffffff;
+}
+
 /* ---- Prompt glyph ---------------------------------------------------------
-   Very large, bounded via clamp so it never forces horizontal scroll. */
+   The page's true h1-scale element: display sans at 700 with tight
+   tracking. Bounded via clamp so it never forces horizontal scroll. */
 #prompt-glyph {
   display: flex;
   align-items: center;
@@ -215,27 +246,36 @@ main {
   font-size: clamp(4rem, 20vw, 7rem);
   line-height: 1;
   font-weight: 700;
+  letter-spacing: -0.02em;
   text-align: center;
-  color: var(--color-text);
+  color: var(--color-ink-true);
   user-select: none;
 }
 
-/* ---- Play sound button ------------------------------------------------- */
+/* ---- Play sound button ---------------------------------------------------
+   Pill button idiom. */
 #play-sound {
   align-self: center;
   min-height: var(--tap-min);
   min-width: var(--tap-min);
-  padding: var(--space-2) var(--space-4);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  padding: 12px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  transition:
+    background var(--dur-base) var(--ease-smooth),
+    transform var(--dur-base) var(--ease-smooth);
 }
 
 #play-sound:hover {
-  border-color: var(--color-border-strong);
+  background: var(--color-surface);
 }
 
 #play-sound:active {
@@ -244,7 +284,8 @@ main {
 
 /* ---- Answer form --------------------------------------------------------
    Input font-size is fixed at 16px (never fluid down) to prevent iOS
-   Safari's automatic zoom-on-focus behavior. */
+   Safari's automatic zoom-on-focus behavior. Focus is the global coral
+   ring only. */
 #answer-form {
   display: flex;
   flex-direction: column;
@@ -252,8 +293,12 @@ main {
 }
 
 #answer-form label {
-  font-size: clamp(0.75rem, 2.6vw, 0.85rem);
-  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-muted);
   text-align: center;
 }
 
@@ -262,32 +307,39 @@ main {
   min-height: var(--tap-min);
   padding: var(--space-2) var(--space-3);
   font-size: 16px;
-  font-family: inherit;
+  font-family: var(--font-body);
   text-align: center;
-  color: var(--color-text);
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-interactive);
+  transition: border-color var(--dur-fast) var(--ease-smooth);
 }
 
-#answer-input:focus-visible {
-  border-color: var(--color-focus);
+#answer-input::placeholder {
+  color: var(--color-placeholder);
+}
+
+#answer-input:hover {
+  border-color: var(--color-placeholder);
 }
 
 /* ---- Feedback -------------------------------------------------------------
    A reserved min-height avoids layout shift between empty / filled states,
    which keeps the input + feedback pair stable while typing. Correct /
    incorrect are distinguished by background, border, AND the icon/text
-   prefix injected by JS — never color alone. */
+   prefix injected by JS — never color alone. Hairline 1px borders per the
+   site norm; both pairs are AA on their tints. */
 #feedback {
   min-height: 2.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-interactive);
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: clamp(0.85rem, 3vw, 1rem);
-  font-weight: 600;
   text-align: center;
 }
 
@@ -297,24 +349,22 @@ main {
 
 #feedback.correct {
   background: var(--color-correct-bg);
-  color: var(--color-correct-text);
-  border: 2px solid var(--color-correct-border);
+  color: var(--color-correct);
+  border: 1px solid var(--color-correct);
 }
 
 #feedback.incorrect {
   background: var(--color-incorrect-bg);
-  color: var(--color-incorrect-text);
-  border: 2px solid var(--color-incorrect-border);
+  color: var(--color-incorrect);
+  border: 1px solid var(--color-incorrect);
 }
 
 /* ---- Selection panel ------------------------------------------------------
-   Collapsed <details> reserves no extra vertical space; the <summary> is
-   styled as an unmistakable tappable button. */
+   Hairline section divider, not a boxed card. Collapsed <details> reserves
+   no extra vertical space; the <summary> is styled as an unmistakable
+   tappable row with a hover fill. */
 #selection-panel {
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  overflow: hidden;
+  border-top: 1px solid var(--color-border);
 }
 
 #selection-toggle {
@@ -323,12 +373,22 @@ main {
   justify-content: space-between;
   gap: var(--space-2);
   min-height: var(--tap-min);
-  padding: var(--space-3) var(--space-4);
-  font-size: clamp(0.85rem, 3vw, 0.95rem);
-  font-weight: 600;
+  padding: var(--space-3) var(--space-2);
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-true);
+  border-radius: var(--radius-interactive);
   cursor: pointer;
   list-style: none;
   user-select: none;
+  transition: background var(--dur-base) var(--ease-smooth);
+}
+
+#selection-toggle:hover {
+  background: var(--color-surface);
 }
 
 #selection-toggle::-webkit-details-marker {
@@ -339,8 +399,8 @@ main {
   content: "▸";
   display: inline-block;
   font-size: 0.9em;
-  color: var(--color-text-muted);
-  transition: transform 0.15s ease;
+  color: var(--color-ink-muted);
+  transition: transform var(--dur-base) var(--ease-smooth);
 }
 
 #selection-panel[open] #selection-toggle::after {
@@ -352,13 +412,14 @@ main {
 }
 
 #selection-grid {
-  padding: 0 var(--space-4) var(--space-4);
+  padding: 0 0 var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
-/* ---- Selection groups ------------------------------------------------- */
+/* ---- Selection groups --------------------------------------------------
+   Hairline-divided sections with display-weight headings. */
 .sel-group {
   display: flex;
   flex-direction: column;
@@ -371,7 +432,7 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  padding-top: var(--space-2);
+  padding-top: var(--space-3);
   border-top: 1px solid var(--color-border);
 }
 
@@ -382,23 +443,39 @@ main {
 
 .sel-group-header h2,
 .sel-group-header h3 {
-  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 700;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-true);
 }
 
-.group-btn {
+/* Text-button idiom: no box, muted ink that darkens on hover. */
+.group-btn,
+#reset-btn {
   min-height: var(--tap-min);
-  padding: var(--space-1) var(--space-3);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface-alt);
-  font-size: clamp(0.75rem, 2.6vw, 0.85rem);
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: var(--radius-interactive);
+  background: transparent;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-muted);
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    color var(--dur-base) var(--ease-smooth),
+    background var(--dur-base) var(--ease-smooth);
 }
 
-.group-btn:hover {
-  border-color: var(--color-border-strong);
+.group-btn:hover,
+#reset-btn:hover {
+  color: var(--color-ink);
+  background: var(--color-surface);
 }
 
 /* Fluid, reflowing grid — never a fixed wide table. */
@@ -408,8 +485,9 @@ main {
   gap: var(--space-2);
 }
 
-/* Selected vs. deselected is signaled by border weight/style, background,
-   opacity, AND a checkmark — never color alone. */
+/* Selected vs. deselected carries three simultaneous signals: black-fill
+   inversion, dashed→solid border, and a coral checkmark — never color
+   alone, and no opacity trick that would break AA contrast. */
 .sel-item {
   position: relative;
   display: flex;
@@ -420,12 +498,21 @@ main {
   min-height: var(--tap-min);
   min-width: var(--tap-min);
   padding: var(--space-2) var(--space-1);
-  border: 2px dashed var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  opacity: 0.6;
+  border: 1px dashed var(--color-placeholder);
+  border-radius: var(--radius-interactive);
+  background: #ffffff;
+  color: var(--color-ink-muted);
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+  transition:
+    background var(--dur-base) var(--ease-smooth),
+    border-color var(--dur-base) var(--ease-smooth),
+    color var(--dur-base) var(--ease-smooth),
+    transform var(--dur-fast) var(--ease-smooth);
+}
+
+.sel-item:hover {
+  background: var(--color-surface);
+  border-color: var(--color-ink-muted);
 }
 
 .sel-item:active {
@@ -433,66 +520,44 @@ main {
 }
 
 .sel-item[aria-pressed="true"] {
-  border-style: solid;
-  border-color: var(--color-accent);
-  background: var(--color-accent-soft);
-  opacity: 1;
-  font-weight: 700;
+  border: 1px solid var(--color-ink-true);
+  background: var(--color-ink-true);
+  color: #ffffff;
 }
 
 .sel-item[aria-pressed="true"]::after {
   content: "✓";
   position: absolute;
-  top: 2px;
-  right: 4px;
+  top: 3px;
+  right: 5px;
   font-size: 0.7rem;
   line-height: 1;
-  color: var(--color-accent);
+  color: var(--color-coral);
 }
 
 .sel-item .glyph {
   font-family: var(--font-glyph);
+  font-weight: 700;
   font-size: clamp(1.1rem, 4vw, 1.35rem);
   line-height: 1.1;
 }
 
 .sel-item .sound {
   font-size: clamp(0.65rem, 2.2vw, 0.7rem);
-  color: var(--color-text-muted);
+  color: var(--color-ink-muted);
+}
+
+.sel-item[aria-pressed="true"] .glyph {
+  color: #ffffff;
 }
 
 .sel-item[aria-pressed="true"] .sound {
-  color: var(--color-accent);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* ---- Reset button ------------------------------------------------------ */
 #reset-btn {
   align-self: center;
-  min-height: var(--tap-min);
-  padding: var(--space-2) var(--space-4);
-  border: 2px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-  background: var(--color-surface-alt);
-  font-size: clamp(0.8rem, 2.8vw, 0.9rem);
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-#reset-btn:hover {
-  border-color: var(--color-text-muted);
-}
-
-/* ---- Focus visibility ---------------------------------------------------
-   Applied globally so every interactive element gets a visible ring,
-   regardless of specific component styling above. */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-summary:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
 }
 
 /* ---- Reduced motion ------------------------------------------------------ */
@@ -525,19 +590,11 @@ summary:focus-visible,
 @media (min-width: 768px) {
   #app {
     padding-top: calc(var(--space-5) + env(safe-area-inset-top));
-    gap: var(--space-4);
-  }
-
-  header h1 {
-    font-size: 1.75rem;
+    gap: var(--space-5);
   }
 
   #drill {
     gap: var(--space-3);
-    padding: var(--space-5);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
   }
 
   .sel-items {
