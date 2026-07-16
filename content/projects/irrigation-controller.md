@@ -4,7 +4,7 @@ order: 0
 year: 2021-current
 kind: Project
 blurb: A long term project to replace our old dumb controller with something that I could control through Home Assistant.
-color: "#E1665B"
+color: "#4f6874"
 cover:
   src: https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f11539a72e26bbedf_d20260517_m214006_c004_v0402001_t0016_u01779054006498
 ---

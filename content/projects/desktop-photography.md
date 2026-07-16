@@ -4,7 +4,7 @@ order: 2
 year: Ongoing
 kind: Design
 blurb: An ongoing effort of cataloging the places I've been in a few images I can see every day.
-color: "#E1665B"
+color: "#929452"
 cover:
   src: https://f004.backblazeb2.com/b2api/v1/b2_download_file_by_id?fileId=4_z8f907fb55c4c22b29911051f_f111058e8097c9bde_d20240824_m064000_c004_v0402023_t0020_u01724481600910
 gallery:
