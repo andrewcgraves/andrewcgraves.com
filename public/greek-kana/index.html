@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>DJT Greek</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <p class="kicker">Greek alphabet drill</p>
+        <h1>DJT Greek</h1>
+      </header>
+
+      <main>
+        <section id="drill" aria-label="Drill">
+          <div id="stats-bar" aria-label="Session statistics">
+            <span id="stat-seen">Seen: 0</span>
+            <span id="stat-correct">Correct: 0</span>
+            <span id="stat-streak">Streak: 0</span>
+            <span id="stat-accuracy">Accuracy: 0%</span>
+          </div>
+
+          <div id="case-mode" role="radiogroup" aria-label="Case mode">
+            <button type="button" id="case-lowercase" role="radio" aria-checked="true">
+              lowercase
+            </button>
+            <button type="button" id="case-uppercase" role="radio" aria-checked="false">
+              UPPERCASE
+            </button>
+            <button type="button" id="case-mixed" role="radio" aria-checked="false">Mixed</button>
+          </div>
+
+          <div id="prompt-glyph" aria-label="Current glyph"></div>
+
+          <button type="button" id="play-sound" aria-label="Play sound">🔊 Play sound</button>
+
+          <form id="answer-form" autocomplete="off">
+            <label for="answer-input">Type the romanized sound</label>
+            <input
+              id="answer-input"
+              type="text"
+              autocapitalize="none"
+              autocorrect="off"
+              autocomplete="off"
+              spellcheck="false"
+              inputmode="text"
+              enterkeyhint="go"
+            />
+          </form>
+
+          <div id="feedback" aria-live="polite"></div>
+        </section>
+
+        <details id="selection-panel">
+          <summary id="selection-toggle">Character selection</summary>
+          <div id="selection-grid" aria-label="Character selection grid"></div>
+        </details>
+      </main>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
