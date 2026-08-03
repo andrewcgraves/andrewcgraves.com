@@ -233,8 +233,8 @@ function GalleryThumb({
         <a
           className="pswp-gallery-item"
           href={photo.src}
-          data-pswp-width={photo.width || 0}
-          data-pswp-height={photo.height || 0}
+          data-pswp-width={0}
+          data-pswp-height={0}
           style={{
             display: "block",
             borderRadius: 10,
